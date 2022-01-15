@@ -1,3 +1,6 @@
+import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+
 // Create Scene
 const scene = new THREE.Scene()
 
@@ -28,11 +31,11 @@ setWindowSize()
 window.onresize = setWindowSize
 
 // Add Lighting
-hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 4)
+const hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 4)
 scene.add(hemiLight)
 
 // Add Model Loader
-const modelLoader = new THREE.GLTFLoader()
+const modelLoader = new GLTFLoader()
 
 // Add Baritone Model
 // NOTE: Use glTF VS Code extension to convert .gltf to .glb
