@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/c-o-l-i-n/3d-site#readme",
   "dependencies": {
+    "smoothscroll-anchor-polyfill": "^1.3.4",
+    "smoothscroll-polyfill": "^0.4.4",
     "three": "^0.136.0"
   }
 }

@@ -1,5 +1,6 @@
 html {
 	font-size: 24px;
+	--scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	font-family: sans-serif;
 }
