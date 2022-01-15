@@ -86,8 +86,7 @@ section textarea {
 
 #contact {
 	box-sizing: border-box;
-	max-width: 100%;
-	min-width: 20rem;
+	width: 20rem;
 }
 
 #contact-me {
