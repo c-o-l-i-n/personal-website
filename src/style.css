@@ -1,3 +1,64 @@
+html {
+	font-size: 24px;
+	scroll-behavior: smooth;
+}
+
 body {
 	margin: 0;
+	padding: 1rem;
+}
+
+#background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+
+section {
+	opacity: 0.97;
+	padding: 0.25rem 1.5rem 0.5rem 1.5rem;
+	margin: 1rem 0;
+	background-color: #eee;
+	color: #111;
+	border-radius: 0.5rem;
+	box-sizing: border-box;
+	max-width: 100%;
+	width: max-content;
+}
+
+section a {
+	text-decoration: none;
+}
+
+section h1 {
+	font-size: 2rem;
+	margin: 1rem 0;
+}
+
+section h2 {
+	font-size: 1.5rem;
+	margin-bottom: 0;
+}
+
+section ul {
+	list-style: cirlce;
+	padding-left: 2.25rem;
+}
+
+section > ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+section li {
+	margin: 0.25rem 0;
+}
+
+.mt-0 {
+	margin-top: 0;
+}
+
+* {
+	font-family: sans-serif;
 }
