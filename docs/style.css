@@ -6,7 +6,7 @@ html {
 
 body {
 	margin: 0;
-	padding: 0.75rem 1rem 0.5rem 1rem;
+	padding: 1.25rem 4rem 0.5rem 4rem;
 	display: flex;
 	flex-direction: column;
 }
@@ -21,8 +21,8 @@ body {
 section {
 	box-sizing: border-box;
 	width: max-content;
-	max-width: 60%;
-	margin: 0.75rem 0;
+	max-width: 55%;
+	margin: 1rem 0;
 	padding: 0.25rem 1.5rem 0.5rem 1.5rem;
 	border-radius: 0.5rem;
 	opacity: 0.98;
@@ -117,7 +117,12 @@ section textarea {
 }
 
 @media screen and (max-width: 800px) {
+	body {
+		padding: 0.75rem 1rem 0.5rem 1rem;
+	}
+
 	section {
+		margin: 0.75rem 0;
 		width: 100%;
 		max-width: 100%;
 	}
