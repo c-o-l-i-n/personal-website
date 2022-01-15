@@ -5,8 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-		"deploy": "gh-pages -d src"
+		"build": "webpack",
+		"deploy": "echo 'colinaw.com' > ./build/CNAME && gh-pages -d src"
 	},
 	"repository": {
 		"type": "git",
