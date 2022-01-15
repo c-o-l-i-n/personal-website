@@ -1,5 +1,5 @@
 {
-	"name": "3d-site",
+	"name": "personal-website",
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
@@ -10,14 +10,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/c-o-l-i-n/3d-site.git"
+		"url": "git+https://github.com/c-o-l-i-n/personal-website.git"
 	},
 	"author": "Colin A. Williams",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/c-o-l-i-n/3d-site/issues"
+		"url": "https://github.com/c-o-l-i-n/personal-website/issues"
 	},
-	"homepage": "https://github.com/c-o-l-i-n/3d-site#readme",
+	"homepage": "https://github.com/c-o-l-i-n/personal-website#readme",
 	"dependencies": {
 		"smoothscroll-polyfill": "^0.4.4",
 		"three": "^0.136.0"
