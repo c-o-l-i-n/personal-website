@@ -3,6 +3,7 @@ html {
 	--scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	font-family: sans-serif;
+	background-color: black;
 }
 
 body {
@@ -29,6 +30,26 @@ section {
 	opacity: 0.98;
 	background-color: #eee;
 	color: #111;
+}
+
+section.yellow {
+	background-color: #fffeeb;
+}
+
+section.blue {
+	background-color: #dbe5ff;
+}
+
+section.green {
+	background-color: #ebffe6;
+}
+
+section.purple {
+	background-color: #e5e1ff;
+}
+
+section.red {
+	background-color: #ffe2e2;
 }
 
 section.right {
