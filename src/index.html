@@ -5,7 +5,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Colin A. Williams</title>
-		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
 		<canvas id="background"></canvas>
@@ -154,7 +153,7 @@
 		<p id="copyright">
 			<small>
 				Copyright &copy;
-				<script type="text/javascript">
+				<script>
 					const currentYear = new Date().getFullYear()
 					document.write(
 						currentYear === 2022 ? currentYear : '2022 - ' + currentYear
@@ -163,6 +162,6 @@
 				Colin A. Williams
 			</small>
 		</p>
-		<script type="text/javascript" src="./dist/bundle.js"></script>
+		<script src="bundle.js"></script>
 	</body>
 </html>
