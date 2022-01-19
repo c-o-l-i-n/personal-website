@@ -19,7 +19,11 @@ module.exports = {
 			template: './src/index.html',
 		}),
 		new CopyPlugin({
-			patterns: [{ from: './src/assets', to: 'assets' }],
+			patterns: [
+				{ from: './src/CNAME', to: 'CNAME', toType: 'file' },
+				{ from: './src/assets', to: 'assets' },
+				{ from: './src/redirects/*.html', to: '[name]/index.html' },
+			],
 		}),
 	],
 	module: {
