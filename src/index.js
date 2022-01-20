@@ -10,14 +10,14 @@ const camera = new THREE.PerspectiveCamera(
 	75,
 	window.innerWidth / window.innerHeight,
 	0.1,
-	1000
+	100
 )
 let cameraRadius = 5
 camera.position.z = cameraRadius
 
 // Add Renderer
 const renderer = new THREE.WebGLRenderer({
-	// canvas: document.getElementById('background'),
+	powerPreference: 'low-power',
 	canvas: document.querySelector('#background'),
 })
 renderer.setSize(window.innerWidth, window.innerHeight)
@@ -33,8 +33,12 @@ setWindowSize()
 window.onresize = setWindowSize
 
 // Add Lighting
-const hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 4)
-scene.add(hemiLight)
+const ambientLight = new THREE.AmbientLight(0xffffff, 2)
+scene.add(ambientLight)
+
+const pointLight = new THREE.PointLight(0xffffff, 5, 100)
+pointLight.position.set(50, 50, 50)
+scene.add(pointLight)
 
 // Add Model Loader
 const modelLoader = new GLTFLoader()
@@ -42,7 +46,11 @@ const modelLoader = new GLTFLoader()
 // Add Skybox
 const skyboxGeometry = new THREE.SphereGeometry(200, 25, 25)
 const textureLoader = new THREE.TextureLoader()
-const skyboxTexture = textureLoader.load('assets/space.jpg')
+const skyboxTexture = textureLoader.load('assets/space.jpg', (texture) => {
+	texture.mapping = THREE.EquirectangularReflectionMapping
+	scene.background = texture
+	scene.environment = texture
+})
 const skyboxMaterial = new THREE.MeshPhongMaterial({ map: skyboxTexture })
 const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial)
 skybox.material.side = THREE.BackSide
