@@ -39,6 +39,15 @@ scene.add(hemiLight)
 // Add Model Loader
 const modelLoader = new GLTFLoader()
 
+// Add Skybox
+const skyboxGeometry = new THREE.SphereGeometry(200, 25, 25)
+const textureLoader = new THREE.TextureLoader()
+const skyboxTexture = textureLoader.load('assets/space.jpg')
+const skyboxMaterial = new THREE.MeshPhongMaterial({ map: skyboxTexture })
+const skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterial)
+skybox.material.side = THREE.BackSide
+scene.add(skybox)
+
 // Add Baritone Model
 // NOTE: Use glTF VS Code extension to convert .gltf to .glb
 let baritone
