@@ -12,7 +12,8 @@ const camera = new THREE.PerspectiveCamera(
 	0.1,
 	1000
 )
-camera.position.z = 5
+let cameraRadius = 5
+camera.position.z = cameraRadius
 
 // Add Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -72,12 +73,34 @@ for (let i = 0; i < 1000; i++) {
 	addStar()
 }
 
+// Sets camera rotation around center of scene
+function setCameraRotation(degrees) {
+	const radians = (degrees * Math.PI) / 180
+
+	camera.position.x = Math.cos(radians) * cameraRadius
+	camera.position.z = Math.sin(radians) * cameraRadius
+
+	camera.lookAt(scene.position)
+}
+
+// Sets camera position and rotation based on scroll percentage
+function setCameraTransform() {
+	const percentageScrolledThroughPage =
+		window.scrollY / (document.body.scrollHeight - window.innerHeight)
+
+	cameraRadius = 6 - percentageScrolledThroughPage * 2
+	setCameraRotation(360 * percentageScrolledThroughPage)
+}
+setCameraTransform()
+
+window.onscroll = setCameraTransform
+
 // Animation Loop
 function animate() {
 	requestAnimationFrame(animate)
 
-	baritone.rotation.x += 0.01
-	baritone.rotation.y += 0.01
+	baritone.rotation.x += 0.005
+	baritone.rotation.y += 0.005
 
 	renderer.render(scene, camera)
 }
