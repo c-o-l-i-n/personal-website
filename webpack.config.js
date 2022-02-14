@@ -2,8 +2,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-	mode: 'development',
 	entry: './src/index.js',
+	mode: 'production',
 	devtool: 'inline-source-map',
 	devServer: {
 		static: './dist',
@@ -23,6 +23,7 @@ module.exports = {
 				{ from: './src/CNAME', to: 'CNAME', toType: 'file' },
 				{ from: './src/assets', to: 'assets' },
 				{ from: './src/redirects/*.html', to: '[name]/index.html' },
+				{ from: './src/resume.pdf', to: 'Colin-Williams-Resume.pdf' },
 			],
 		}),
 	],
