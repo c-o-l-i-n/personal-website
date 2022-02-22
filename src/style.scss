@@ -1,5 +1,5 @@
 html {
-	font-size: 24px;
+	font-size: x-large;
 	--scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	font-family: sans-serif;
@@ -56,7 +56,12 @@ section {
 	}
 
 	a {
-		text-decoration: none;
+		color: #2748a5;
+
+		span {
+			text-decoration: none;
+			display: inline-block;
+		}
 	}
 
 	h1 {
@@ -151,5 +156,11 @@ section {
 	#copyright {
 		margin-top: 85vh;
 		margin-top: calc(100vh - 4rem);
+	}
+}
+
+@media screen and (max-width: 360px) {
+	html {
+		font-size: large;
 	}
 }
