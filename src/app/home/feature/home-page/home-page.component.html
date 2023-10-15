@@ -1,0 +1,11 @@
+<h3>Blog Posts</h3>
+
+<ul>
+  @for (blogPost of blogPosts$ | async; track blogPost.slug) {
+  <li>
+    <a [routerLink]="blogPost.route">{{ blogPost.title }}</a>
+  </li>
+  } @empty {
+  <p>No blog posts</p>
+  }
+</ul>

@@ -1,0 +1,28 @@
+diff --git a/node_modules/@scullyio/scully/src/lib/routerPlugins/handledRoute.interface.d.ts b/node_modules/@scullyio/scully/src/lib/routerPlugins/handledRoute.interface.d.ts
+index 1f6055e..8e724c6 100644
+--- a/node_modules/@scullyio/scully/src/lib/routerPlugins/handledRoute.interface.d.ts
++++ b/node_modules/@scullyio/scully/src/lib/routerPlugins/handledRoute.interface.d.ts
+@@ -28,8 +28,8 @@ export interface HandledRoute {
+     config?: RouteConfig;
+     /** variables exposed to angular _while rendering only!_ */
+     exposeToPage?: {
+-        manualIdle?: boolean;
+-        transferState?: Serializable;
++        manualIdle: Serializable;
++        transferState: Serializable;
+         [key: string]: Serializable;
+     };
+     /** data will be injected into the static page */
+diff --git a/node_modules/@scullyio/scully/src/lib/utils/interfacesandenums.d.ts b/node_modules/@scullyio/scully/src/lib/utils/interfacesandenums.d.ts
+index 32a3438..388b1c3 100644
+--- a/node_modules/@scullyio/scully/src/lib/utils/interfacesandenums.d.ts
++++ b/node_modules/@scullyio/scully/src/lib/utils/interfacesandenums.d.ts
+@@ -80,7 +80,7 @@ export declare type RouteTypeJson = {
+     };
+ };
+ export interface HeadersObject {
+-    expectedContentType?: string;
++    expectedContentType: string;
+     [headerName: string]: string;
+ }
+ export declare type RouteTypeContentFolder = {

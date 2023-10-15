@@ -1,0 +1,12 @@
+@if (post$ | async) {
+<h1 class="text-center">{{ (post$ | async)?.title }}</h1>
+<p class="text-center grey">
+  Colin Williams &bullet;
+  <time [attr.datetime]="(post$ | async)?.['publishedDate']">
+    {{ (post$ | async)?.['publishedDate'] | date: 'longDate' : 'UTC' }}
+  </time>
+</p>
+<scully-content />
+} @else {
+<p class="text-center">Post not found</p>
+}

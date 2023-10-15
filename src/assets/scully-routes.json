@@ -1,0 +1,13 @@
+[
+  { "route": "/" },
+  {
+    "route": "/blog/test-post",
+    "title": "Test Post",
+    "description": "Description",
+    "thumbnail": "assets/images/default.jpg",
+    "published": true,
+    "publishedDate": "2023-10-14T00:00:00.000Z",
+    "tags": ["Tag 1", "Tag 2"],
+    "sourceFile": "test-post.md"
+  }
+]
