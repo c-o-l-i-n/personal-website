@@ -1,15 +1,23 @@
 <a [routerLink]="post.route">
-  <colin-card styleClass="bg-white group" [header]="header">
+  <colin-card styleClass="bg-white group gap-0" [header]="header">
+    <!-- Thumbnail -->
     <div
-      class="h-48 w-full rounded bg-[url(https://picsum.photos/600)] bg-cover bg-center"
+      class="h-48 w-full rounded bg-[url(/assets/images/placeholder.webp)] bg-cover bg-center"
       [ngClass]="
-        'bg-[url(' + (post.thumbnail || 'https://picsum.photos/600') + ')]'
+        'bg-[url(' +
+        (post.thumbnail || '/assets/images/placeholder.webp') +
+        ')]' +
+        (header ? ' mt-3' : '')
       "
     ></div>
-    <div class="-mt-1 flex items-center">
-      <span class="mr-3 text-xs">{{
+
+    <div class="my-3 flex flex-wrap items-center gap-2">
+      <!-- Published Date -->
+      <span class="mr-1 text-sm">{{
         post.publishedDate | date: 'mediumDate' : 'UTC'
       }}</span>
+
+      <!-- Tag Pills -->
       <colin-pill
         *ngFor="let tag of post.tags"
         [model]="{
@@ -18,8 +26,13 @@
         }"
       />
     </div>
+
+    <!-- Title -->
     <h3 class="-mt-1 font-mono text-xl group-hover:underline">
       {{ post.title }}
     </h3>
+
+    <!-- Description -->
+    <p class="text-sm text-slate-600">{{ post.description }}</p>
   </colin-card>
 </a>

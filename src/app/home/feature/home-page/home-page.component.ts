@@ -14,14 +14,14 @@ export class HomePageComponent {
     {
       text: 'TypeScript Wiz',
       iconSrc: 'https://icon.icepanel.io/Technology/svg/TypeScript.svg',
-      iconWidth: 14,
+      iconSize: 14,
     },
     {
       text: 'Angular Architect',
       iconSrc: 'https://icon.icepanel.io/Technology/svg/Angular.svg',
     },
     {
-      text: 'Firebase Aficionado',
+      text: 'Firebase Fan',
       iconSrc: 'https://icon.icepanel.io/Technology/svg/Firebase.svg',
     },
     {
@@ -31,7 +31,7 @@ export class HomePageComponent {
     {
       text: 'Spring Chicken',
       iconSrc: 'https://icon.icepanel.io/Technology/svg/Spring.svg',
-      iconWidth: 14,
+      iconSize: 14,
     },
   ];
 

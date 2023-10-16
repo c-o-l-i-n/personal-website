@@ -6,7 +6,7 @@ export interface BlogPost extends ScullyRoute {
   thumbnail: string;
   publishedDate: string;
   featured: boolean;
-  tags: string[];
+  tags?: string[];
 }
 
 export function sortBlogPostsByDate(a: BlogPost, b: BlogPost): number {

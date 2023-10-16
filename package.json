@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "ng build",
+    "build": "ng build --stats-json",
     "build-and-serve-static-content": "npm run build && npm run scully && npm run scully:serve",
     "format": "prettier --write .",
     "postinstall": "patch-package",
@@ -66,6 +66,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.6",
+    "scully-plugin-disable-angular": "^8.0.0",
     "tailwindcss": "^3.3.3",
     "typescript": "~5.2.2"
   }

@@ -1,10 +1,11 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ScullyLibModule, ScullyRoutesService } from '@scullyio/ng-lib';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MockScullyRoutesService } from '@colin/shared/util';
+import { environment } from '@environment';
 
 const routes: Routes = [
   {
@@ -41,7 +42,9 @@ const routes: Routes = [
   providers: [
     {
       provide: ScullyRoutesService,
-      useClass: isDevMode() ? MockScullyRoutesService : ScullyRoutesService,
+      useClass: environment.production
+        ? ScullyRoutesService
+        : MockScullyRoutesService,
     },
   ],
 })

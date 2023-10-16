@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 export interface PillModel {
   iconSrc: string;
-  iconWidth?: number;
+  iconSize?: number;
   text: string;
 }
 

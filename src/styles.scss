@@ -13,3 +13,34 @@ textarea,
 button {
   @apply focus:outline-none focus:ring-2 focus:ring-slate-300;
 }
+
+.content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mb-4 mt-8 font-mono font-extrabold;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-3xl;
+  }
+
+  img {
+    @apply rounded;
+  }
+
+  p {
+    @apply mb-5;
+  }
+}

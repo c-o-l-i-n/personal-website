@@ -4,7 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { BlogPostPageComponent } from './blog-post-page/blog-post-page.component';
 import { BlogPageComponent } from './blog-page/blog-page.component';
 import { SharedUiModule } from '@colin/shared/ui';
-import { MockScullyContentComponent } from './mock-scully-content/mock-scully-content.component';
+import { BlogUiModule } from '@colin/blog/ui';
+import { environment } from '@environment';
+import { ScullyContentModule } from '@scullyio/ng-lib';
 
 const routes: Routes = [
   {
@@ -18,16 +20,13 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
-    BlogPostPageComponent,
-    BlogPageComponent,
-    MockScullyContentComponent,
-  ],
+  declarations: [BlogPostPageComponent, BlogPageComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     RouterModule,
     SharedUiModule,
+    ...(environment.production ? [ScullyContentModule] : [BlogUiModule]),
   ],
 })
 export class BlogFeatureModule {}

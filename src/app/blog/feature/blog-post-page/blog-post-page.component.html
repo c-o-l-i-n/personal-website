@@ -1,31 +1,44 @@
-<article *ngFor="let post of [post$ | async]">
-  <!-- Thumbnail -->
-  <div
-    class="my-10 aspect-video w-full rounded bg-cover bg-center"
-    [ngClass]="'bg-[url(' + post!.thumbnail + ')]'"
-  ></div>
+<article class="mb-24">
+  <ng-container *ngIf="post$ | async as post">
+    <!-- Thumbnail -->
+    <div
+      class="my-10 aspect-video w-full rounded bg-cover bg-center"
+      [ngClass]="'bg-[url(' + post.thumbnail + ')]'"
+    ></div>
 
-  <!-- Title -->
-  <h1
-    class="font-mono text-2xl font-extrabold tracking-tight text-slate-900 md:text-3xl"
-  >
-    {{ post!.title }}
-  </h1>
+    <!-- Title -->
+    <h1
+      class="font-mono text-2xl font-extrabold tracking-tight text-slate-900 md:text-3xl"
+    >
+      {{ post.title }}
+    </h1>
 
-  <!-- Date -->
-  <div class="text-sm leading-6">
-    <dl>
-      <dt class="sr-only">Date</dt>
-      <dd class="text-slate-700">
-        <time [attr.datetime]="post!.publishedDate">{{
-          post!.publishedDate | date: 'fullDate' : 'UTC'
-        }}</time>
-      </dd>
-    </dl>
-  </div>
+    <!-- Date -->
+    <div class="text-sm leading-6">
+      <dl>
+        <dt class="sr-only">Date</dt>
+        <dd class="text-slate-700">
+          <time [attr.datetime]="post.publishedDate">{{
+            post.publishedDate | date: 'fullDate' : 'UTC'
+          }}</time>
+        </dd>
+      </dl>
+    </div>
+  </ng-container>
 
   <!-- Content -->
-  <div class="content mb-32 mt-8">
+  <div class="content mt-8">
     <scully-content />
+  </div>
+
+  <div *ngIf="post$ | async as post" class="mt-16 flex flex-wrap gap-2">
+    <!-- Tag Pills -->
+    <colin-pill
+      *ngFor="let tag of post.tags"
+      [model]="{
+        text: tag,
+        iconSrc: 'https://icon.icepanel.io/Technology/svg/' + tag + '.svg'
+      }"
+    />
   </div>
 </article>
