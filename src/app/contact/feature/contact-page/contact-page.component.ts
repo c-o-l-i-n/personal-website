@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'colin-contact-page',
   templateUrl: './contact-page.component.html',
 })
-export class ContactPageComponent {
+export class ContactPageComponent implements OnInit {
   readonly form = new FormGroup({
     name: new FormControl('', {
       validators: [Validators.required],
@@ -22,7 +23,14 @@ export class ContactPageComponent {
     }),
   });
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private title: Title,
+  ) {}
+
+  ngOnInit(): void {
+    this.title.setTitle('Contact');
+  }
 
   handleSubmit(event: SubmitEvent): void {
     event.preventDefault();

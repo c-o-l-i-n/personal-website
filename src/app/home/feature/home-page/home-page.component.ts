@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Observable, map } from 'rxjs';
 import { BlogPost, sortBlogPostsByDate } from '@colin/shared/util';
 import { PillModel } from '@colin/shared/ui/pill/pill.component';
 import { SideProjectRowModel, WorkExperienceRowModel } from '@colin/home/ui';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'colin-home-page',
   templateUrl: './home-page.component.html',
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit {
   readonly skillPills: PillModel[] = [
     {
       text: 'TypeScript Wiz',
@@ -110,5 +111,12 @@ export class HomePageComponent {
     map((posts) => posts.sort(sortBlogPostsByDate)[0]),
   );
 
-  constructor(private scully: ScullyRoutesService) {}
+  constructor(
+    private scully: ScullyRoutesService,
+    private title: Title,
+  ) {}
+
+  ngOnInit(): void {
+    this.title.setTitle('Colin Williams - Software Engineer & Designer');
+  }
 }
