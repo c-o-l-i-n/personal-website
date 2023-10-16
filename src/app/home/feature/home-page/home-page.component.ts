@@ -4,7 +4,7 @@ import { Observable, map } from 'rxjs';
 import { BlogPost, sortBlogPostsByDate } from '@colin/shared/util';
 import { PillModel } from '@colin/shared/ui/pill/pill.component';
 import { SideProjectRowModel, WorkExperienceRowModel } from '@colin/home/ui';
-import { Meta, Title } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'colin-home-page',

@@ -1,5 +1,8 @@
-<a [routerLink]="post.route">
-  <colin-card styleClass="bg-white group gap-0" [header]="header">
+<a
+  [routerLink]="post.route"
+  [attr.aria-label]="'Go to blog post titled ' + post.title"
+>
+  <colin-card styleClass="bg-white group" [header]="header" [removeGap]="true">
     <!-- Thumbnail -->
     <div
       class="h-48 w-full rounded bg-[url(/assets/images/placeholder.webp)] bg-cover bg-center"

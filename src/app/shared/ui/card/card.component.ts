@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 export class CardComponent {
   @Input() header?: string;
   @Input() styleClass?: string;
+  @Input() removeGap = false;
 }
