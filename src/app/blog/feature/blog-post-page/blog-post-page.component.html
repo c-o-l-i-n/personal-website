@@ -1,15 +1,15 @@
-<article *ngIf="post$ | async as post">
+<article *ngFor="let post of [post$ | async]">
   <!-- Thumbnail -->
   <div
     class="my-10 aspect-video w-full rounded bg-cover bg-center"
-    [ngClass]="'bg-[url(' + post.thumbnail + ')]'"
+    [ngClass]="'bg-[url(' + post!.thumbnail + ')]'"
   ></div>
 
   <!-- Title -->
   <h1
     class="font-mono text-2xl font-extrabold tracking-tight text-slate-900 md:text-3xl"
   >
-    {{ post.title }}
+    {{ post!.title }}
   </h1>
 
   <!-- Date -->
@@ -17,8 +17,8 @@
     <dl>
       <dt class="sr-only">Date</dt>
       <dd class="text-slate-700">
-        <time [attr.datetime]="post.publishedDate">{{
-          post.publishedDate | date: 'fullDate' : 'UTC'
+        <time [attr.datetime]="post!.publishedDate">{{
+          post!.publishedDate | date: 'fullDate' : 'UTC'
         }}</time>
       </dd>
     </dl>
