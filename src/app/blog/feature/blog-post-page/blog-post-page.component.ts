@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
+import { BlogPost } from '@colin/shared/util';
+import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,7 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./blog-post-page.component.scss'],
 })
 export class BlogPostPageComponent {
-  readonly post$: Observable<ScullyRoute> = this.scully.getCurrent();
+  readonly post$: Observable<BlogPost> =
+    this.scully.getCurrent() as Observable<BlogPost>;
 
   constructor(private scully: ScullyRoutesService) {}
 }

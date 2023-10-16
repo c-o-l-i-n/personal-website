@@ -1,5 +1,42 @@
-<nav>
-  <h2><a routerLink="/">Colin Williams 👨🏻‍💻</a></h2>
-</nav>
+<div
+  class="mx-auto max-w-3xl bg-[url('/assets/images/bg.png')] bg-top bg-no-repeat p-6"
+>
+  <!-- Top Nav Section -->
+  <nav
+    class="mb-6 flex w-full flex-col items-center justify-between gap-4 md:flex-row"
+  >
+    <a
+      routerLink="/"
+      class="group flex w-max flex-col items-center justify-center gap-3 md:flex-row md:justify-start"
+    >
+      <!-- Avatar -->
+      <img
+        src="/assets/images/colin.webp"
+        alt=""
+        class="h-16 w-16 rounded-full"
+      />
+      <div class="text-center md:text-left">
+        <!-- Name -->
+        <p class="font-mono text-xl font-medium group-hover:underline">
+          Colin Williams
+        </p>
+        <!-- Description -->
+        <p>Software Engineer & Designer</p>
+      </div>
+    </a>
 
-<router-outlet />
+    <!-- Blog -->
+    <div class="flex gap-7">
+      <a routerLink="/" class="font-mono hover:underline">Home</a>
+      <a routerLink="/blog" class="font-mono hover:underline">Blog</a>
+      <a routerLink="/contact" class="font-mono hover:underline">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <router-outlet />
+
+  <footer class="mb-6 mt-10 text-center text-xs text-slate-500">
+    &copy; 2023 Colin A. Williams
+  </footer>
+</div>

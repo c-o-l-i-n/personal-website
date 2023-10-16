@@ -1,0 +1,25 @@
+<a [routerLink]="post.route">
+  <colin-card styleClass="bg-white group" [header]="header">
+    <div
+      class="h-48 w-full rounded bg-[url(https://picsum.photos/600)] bg-cover bg-center"
+      [ngClass]="
+        'bg-[url(' + (post.thumbnail || 'https://picsum.photos/600') + ')]'
+      "
+    ></div>
+    <div class="-mt-1 flex items-center">
+      <span class="mr-3 text-xs">{{
+        post.publishedDate | date: 'mediumDate'
+      }}</span>
+      <colin-pill
+        *ngFor="let tag of post.tags"
+        [model]="{
+          text: tag,
+          iconSrc: 'https://icon.icepanel.io/Technology/svg/' + tag + '.svg'
+        }"
+      />
+    </div>
+    <h3 class="-mt-1 font-mono text-xl group-hover:underline">
+      {{ post.title }}
+    </h3>
+  </colin-card>
+</a>

@@ -3,6 +3,7 @@ title: 'Test Post'
 description: Description
 thumbnail: assets/images/default.jpg
 published: true
+featured: false
 publishedDate: 2023-10-14
 tags:
   - 'Tag 1'

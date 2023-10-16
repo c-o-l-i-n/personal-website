@@ -1,24 +1,26 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ScullyLibModule } from '@scullyio/ng-lib';
+import { ScullyLibModule, ScullyRoutesService } from '@scullyio/ng-lib';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { MockScullyRoutesService } from '@colin/shared/util';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./home/feature/home-feature.module').then(
-        (m) => m.HomeFeatureModule,
-      ),
+      import('@colin/home/feature').then((m) => m.HomeFeatureModule),
   },
   {
     path: 'blog',
     loadChildren: () =>
-      import('./blog/feature/blog-feature.module').then(
-        (m) => m.BlogFeatureModule,
-      ),
+      import('@colin/blog/feature').then((m) => m.BlogFeatureModule),
+  },
+  {
+    path: 'contact',
+    loadChildren: () =>
+      import('@colin/contact/feature').then((m) => m.ContactFeatureModule),
   },
   {
     path: '**',
@@ -36,5 +38,11 @@ const routes: Routes = [
     RouterModule,
   ],
   bootstrap: [AppComponent],
+  providers: [
+    {
+      provide: ScullyRoutesService,
+      useClass: isDevMode() ? MockScullyRoutesService : ScullyRoutesService,
+    },
+  ],
 })
 export class AppModule {}

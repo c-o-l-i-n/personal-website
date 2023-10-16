@@ -1,11 +1,88 @@
-<h3>Blog Posts</h3>
+<div class="flex flex-col gap-5">
+  <colin-card header="About Me">
+    <h3
+      class="flex flex-col justify-center text-center font-mono text-xl sm:flex-row md:justify-start md:text-left md:text-3xl"
+    >
+      <span class="sm:mr-3 md:mr-4">
+        <span class="text-slate-400">&lcub;&lcub;</span>Software Engineer<span
+          class="text-slate-400"
+          >&rcub;&rcub;</span
+        >
+      </span>
+      <span class="whitespace-nowrap">&amp; Designer</span>
+    </h3>
 
-<ul>
-  @for (blogPost of blogPosts$ | async; track blogPost.slug) {
-  <li>
-    <a [routerLink]="blogPost.route">{{ blogPost.title }}</a>
-  </li>
-  } @empty {
-  <p>No blog posts</p>
-  }
-</ul>
+    <!-- Skill Pills -->
+    <div class="flex flex-wrap gap-1">
+      <colin-pill *ngFor="let pill of skillPills" [model]="pill" />
+    </div>
+
+    <p>
+      As a software engineer, I'm passionate about crafting exceptional user
+      experiences, and Angular is where I truly shine. I combine technical
+      expertise with design sensibility to develop elegant and efficient
+      solutions.
+    </p>
+  </colin-card>
+
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+    <!-- Featured Post -->
+    <colin-blog-post-card
+      *ngIf="featuredBlogPost$ | async as featuredBlogPost"
+      [post]="featuredBlogPost"
+      header="Featured Post"
+    />
+
+    <!-- Latest Post -->
+    <colin-blog-post-card
+      *ngIf="latestBlogPost$ | async as latestBlogPost"
+      [post]="latestBlogPost"
+      header="Latest Post"
+    />
+  </div>
+
+  <!-- Experience -->
+  <colin-card styleClass="bg-white">
+    <h2 class="mb-4 text-center font-mono text-xl md:text-left md:text-2xl">
+      Experience
+    </h2>
+
+    <div>
+      <div
+        *ngFor="
+          let row of workExperienceRows;
+          let first = first;
+          let last = last
+        "
+        class="border-slate-200 py-4 md:border-b"
+        [ngClass]="{
+          'border-none': last,
+          'pt-0': first
+        }"
+      >
+        <colin-work-experience-row [model]="row" />
+      </div>
+    </div>
+  </colin-card>
+
+  <!-- Side Projects -->
+  <colin-card styleClass="bg-white">
+    <h2 class="mb-4 text-center font-mono text-xl md:text-left md:text-2xl">
+      Side Projects
+    </h2>
+
+    <div>
+      <div
+        *ngFor="let row of sideProjectRows; let first = first; let last = last"
+        class="border-slate-200 py-4 md:border-b"
+        style="text-wrap: balance"
+        [ngClass]="{
+          'border-none': last,
+          'pt-0': first
+        }"
+      >
+        <colin-side-project-row [model]="row" />
+      </div>
+    </div>
+  </colin-card>
+</div>
