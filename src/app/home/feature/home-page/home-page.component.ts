@@ -36,6 +36,11 @@ export class HomePageComponent implements OnInit {
     },
   ];
 
+  readonly yearsOfExperience =
+    Math.round(
+      ((Date.now() - new Date('2020-09-01').getTime()) / 31557600000) * 2,
+    ) / 2;
+
   readonly workExperienceRows: WorkExperienceRowModel[] = [
     {
       jobTitle: 'Software Engineer',

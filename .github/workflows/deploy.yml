@@ -1,6 +1,8 @@
 name: Build and Deploy
 
 on:
+  schedule:
+    - cron: '27 3 15 * *' # trigger once a month to keep "Years of Experience" up to date
   push:
     branches:
       - main
