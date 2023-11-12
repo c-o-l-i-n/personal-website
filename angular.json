@@ -30,7 +30,7 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/assets", "src/.nojekyll", "src/CNAME"],
+            "assets": ["src/assets"],
             "styles": ["src/styles.scss"],
             "scripts": []
           },
