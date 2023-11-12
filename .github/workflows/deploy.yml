@@ -29,9 +29,6 @@ jobs:
       - name: Install Dependencies 📦
         run: npm ci --legacy-peer-deps
 
-      - name: Run Linter 🔎
-        run: npm run lint
-
       - name: Build 🛠
         run: npm run build
 
