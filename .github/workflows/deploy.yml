@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Deploy
 
 on:
   schedule:
@@ -6,10 +6,15 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      deployments: write
 
     steps:
       - name: Checkout 🛎
@@ -22,7 +27,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies 📦
-        run: npm ci --force
+        run: npm ci --legacy-peer-deps
 
       - name: Run Linter 🔎
         run: npm run lint
@@ -33,8 +38,11 @@ jobs:
       - name: Export Static Site ✈️
         run: npm run scully:scan-routes
 
-      - name: Deploy to Github Pages 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Deploy to Cloudflare Pages 🚀
+        uses: cloudflare/pages-action@v1
         with:
-          branch: gh-pages
-          folder: dist/static
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: personal-website
+          directory: dist/static
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
