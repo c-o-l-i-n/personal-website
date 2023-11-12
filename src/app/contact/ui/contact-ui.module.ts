@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { InputComponent } from './input/input.component';
-import { TextAreaComponent } from './text-area/text-area.component';
-import { ButtonComponent } from './button/button.component';
+import { FormComponent } from '@colin/contact/ui/form/form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [InputComponent, TextAreaComponent, ButtonComponent],
+  declarations: [FormComponent],
   imports: [CommonModule, ReactiveFormsModule],
-  exports: [InputComponent, TextAreaComponent, ButtonComponent],
+  exports: [FormComponent],
 })
 export class ContactUiModule {}

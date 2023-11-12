@@ -5,33 +5,5 @@
 </colin-card>
 
 <colin-card styleClass="bg-white">
-  <form class="flex flex-col gap-4" (submit)="handleSubmit($event)">
-    <div class="grid gap-4 md:grid-cols-2">
-      <colin-input
-        id="name"
-        placeholder="Name"
-        styleClass="w-full"
-        [formControl]="form.controls.name"
-      />
-      <colin-input
-        id="email"
-        placeholder="Email"
-        type="email"
-        styleClass="w-full"
-        [formControl]="form.controls.email"
-      />
-    </div>
-    <colin-textarea
-      id="message"
-      placeholder="Message"
-      styleClass="min-h-[12rem] max-h-96"
-      [formControl]="form.controls.message"
-    />
-    <colin-button
-      label="Send"
-      styleClass="w-full"
-      type="submit"
-      [disabled]="!form.valid"
-    />
-  </form>
+  <colin-form [model]="form" />
 </colin-card>
