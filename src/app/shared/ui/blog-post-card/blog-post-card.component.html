@@ -21,13 +21,14 @@
       }}</span>
 
       <!-- Tag Pills -->
+      @for (tag of post.tags; track tag) {
       <colin-pill
-        *ngFor="let tag of post.tags"
         [model]="{
           text: tag,
           iconSrc: 'https://icon.icepanel.io/Technology/svg/' + tag + '.svg'
         }"
       />
+      }
     </div>
 
     <!-- Title -->

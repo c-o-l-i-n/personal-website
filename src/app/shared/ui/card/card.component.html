@@ -2,8 +2,10 @@
   class="group flex w-full flex-col rounded border border-slate-400 p-6"
   [ngClass]="(styleClass ?? '') + (removeGap ? '' : ' gap-4')"
 >
-  <h3 *ngIf="header" class="text-center text-sm text-slate-600 md:text-left">
+  @if (header) {
+  <h3 class="text-center text-sm text-slate-600 md:text-left">
     {{ header }}
   </h3>
+  }
   <ng-content />
 </div>

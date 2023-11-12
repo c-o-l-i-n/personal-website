@@ -3,5 +3,7 @@
 </colin-card>
 
 <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-  <colin-blog-post-card *ngFor="let post of posts$ | async" [post]="post" />
+  @for (post of posts$ | async; track post.route) {
+  <colin-blog-post-card [post]="post" />
+  }
 </div>
