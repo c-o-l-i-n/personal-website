@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'prism-themes/themes/prism-vsc-dark-plus.min';
+
 html {
-  @apply bg-slate-50 font-extralight text-slate-800;
+  @apply scroll-smooth bg-slate-50 font-extralight text-slate-800;
 }
 
 input,
@@ -13,13 +15,27 @@ button {
 }
 
 .content {
+  a:has(h1, h2, h3, h4, h5, h6) {
+    @apply block w-max;
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply mb-4 mt-8 font-mono font-extrabold;
+    @apply mb-4 mt-8 flex w-max items-center gap-2 font-mono font-extrabold;
+
+    .link-icon {
+      @apply text-slate-500 opacity-0 transition-opacity;
+    }
+
+    &:hover {
+      .link-icon {
+        @apply opacity-100;
+      }
+    }
   }
 
   h1 {
@@ -34,11 +50,16 @@ button {
     @apply text-3xl;
   }
 
-  img {
-    @apply rounded;
-  }
-
   p {
     @apply mb-5;
+  }
+
+  img {
+    @apply w-full rounded;
+  }
+
+  // code blocks
+  pre[class*='language-'] {
+    @apply mb-5 rounded px-5 py-4;
   }
 }

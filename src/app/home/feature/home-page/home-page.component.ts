@@ -109,7 +109,7 @@ export class HomePageComponent implements OnInit {
     );
 
   readonly featuredBlogPost$: Observable<BlogPost> = this.blogPosts$.pipe(
-    map((posts) => posts.filter((post) => post.featured)[0]),
+    map((posts) => posts.find((post) => post.featured)!),
   );
 
   readonly latestBlogPost$: Observable<BlogPost> = this.blogPosts$.pipe(

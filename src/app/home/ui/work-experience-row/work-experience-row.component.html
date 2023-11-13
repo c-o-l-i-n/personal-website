@@ -16,11 +16,11 @@
       />
     </a>
     <p class="flex flex-col md:mt-0 md:flex-row md:gap-1.5">
-      {{ model.jobTitle }} &commat;
+      <span class="font-medium">{{ model.jobTitle }}</span> &commat;
       <a
         [href]="model.companyUrl"
         target="_blank"
-        class="nobreak -mt-0.5 whitespace-nowrap font-medium hover:underline md:m-0"
+        class="nobreak -mt-0.5 whitespace-nowrap hover:underline md:m-0"
         [attr.aria-label]="'Go to ' + model.company + ' website'"
         >{{ model.company }}</a
       >
