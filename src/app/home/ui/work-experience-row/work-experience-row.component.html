@@ -16,14 +16,17 @@
       />
     </a>
     <p class="flex flex-col md:mt-0 md:flex-row md:gap-1.5">
-      <span class="font-medium">{{ model.jobTitle }}</span> &commat;
-      <a
-        [href]="model.companyUrl"
-        target="_blank"
-        class="nobreak -mt-0.5 whitespace-nowrap hover:underline md:m-0"
-        [attr.aria-label]="'Go to ' + model.company + ' website'"
-        >{{ model.company }}</a
-      >
+      <span class="font-medium">{{ model.jobTitle }}</span>
+      <span>
+        &commat;
+        <a
+          [href]="model.companyUrl"
+          target="_blank"
+          class="nobreak -mt-0.5 whitespace-nowrap hover:underline md:m-0"
+          [attr.aria-label]="'Go to ' + model.company + ' website'"
+          >{{ model.company }}</a
+        >
+      </span>
     </p>
   </div>
   <p class="text-sm text-slate-500 md:text-base">{{ model.dateRange }}</p>
