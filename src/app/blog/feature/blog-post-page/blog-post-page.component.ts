@@ -12,10 +12,13 @@ export class BlogPostPageComponent {
   readonly post$: Observable<BlogPost> = this.scully.getCurrent().pipe(
     map((post) => post as BlogPost),
     tap((post) => {
+      // title
       this.title.setTitle(post.title);
-      this.meta.updateTag({ name: 'description', content: post.description });
-      this.meta.updateTag({ name: 'author', content: 'Colin Williams' });
+      this.meta.updateTag({ name: 'og:title', content: post.title });
+      this.meta.updateTag({ name: 'twitter:title', content: post.title });
       this.meta.updateTag({ name: 'og:type', content: 'article' });
+      this.meta.updateTag({ name: 'author', content: 'Colin Williams' });
+      this.meta.updateTag({ name: 'description', content: post.description });
       this.meta.updateTag({
         name: 'article:published_time',
         content: post.publishedDate,
