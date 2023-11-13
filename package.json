@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "ng build --stats-json",
-    "build-and-serve-static-content": "npm run build && npm run scully && npm run scully:serve",
+    "build-and-serve-static-content": "npm run build && npm run scully:scan-routes && npm run scully:serve",
     "format": "prettier --write .",
     "postinstall": "patch-package",
     "lint": "ng lint",

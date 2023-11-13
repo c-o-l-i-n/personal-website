@@ -11,7 +11,7 @@ export const config: ScullyConfig = {
   projectName: 'personal-website',
   distFolder: './dist/personal-website',
   outDir: './dist/static',
-  defaultPostRenderers: [DisableAngular],
+  defaultPostRenderers: [DisableAngular, 'seoHrefOptimise'],
   routes: {
     '/blog/:title': {
       type: RouteTypes.contentFolder,
