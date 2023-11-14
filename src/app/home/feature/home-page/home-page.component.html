@@ -15,7 +15,7 @@
     <!-- Skill Pills -->
     <div class="flex flex-wrap gap-1">
       @for (pill of skillPills; track pill.text) {
-      <colin-pill [model]="pill" />
+        <colin-pill [model]="pill" />
       }
     </div>
 
@@ -32,12 +32,12 @@
   <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
     <!-- Featured Post -->
     @if (featuredBlogPost$ | async; as featuredBlogPost) {
-    <colin-blog-post-card [post]="featuredBlogPost" header="Featured Post" />
+      <colin-blog-post-card [post]="featuredBlogPost" header="Featured Post" />
     }
 
     <!-- Latest Post -->
     @if (latestBlogPost$ | async; as latestBlogPost) {
-    <colin-blog-post-card [post]="latestBlogPost" header="Latest Post" />
+      <colin-blog-post-card [post]="latestBlogPost" header="Latest Post" />
     }
   </div>
 
@@ -48,17 +48,21 @@
     </h2>
 
     <div>
-      @for (row of workExperienceRows; track row.jobTitle; let first = $first;
-      let last = $last) {
-      <div
-        class="border-slate-200 py-4 md:border-b"
-        [ngClass]="{
-          'border-none': last,
-          'pt-0': first
-        }"
-      >
-        <colin-work-experience-row [model]="row" />
-      </div>
+      @for (
+        row of workExperienceRows;
+        track row.jobTitle;
+        let first = $first;
+        let last = $last
+      ) {
+        <div
+          class="border-slate-200 py-4 md:border-b"
+          [ngClass]="{
+            'border-none': last,
+            'pt-0': first
+          }"
+        >
+          <colin-work-experience-row [model]="row" />
+        </div>
       }
     </div>
   </colin-card>
@@ -70,18 +74,22 @@
     </h2>
 
     <div>
-      @for (row of sideProjectRows; track row.name; let first = $first; let last
-      = $last) {
-      <div
-        class="border-slate-200 py-4 md:border-b"
-        style="text-wrap: balance"
-        [ngClass]="{
-          'border-none': last,
-          'pt-0': first
-        }"
-      >
-        <colin-side-project-row [model]="row" />
-      </div>
+      @for (
+        row of sideProjectRows;
+        track row.name;
+        let first = $first;
+        let last = $last
+      ) {
+        <div
+          class="border-slate-200 py-4 md:border-b"
+          style="text-wrap: balance"
+          [ngClass]="{
+            'border-none': last,
+            'pt-0': first
+          }"
+        >
+          <colin-side-project-row [model]="row" />
+        </div>
       }
     </div>
   </colin-card>

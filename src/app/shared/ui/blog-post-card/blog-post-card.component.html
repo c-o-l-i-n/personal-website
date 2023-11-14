@@ -22,12 +22,12 @@
 
       <!-- Tag Pills -->
       @for (tag of post.tags; track tag) {
-      <colin-pill
-        [model]="{
-          text: tag,
-          iconSrc: 'https://icon.icepanel.io/Technology/svg/' + tag + '.svg'
-        }"
-      />
+        <colin-pill
+          [model]="{
+            text: tag,
+            iconSrc: 'https://icon.icepanel.io/Technology/svg/' + tag + '.svg'
+          }"
+        />
       }
     </div>
 
