@@ -3,7 +3,6 @@ title: 'Mock Blog Post 2'
 description: This is another fake block post
 thumbnail: /assets/images/placeholder.webp
 published: true
-featured: true
 publishedDate: 2023-10-14
 tags:
   - 'Firebase'

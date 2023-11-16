@@ -2,6 +2,7 @@ title: Title
 description: Description
 thumbnail: assets/images/default.jpg
 published: true
+featured: false
 publishedDate: 1970-01-01
 tags:
   - Tag 1

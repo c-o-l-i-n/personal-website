@@ -3,8 +3,8 @@ title: 'Mock Blog Post 1'
 description: This is a fake block post
 thumbnail: /assets/images/placeholder.webp
 published: true
-featured: true
 publishedDate: 2023-10-13
+featured: true
 tags:
   - 'Angular'
 ---

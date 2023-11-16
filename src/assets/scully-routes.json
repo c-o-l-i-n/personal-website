@@ -2,12 +2,21 @@
   { "route": "/" },
   { "route": "/blog" },
   {
+    "route": "/blog/js-unit-testing-for-experienced-developers",
+    "title": "JavaScript Unit Testing for Experienced Developers",
+    "description": "You already know how unit tests work. You just want to know how to do it in JavaScript.",
+    "thumbnail": "assets/images/default.jpg",
+    "published": true,
+    "publishedDate": "1970-01-01T00:00:00.000Z",
+    "tags": ["Tag 1", "Tag 2"],
+    "sourceFile": "js-unit-testing-for-experienced-developers.md"
+  },
+  {
     "route": "/blog/mock-blog-post-1",
     "title": "Mock Blog Post 1",
     "description": "This is a fake block post",
     "thumbnail": "/assets/images/placeholder.webp",
     "published": true,
-    "featured": true,
     "publishedDate": "2023-10-13T00:00:00.000Z",
     "tags": ["Angular"],
     "sourceFile": "mock-blog-post-1.md"
@@ -18,10 +27,43 @@
     "description": "This is another fake block post",
     "thumbnail": "/assets/images/placeholder.webp",
     "published": true,
-    "featured": true,
     "publishedDate": "2023-10-14T00:00:00.000Z",
     "tags": ["Firebase"],
     "sourceFile": "mock-blog-post-2.md"
+  },
+  {
+    "route": "/blog/___UNPUBLISHED___lp0k329x_yoUoc8jhpNXAfkFdOmpSKBVuosuQzlQe",
+    "title": "Testing the Stream: Mastering the Art of Observable Testing",
+    "description": "Description",
+    "thumbnail": "assets/images/default.jpg",
+    "published": false,
+    "publishedDate": "2023-11-15T00:00:00.000Z",
+    "tags": ["Tag 1", "Tag 2"],
+    "slugs": ["___UNPUBLISHED___lp0k329x_yoUoc8jhpNXAfkFdOmpSKBVuosuQzlQe"],
+    "slug": "___UNPUBLISHED___lp0k329x_yoUoc8jhpNXAfkFdOmpSKBVuosuQzlQe",
+    "sourceFile": "testing-the-stream.md"
+  },
+  {
+    "route": "/blog/unit-testing-101",
+    "title": "Unit Testing 101 (through a JavaScript lens)",
+    "description": "Description",
+    "thumbnail": "assets/images/default.jpg",
+    "published": true,
+    "publishedDate": "2023-11-15T00:00:00.000Z",
+    "tags": ["Tag 1", "Tag 2"],
+    "slugs": ["___UNPUBLISHED___lp0k32a0_wEJpBg9n4ANVafHR7d9cpTfclYwCbmoY"],
+    "sourceFile": "unit-testing-101.md"
+  },
+  {
+    "route": "/blog/___UNPUBLISHED___lp0k32a0_wEJpBg9n4ANVafHR7d9cpTfclYwCbmoY",
+    "title": "Unit Testing 101 (through a JavaScript lens)",
+    "description": "Description",
+    "thumbnail": "assets/images/default.jpg",
+    "published": true,
+    "publishedDate": "2023-11-15T00:00:00.000Z",
+    "tags": ["Tag 1", "Tag 2"],
+    "slugs": ["___UNPUBLISHED___lp0k32a0_wEJpBg9n4ANVafHR7d9cpTfclYwCbmoY"],
+    "sourceFile": "unit-testing-101.md"
   },
   { "route": "/contact" }
 ]
