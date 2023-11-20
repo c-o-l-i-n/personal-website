@@ -5,7 +5,7 @@
   <colin-card styleClass="bg-white group" [header]="header" [removeGap]="true">
     <!-- Thumbnail -->
     <div
-      class="h-48 w-full rounded bg-[url(/assets/images/placeholder.webp)] bg-cover bg-center"
+      class="h-48 w-full rounded-lg bg-[url(/assets/images/placeholder.webp)] bg-cover bg-center"
       [ngClass]="
         'bg-[url(' +
         (post.thumbnail || '/assets/images/placeholder.webp') +
@@ -14,25 +14,13 @@
       "
     ></div>
 
-    <div class="my-3 flex flex-wrap items-center gap-2">
-      <!-- Published Date -->
-      <span class="mr-1 text-sm">{{
-        post.publishedDate | date: 'mediumDate' : 'UTC'
-      }}</span>
-
-      <!-- Tag Pills -->
-      @for (tag of post.tags; track tag) {
-        <colin-pill
-          [model]="{
-            text: tag,
-            iconSrc: 'https://icon.icepanel.io/Technology/svg/' + tag + '.svg'
-          }"
-        />
-      }
-    </div>
+    <!-- Published Date -->
+    <p class="mb-2 mt-3 text-sm">
+      {{ post.publishedDate | date: 'mediumDate' : 'UTC' }}
+    </p>
 
     <!-- Title -->
-    <h3 class="-mt-1 font-mono text-xl group-hover:underline">
+    <h3 class="font-mono text-xl group-hover:underline">
       {{ post.title }}
     </h3>
 

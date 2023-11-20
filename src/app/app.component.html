@@ -22,7 +22,7 @@
           Colin Williams
         </p>
         <!-- Description -->
-        <p>Software Engineer & Designer</p>
+        <p>Software Engineer & Frontend Architect</p>
       </div>
     </a>
 
@@ -53,7 +53,15 @@
   <router-outlet />
 
   <!-- Footer -->
-  <footer class="mb-6 mt-10 text-center text-sm text-slate-500">
-    &copy; 2023 Colin A. Williams
+  <footer class="mb-6 mt-10 text-center text-slate-500">
+    <p class="text-sm">&copy; 2023 Colin A. Williams</p>
+    <p class="mt-2">
+      <a class="mr-2 p-2" routerLink="/github" target="_blank">
+        <fa-icon [icon]="faGithub" />
+      </a>
+      <a class="p-2" routerLink="/linkedin" target="_blank">
+        <fa-icon [icon]="faLinkedin" />
+      </a>
+    </p>
   </footer>
 </div>

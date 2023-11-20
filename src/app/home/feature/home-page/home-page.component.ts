@@ -13,26 +13,21 @@ import { Title } from '@angular/platform-browser';
 export class HomePageComponent implements OnInit {
   readonly skillPills: PillModel[] = [
     {
-      text: 'TypeScript Wiz',
-      iconSrc: 'https://icon.icepanel.io/Technology/svg/TypeScript.svg',
-      iconSize: 14,
+      text: 'Angular Architect',
+      iconSrc: '/assets/images/logos/angular.svg',
     },
     {
-      text: 'Angular Architect',
-      iconSrc: 'https://icon.icepanel.io/Technology/svg/Angular.svg',
+      text: 'TypeScript Titan',
+      iconSrc: '/assets/images/logos/ts.svg',
+      iconSize: 14,
     },
     {
       text: 'Firebase Fan',
-      iconSrc: 'https://icon.icepanel.io/Technology/svg/Firebase.svg',
+      iconSrc: '/assets/images/logos/firebase.svg',
     },
     {
-      text: 'Java Junkie',
-      iconSrc: 'https://icon.icepanel.io/Technology/svg/Java.svg',
-    },
-    {
-      text: 'Spring Chicken',
-      iconSrc: 'https://icon.icepanel.io/Technology/svg/Spring.svg',
-      iconSize: 14,
+      text: 'Supabase Sorcerer',
+      iconSrc: '/assets/images/logos/supabase.svg',
     },
   ];
 
@@ -46,57 +41,88 @@ export class HomePageComponent implements OnInit {
       jobTitle: 'Software Engineer',
       company: 'Ecosystems.io',
       companyUrl: 'https://ecosystems.io',
-      logoSrc: '/assets/images/logos/eco.webp',
+      logoSrc: '/assets/images/logos/eco.svg',
       dateRange: 'Mar 2022 - Present',
     },
     {
       jobTitle: 'Software Engineer',
       company: 'JPMorgan Chase & Co.',
       companyUrl: 'https://jpmorganchase.com',
-      logoSrc: '/assets/images/logos/chase.webp',
+      logoSrc: '/assets/images/logos/chase.svg',
       dateRange: 'Jul 2021 - Mar 2022',
     },
     {
       jobTitle: 'Software Engineer Intern',
       company: 'JPMorgan Chase & Co.',
       companyUrl: 'https://jpmorganchase.com',
-      logoSrc: '/assets/images/logos/chase.webp',
+      logoSrc: '/assets/images/logos/chase.svg',
       dateRange: 'Jun 2020 - Aug 2020',
     },
     {
       jobTitle: 'Software Engineer Intern',
       company: 'Hyland Software',
       companyUrl: 'https://hyland.com',
-      logoSrc: '/assets/images/logos/hyland.webp',
+      logoSrc: '/assets/images/logos/hyland.svg',
       dateRange: 'May 2019 - Aug 2019',
     },
     {
       jobTitle: 'Software Engineer Intern',
       company: 'Diebold Nixdorf',
       companyUrl: 'https://dieboldnixdorf.com',
-      logoSrc: '/assets/images/logos/dn.webp',
+      logoSrc: '/assets/images/logos/dn.svg',
       dateRange: 'May 2018 - Aug 2018',
     },
   ];
 
   readonly sideProjectRows: SideProjectRowModel[] = [
     {
+      name: 'EventMaster Pro (WIP)',
+      url: 'https://github.com/c-o-l-i-n/joshies',
+      logoSrc: '/assets/images/logos/emp.svg',
+      notes:
+        'Supercharge dynamic, multi-day competitions with realtime brackets, betting, and more',
+    },
+    {
       name: 'Potluk',
       url: 'https://potl.uk',
-      logoSrc: '/assets/images/logos/potluk.webp',
+      logoSrc: '/assets/images/logos/potluk.svg',
       notes: 'Coordinate who brings what to your potluck',
     },
     {
       name: 'Presto Parts',
       url: 'https://prestoparts.org',
-      logoSrc: '/assets/images/logos/pp.webp',
+      logoSrc: '/assets/images/logos/pp.svg',
       notes: 'Organize sheet music PDFs in a few minutes, not many hours',
     },
     {
       name: 'Drill Generator',
       url: 'https://drillgenerator.com',
-      logoSrc: '/assets/images/logos/drill-generator.webp',
+      logoSrc: '/assets/images/logos/drill-generator.svg',
       notes: 'Generate drills in the style of OSUMB tryouts',
+    },
+  ];
+
+  readonly leadershipRows: WorkExperienceRowModel[] = [
+    {
+      jobTitle: 'Angular Development Mentor',
+      company: 'Ecosystems.io',
+      companyUrl: 'https://ecosystems.io',
+      logoSrc: '/assets/images/logos/eco.svg',
+      dateRange: 'Jun 2023 - Present',
+    },
+    {
+      jobTitle: 'Programming Teacher & Tutor',
+      company: 'Coding with Colin',
+      companyUrl: 'https://codingwithcolin.com',
+      logoSrc: '/assets/images/logos/grad.svg',
+      dateRange: 'Jun 2020 - Nov 2021',
+    },
+    {
+      jobTitle: 'Squad Leader',
+      company: 'The OSU Marching Band',
+      companyUrl: 'https://tbdbitl.osu.edu/',
+      logoSrc: '/assets/images/logos/osu.svg',
+      dateRange: 'Jun 2020 - Dec 2021',
     },
   ];
 
@@ -122,6 +148,8 @@ export class HomePageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title.setTitle('Colin Williams - Software Engineer & Designer');
+    this.title.setTitle(
+      'Colin Williams - Software Engineer & Frontend Architect',
+    );
   }
 }
