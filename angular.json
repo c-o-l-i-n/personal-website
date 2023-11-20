@@ -30,7 +30,7 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["src/assets"],
+            "assets": ["src/assets", "src/Colin-Williams-Resume.pdf"],
             "styles": ["src/styles.scss"],
             "scripts": []
           },

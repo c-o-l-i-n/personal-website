@@ -55,13 +55,16 @@
   <!-- Footer -->
   <footer class="mb-6 mt-10 text-center text-slate-500">
     <p class="text-sm">&copy; 2023 Colin A. Williams</p>
-    <p class="mt-2">
-      <a class="mr-2 p-2" routerLink="/github" target="_blank">
+    <div class="flex justify-center gap-2">
+      <a class="p-2" routerLink="/github" target="_blank">
         <fa-icon [icon]="faGithub" />
       </a>
       <a class="p-2" routerLink="/linkedin" target="_blank">
         <fa-icon [icon]="faLinkedin" />
       </a>
-    </p>
+      <a class="p-2" routerLink="/resume" target="_blank">
+        <fa-icon [icon]="faFilePdf" />
+      </a>
+    </div>
   </footer>
 </div>
