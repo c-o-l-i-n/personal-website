@@ -26,8 +26,13 @@ export class HomePageComponent implements OnInit {
       iconSrc: '/assets/images/logos/firebase.svg',
     },
     {
-      text: 'Supabase Sorcerer',
-      iconSrc: '/assets/images/logos/supabase.svg',
+      text: 'Java Junkie',
+      iconSrc: '/assets/images/logos/java.svg',
+    },
+    {
+      text: 'Spring Sorcerer',
+      iconSrc: '/assets/images/logos/spring.svg',
+      iconSize: 14,
     },
   ];
 
@@ -38,14 +43,14 @@ export class HomePageComponent implements OnInit {
 
   readonly workExperienceRows: WorkExperienceRowModel[] = [
     {
-      jobTitle: 'Software Engineer',
+      jobTitle: 'Software Engineer II',
       company: 'Ecosystems.io',
       companyUrl: 'https://ecosystems.io',
       logoSrc: '/assets/images/logos/eco.svg',
       dateRange: 'Mar 2022 - Present',
     },
     {
-      jobTitle: 'Software Engineer',
+      jobTitle: 'Software Engineer I',
       company: 'JPMorgan Chase & Co.',
       companyUrl: 'https://jpmorganchase.com',
       logoSrc: '/assets/images/logos/chase.svg',
