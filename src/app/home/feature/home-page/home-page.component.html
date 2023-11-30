@@ -33,14 +33,17 @@
   </colin-card>
 
   <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-    <!-- Featured Post -->
-    @if (featuredBlogPost$ | async; as featuredBlogPost) {
-      <colin-blog-post-card [post]="featuredBlogPost" header="Featured Post" />
+    <!-- Featured Article -->
+    @if (featuredArticle$ | async; as featuredArticle) {
+      <colin-blog-post-card
+        [post]="featuredArticle"
+        header="Featured Article"
+      />
     }
 
-    <!-- Latest Post -->
-    @if (latestBlogPost$ | async; as latestBlogPost) {
-      <colin-blog-post-card [post]="latestBlogPost" header="Latest Post" />
+    <!-- Latest Article -->
+    @if (latestArticle$ | async; as latestArticle) {
+      <colin-blog-post-card [post]="latestArticle" header="Latest Article" />
     }
   </div>
 

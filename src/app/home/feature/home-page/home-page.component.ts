@@ -85,7 +85,7 @@ export class HomePageComponent implements OnInit {
       url: 'https://github.com/c-o-l-i-n/joshies',
       logoSrc: '/assets/images/logos/emp.svg',
       notes:
-        'Supercharge dynamic, multi-day competitions with realtime brackets, betting, and more',
+        'Supercharge dynamic, multi-day competitions with realtime brackets, betting, analytics, and more',
     },
     {
       name: 'Potluk',
@@ -133,18 +133,20 @@ export class HomePageComponent implements OnInit {
 
   private readonly blogPosts$: Observable<BlogPost[]> =
     this.scully.available$.pipe(
-      map((routes) =>
-        routes.filter((route) => route.route.startsWith('/blog/')),
-      ),
       map((routes) => routes as BlogPost[]),
+      map((routes) =>
+        routes
+          .filter((route) => route.route.startsWith('/blog/'))
+          .sort(sortBlogPostsByDate),
+      ),
     );
 
-  readonly featuredBlogPost$: Observable<BlogPost> = this.blogPosts$.pipe(
+  readonly featuredArticle$: Observable<BlogPost> = this.blogPosts$.pipe(
     map((posts) => posts.find((post) => post.featured)!),
   );
 
-  readonly latestBlogPost$: Observable<BlogPost> = this.blogPosts$.pipe(
-    map((posts) => posts.sort(sortBlogPostsByDate)[0]),
+  readonly latestArticle$: Observable<BlogPost> = this.blogPosts$.pipe(
+    map((posts) => posts[0]),
   );
 
   constructor(
