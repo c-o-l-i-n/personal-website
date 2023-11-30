@@ -1,10 +1,12 @@
 ---
-title: JavaScript Unit Testing for Experienced Developers
-description: You already know how unit tests work. You just want to know how to do it in JavaScript.
-thumbnail: assets/images/default.jpg
+title: 'JavaScript Unit Testing for Experienced Developers'
+description: 'You already know how unit tests work. You just want to know how to do it in JavaScript.'
+thumbnail: /assets/images/placeholder.webp
 published: false
-publishedDate: 2023-11-15
+publishedDate: 2023-11-15T00:00:00.000Z
 featured: false
+slugs:
+  - ___UNPUBLISHED___lp0p6l3g_ZVnGrGDFYVLgsBausyAqjmkHNXKWrSgJ
 ---
 
 Ths article assumes you already know how to write unit tests in other programming languages, and you just want to know how to do it in JavaScript (or TypeScript). If you've never written unit tests before, check out [Unit Testing 101](/blog/unit-testing-101) to learn everything you need to know!

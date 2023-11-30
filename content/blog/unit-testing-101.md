@@ -1,7 +1,7 @@
 ---
 title: 'Unit Testing 101 (through a JavaScript lens)'
 description: Description
-thumbnail: assets/images/default.jpg
+thumbnail: /assets/images/placeholder.webp
 published: false
 publishedDate: 2023-11-15
 featured: false
@@ -9,11 +9,9 @@ slugs:
   - ___UNPUBLISHED___lp0k32a0_wEJpBg9n4ANVafHR7d9cpTfclYwCbmoY
 ---
 
-Ahhh, JavaScript. The language of the web. You want interactivity on your website? You use JavaScript. But you already knew that. You're here because your boss or professor told you that you need to write _"unit tests"_ for your JavaScript app.
-
 ## What are unit tests?
 
-Unit tests are the most basic type of test we have in the world of software development. They test a single "unit" of code. Generally, 1 "unit" equates to 1 function.
+Unit tests are the most basic form of test we have in the world of software development. They test a single "unit" of code. Generally, 1 "unit" equates to 1 function.
 
 Unit tests answer this question: _Given these parameters, does this function behave how I expect?_
 

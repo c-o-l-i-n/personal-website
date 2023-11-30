@@ -48,11 +48,14 @@ async function addLinksToHeaders(
 ): Promise<string> {
   if (!(html && route)) return html ?? '';
 
+  // only apply to blog posts
+  if (!route.route.startsWith('/blog/')) return html;
+
   try {
     const dom = new JSDOM(html);
     const { window } = dom;
 
-    const headers = window.document.querySelectorAll(`h1, h2, h3, h4, h5, h6`);
+    const headers = window.document.querySelectorAll('h1, h2, h3, h4, h5, h6');
 
     headers.forEach((header) => {
       if (header.id) {
@@ -61,15 +64,9 @@ async function addLinksToHeaders(
         const link = window.document.createElement('a');
         link.href = `${route.route}/#${header.id}`;
 
-        // create icon element
-        const icon = window.document.createElement('span');
-        icon.classList.add('material-symbols-outlined', 'link-icon');
-        icon.textContent = 'link';
-
         // manipulate dom
         parent.replaceChild(link, header);
         link.appendChild(header);
-        header.appendChild(icon);
       }
     });
 

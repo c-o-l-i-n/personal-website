@@ -16,7 +16,7 @@ button {
 
 .content {
   a:has(h1, h2, h3, h4, h5, h6) {
-    @apply block w-max;
+    @apply w-max;
   }
 
   h1,
@@ -25,17 +25,7 @@ button {
   h4,
   h5,
   h6 {
-    @apply mb-4 mt-8 flex w-max items-center gap-2 font-mono font-extrabold;
-
-    .link-icon {
-      @apply text-slate-500 opacity-0 transition-opacity;
-    }
-
-    &:hover {
-      .link-icon {
-        @apply opacity-100;
-      }
-    }
+    @apply mb-4 mt-8 flex items-center gap-2 font-mono font-extrabold leading-snug;
   }
 
   h1 {
@@ -47,15 +37,19 @@ button {
   }
 
   h3 {
-    @apply text-3xl;
+    @apply text-xl;
   }
 
   p {
-    @apply mb-5;
+    @apply mb-5 leading-relaxed;
+
+    a {
+      @apply text-slate-700 underline;
+    }
   }
 
   img {
-    @apply w-full rounded;
+    @apply mx-auto my-7 w-full max-w-md rounded;
   }
 
   // code blocks

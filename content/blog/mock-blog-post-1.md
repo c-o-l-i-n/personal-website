@@ -1,12 +1,13 @@
 ---
 title: 'Mock Blog Post 1'
-description: This is a fake block post
+description: 'This is a fake block post'
 thumbnail: /assets/images/placeholder.webp
-published: true
-publishedDate: 2023-10-13
-featured: true
+published: false
+publishedDate: 2023-10-13T00:00:00.000Z
 tags:
-  - 'Angular'
+  - Angular
+slugs:
+  - ___UNPUBLISHED___lparr85c_vsUU718LPDeYfZmgXkGBhmHUTaw5tIpo
 ---
 
 ## Section 1

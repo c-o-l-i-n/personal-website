@@ -1,11 +1,13 @@
 ---
 title: 'Mock Blog Post 2'
-description: This is another fake block post
+description: 'This is another fake block post'
 thumbnail: /assets/images/placeholder.webp
-published: true
-publishedDate: 2023-10-14
+published: false
+publishedDate: 2023-10-14T00:00:00.000Z
 tags:
-  - 'Firebase'
+  - Firebase
+slugs:
+  - ___UNPUBLISHED___lparr85g_2v72CsU9xH6vFcY6i1gI1DWKpzIvW8db
 ---
 
 ## Section 1

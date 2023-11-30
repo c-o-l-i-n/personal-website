@@ -5,22 +5,18 @@
   <colin-card styleClass="bg-white group" [header]="header" [removeGap]="true">
     <!-- Thumbnail -->
     <div
-      class="h-48 w-full rounded-lg bg-[url(/assets/images/placeholder.webp)] bg-cover bg-center"
-      [ngClass]="
-        'bg-[url(' +
-        (post.thumbnail || '/assets/images/placeholder.webp') +
-        ')]' +
-        (header ? ' mt-3' : '')
-      "
+      class="h-48 w-full rounded-lg bg-cover bg-center"
+      [ngClass]="{ 'mt-3': header }"
+      [ngStyle]="{ 'background-image': 'url(' + post.thumbnail + ')' }"
     ></div>
 
     <!-- Published Date -->
-    <p class="mb-2 mt-3 text-sm">
+    <p class="mb-1 mt-3 text-sm">
       {{ post.publishedDate | date: 'mediumDate' : 'UTC' }}
     </p>
 
     <!-- Title -->
-    <h3 class="font-mono text-xl group-hover:underline">
+    <h3 class="mb-1 font-mono text-xl leading-tight group-hover:underline">
       {{ post.title }}
     </h3>
 

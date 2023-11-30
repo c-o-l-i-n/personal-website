@@ -3,7 +3,7 @@
     <!-- Thumbnail -->
     <div
       class="my-10 aspect-video w-full rounded bg-cover bg-center"
-      [ngClass]="'bg-[url(' + post.thumbnail + ')]'"
+      [ngStyle]="{ 'background-image': 'url(' + post.thumbnail + ')' }"
     ></div>
 
     <!-- Title -->
