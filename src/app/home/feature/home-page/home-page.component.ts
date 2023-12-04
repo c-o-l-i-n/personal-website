@@ -82,7 +82,7 @@ export class HomePageComponent implements OnInit {
   readonly sideProjectRows: SideProjectRowModel[] = [
     {
       name: 'EventMaster Pro (WIP)',
-      url: 'https://github.com/c-o-l-i-n/joshies',
+      url: 'https://github.com/c-o-l-i-n/joshies#readme',
       logoSrc: '/assets/images/logos/emp.svg',
       notes:
         'Supercharge dynamic, multi-day competitions with realtime brackets, betting, analytics, and more',
