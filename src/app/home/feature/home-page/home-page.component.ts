@@ -38,16 +38,23 @@ export class HomePageComponent implements OnInit {
 
   readonly yearsOfExperience =
     Math.round(
-      ((Date.now() - new Date('2020-09-01').getTime()) / 31557600000) * 2,
+      ((Date.now() - new Date('2020-08-01').getTime()) / 31557600000) * 2,
     ) / 2;
 
   readonly workExperienceRows: WorkExperienceRowModel[] = [
+    {
+      jobTitle: 'Senior Frontend Engineer & Architect',
+      company: 'Ecosystems.io',
+      companyUrl: 'https://ecosystems.io',
+      logoSrc: '/assets/images/logos/eco.svg',
+      dateRange: 'Feb 2024 - Present',
+    },
     {
       jobTitle: 'Software Engineer II',
       company: 'Ecosystems.io',
       companyUrl: 'https://ecosystems.io',
       logoSrc: '/assets/images/logos/eco.svg',
-      dateRange: 'Mar 2022 - Present',
+      dateRange: 'Mar 2022 - Feb 2024',
     },
     {
       jobTitle: 'Software Engineer I',
@@ -108,6 +115,13 @@ export class HomePageComponent implements OnInit {
   ];
 
   readonly leadershipRows: WorkExperienceRowModel[] = [
+    {
+      jobTitle: 'Conference Speaker',
+      company: 'ng-conf "Lightning Talks"',
+      companyUrl: 'https://ng-conf.org/',
+      logoSrc: '/assets/images/logos/ng-conf.webp',
+      dateRange: 'Mar 2024',
+    },
     {
       jobTitle: 'Angular Development Mentor',
       company: 'Ecosystems.io',
