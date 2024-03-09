@@ -142,7 +142,7 @@ server.post('/message', async (req, res) => {
 
 ## HttpClient Config
 
-Now, onto the frontend. The first thing we need to do to enable this real-time streaming from the backend is to provide the Angular `HttpClient` `withFetch` in our app config. This tells Angular to use the newer JavaScript `fetch` API behind the scenes, which opens the door to more advanced features, like these real-time progress updates.
+Now, onto the frontend. The first thing we need to do to enable this real-time streaming from the backend is to provide the Angular `HttpClient` `withFetch` in our app config. This tells Angular to use the newer [JavaScript `fetch` API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) behind the scenes, which opens the door to more advanced features, like these real-time progress updates.
 
 ```ts
 // src/app/app.config.ts
@@ -288,11 +288,11 @@ export class MessageService {
 
 ## Sending a Message
 
-When a user sends a message, the first things we do are set generating to true, and add a new message object based on the user’s prompt.
+When a user sends a message, the first things we do are set `_generatingInProgress` to `true`, and add a new message object based on the user’s prompt.
 
-We can use the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API) to generate random UUIDs for our message IDs.
+We can use the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API) to generate random [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier)s for our message IDs.
 
-Next, we subscribe to a stream of the LLM’s response.
+Next, we `subscribe` to a stream of the LLM’s response.
 
 ```ts
 // src/app/message.service.ts
@@ -317,7 +317,7 @@ sendMessage(prompt: string): void {
 
 ## Real-Time Response Streaming with RxJS
 
-First, we use the Angular `HttpClient` to send a POST request containing our prompt. Since our backend is streaming small chunks of data over time, we need to tell the HTTP Client to `observe: events` and `reportProgress`:
+First, we use the Angular `HttpClient` to send a POST request containing our prompt. Since our backend is streaming small chunks of data over time, we need to tell the `HttpClient` to `observe: events` and `reportProgress`:
 
 ```ts
 // src/app/message.service.ts
@@ -337,7 +337,7 @@ private getChatResponseStream(prompt: string): Observable<Message> {
 }
 ```
 
-The HTTP Client will send us all sorts of events, but we can use the RxJS filter operator to only get the events we want:
+The HTTP Client will send us all sorts of events, but we can use the RxJS `filter` operator to only get the events we want:
 
 ```ts
 // src/app/message.service.ts
@@ -379,7 +379,7 @@ If the event type is `DownloadProgress`, that means the AI is still working, so 
 
 If the event type is `Response`, that means the AI is done, so we grab the full response `body`, and set `generating` to `false`.
 
-The last thing we need to do is add the “startsWith” operator to set an empty message as the initial value for our stream. That way, the user sees an empty chat bubble while waiting for the text to roll in:
+The last thing we need to do is add the `startWith` operator to set an empty message as the initial value for our stream. That way, the user sees an empty chat bubble while waiting for the text to roll in:
 
 ```ts
 // src/app/message.service.ts
@@ -398,9 +398,9 @@ Finally, we update our state based on our stream.
 
 On each stream update, we update our list of messages.
 
-Once the stream completes, we add the message to the list of completed messages, and we set generating to false.
+Once the stream completes, we add the message to the list of completed messages, and we set `_generatingInProgress` to `false`.
 
-If our stream errors out, we still set generating to false.
+If our stream errors out, we still set `_generatingInProgress` to `false`.
 
 ```ts
 // src/app/message.service.ts
