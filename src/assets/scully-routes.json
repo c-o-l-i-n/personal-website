@@ -2,6 +2,16 @@
   { "route": "/" },
   { "route": "/blog" },
   {
+    "route": "/blog/angular-ai-chatbot",
+    "title": "Elevating Angular Apps with Chat Generative AI",
+    "description": "Create modern AI experiences in Angular",
+    "thumbnail": "/assets/images/ng-ai-cover.webp",
+    "published": true,
+    "featured": false,
+    "publishedDate": "2024-03-08T00:00:00.000Z",
+    "sourceFile": "angular-ai-chatbot.md"
+  },
+  {
     "route": "/blog/___UNPUBLISHED___lpkkz92c_9oeuZs92bEWUtOQcUupxrfdkoGANqCyN",
     "title": "How Community Theatre Made Me a Better Software Engineer",
     "thumbnail": "/assets/images/placeholder.webp",
