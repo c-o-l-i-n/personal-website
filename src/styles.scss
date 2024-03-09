@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'prism-themes/themes/prism-vsc-dark-plus.min';
+@import 'prism-themes/themes/prism-one-dark.min';
 
 html {
   @apply scroll-smooth bg-slate-50 font-light text-slate-800;
@@ -55,5 +55,9 @@ button {
   // code blocks
   pre[class*='language-'] {
     @apply mb-5 rounded px-5 py-4;
+
+    code {
+      @apply font-mono text-sm;
+    }
   }
 }
