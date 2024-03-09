@@ -31,12 +31,22 @@ Here’s what we’ll be creating: The user types a message, the AI generates it
 
 ![Angular Generative AI Demo](/assets/images/gifs/ng-ai.gif)
 
+## Prerequisites
+
+I'll assume that you have [Git](https://git-scm.com/downloads) and [Node.js](https://nodejs.org/) installed, and that you know how to use the command line.
+
+You'll also need the `npx` command. If you don't have the `npx` command installed, run the following command to install it:
+
+```sh
+$ npm install -g npx
+```
+
 ## Setup
 
 To get started, create a new Angular project using the Angular CLI:
 
 ```sh
-$ npx @angular/cli@latest new ng-ai
+$ npx @angular/cli@latest new ng-ai --style=scss --ssr=false
 ```
 
 Next, install the following packages needed for the backend:

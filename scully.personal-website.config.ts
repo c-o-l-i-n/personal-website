@@ -14,6 +14,7 @@ import {
 import { DisableAngular } from 'scully-plugin-disable-angular';
 import { JSDOM } from 'jsdom';
 import 'prismjs/components/prism-scss';
+import 'prismjs/components/prism-bash';
 
 setPluginConfig(DisableAngular, 'render', {
   removeState: true,
