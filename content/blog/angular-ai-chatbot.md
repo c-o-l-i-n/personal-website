@@ -36,19 +36,21 @@ Here’s what we’ll be creating: The user types a message, the AI generates it
 To get started, create a new Angular project using the Angular CLI:
 
 ```sh
-npx @angular/cli@latest new ng-ai
+$ npx @angular/cli@latest new ng-ai
 ```
 
 Next, install the following packages needed for the backend:
 
 ```sh
-cd ng-ai
-npm install express cors dotenv @google/generative-ai
+$ cd ng-ai
+$ npm install express cors dotenv @google/generative-ai
 ```
 
-Generate an API key from the [Google AI Studio](https://aistudio.google.com/app/apikey), and paste it into a `.env` file at the root of your project:
+Create a new file called `.env` at the root of your project. Generate an API key from the [Google AI Studio](https://aistudio.google.com/app/apikey), and paste it into the `.env` file:
 
-```env
+```sh
+# .env
+
 GOOGLE_AI_STUDIO_API_KEY=paste-api-key-here
 ```
 
@@ -153,6 +155,8 @@ export const appConfig: ApplicationConfig = {
 The actual UI code for our app is pretty simple. We have a `@for` loop showing a list of messages, and a `<form>` for the user to send messages. For the actual messages, we use the `[ngClass]` directive to dynamically add the CSS class `generating` while the message is in progress.
 
 ```html
+// src/app/app.component.html
+
 <h1>🤖 Angular Generative AI Demo</h1>
 
 @for (message of messages(); track message.id) {
@@ -186,6 +190,8 @@ The actual UI code for our app is pretty simple. We have a `@for` loop showing a
 To achieve the blinking cursor effect, we use the CSS `::after` [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/::after) to add a block character to the end of the message. We apply a CSS `@keyframes` animation to fade the opacity in and out.
 
 ```scss
+// src/styles.scss
+
 .message {
   // ...
 
@@ -218,7 +224,7 @@ Signals are great for state management, but RxJS is perfect for asynchronous eve
 Run the following command to create a new service:
 
 ```sh
-npx ng generate service message
+$ npx ng generate service message
 ```
 
 ## The Message Interface
@@ -408,13 +414,13 @@ To run both the frontend and backend, you'll need 2 active terminal windows.
 In the first terminal, run the following command to start the backend server:
 
 ```sh
-npm run server
+$ npm run server
 ```
 
 In another terminal, run the following command to start the Angular dev server:
 
 ```sh
-npm start
+$ npm start
 ```
 
 Once both servers are running, navigate to `http://localhost:4200` in your browser to view the app and chat with the AI.
