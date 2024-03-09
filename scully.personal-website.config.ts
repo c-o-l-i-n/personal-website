@@ -13,6 +13,7 @@ import {
 } from '@scullyio/scully';
 import { DisableAngular } from 'scully-plugin-disable-angular';
 import { JSDOM } from 'jsdom';
+import 'prismjs/components/prism-scss';
 
 setPluginConfig(DisableAngular, 'render', {
   removeState: true,
@@ -20,7 +21,7 @@ setPluginConfig(DisableAngular, 'render', {
 
 setPluginConfig('md', { enableSyntaxHighlighting: true });
 
-registerPlugin('render', 'addLinksToHeaders', addLinksToHeaders);
+registerPlugin('render', 'processBlogPostHtml', processBlogPostHtml);
 
 export const config: ScullyConfig = {
   projectRoot: './src',
@@ -30,7 +31,7 @@ export const config: ScullyConfig = {
   defaultPostRenderers: [
     DisableAngular,
     'seoHrefOptimise',
-    'addLinksToHeaders',
+    'processBlogPostHtml',
   ],
   routes: {
     '/blog/:title': {
@@ -42,7 +43,7 @@ export const config: ScullyConfig = {
   },
 };
 
-async function addLinksToHeaders(
+async function processBlogPostHtml(
   html?: string,
   route?: HandledRoute,
 ): Promise<string> {
@@ -55,8 +56,24 @@ async function addLinksToHeaders(
     const dom = new JSDOM(html);
     const { window } = dom;
 
+    const links = window.document.querySelectorAll('a');
     const headers = window.document.querySelectorAll('h1, h2, h3, h4, h5, h6');
 
+    const hashLinkPrefix = 'about:blank#';
+
+    links.forEach((link) => {
+      if (link.href.startsWith('http')) {
+        // open external links in a new tab
+        link.target = '_blank';
+      } else if (link.href.startsWith(hashLinkPrefix)) {
+        // attach hash links to this route
+        link.href = `${route.route}/${link.href.substring(
+          hashLinkPrefix.length - 1,
+        )}`;
+      }
+    });
+
+    // add hash links to headers
     headers.forEach((header) => {
       if (header.id) {
         // create link element
@@ -70,11 +87,11 @@ async function addLinksToHeaders(
       }
     });
 
-    log(green(`Added heading links for ${route.route}`));
+    log(green(`Processed blog post HTML for ${route.route}`));
     return dom.serialize();
   } catch (e: unknown) {
     logError(
-      `${red('Issue creating header links for')} ${yellow(route.route)}\n`,
+      `${red('Issue processing blog post HTML for')} ${yellow(route.route)}\n`,
       red((e as Error).stack),
     );
   }
