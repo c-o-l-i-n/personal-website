@@ -83,6 +83,10 @@ button {
 
     code {
       @apply font-mono text-sm;
+
+      a {
+        @apply underline;
+      }
     }
   }
 }

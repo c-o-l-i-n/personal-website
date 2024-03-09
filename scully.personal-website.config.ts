@@ -22,7 +22,7 @@ setPluginConfig(DisableAngular, 'render', {
 
 setPluginConfig('md', { enableSyntaxHighlighting: true });
 
-registerPlugin('render', 'processBlogPostHtml', processBlogPostHtml);
+registerPlugin('postProcessByHtml', 'processBlogPostHtml', processBlogPostHtml);
 
 export const config: ScullyConfig = {
   projectRoot: './src',
@@ -54,6 +54,12 @@ async function processBlogPostHtml(
   if (!route.route.startsWith('/blog/')) return html;
 
   try {
+    // create link tags for code prefixed with `{code-link}`
+    html = html.replace(
+      /\{code-link\}\[([^\]]+)\]\(([^)]+)\)/g,
+      '<a href="$2">$1</a>',
+    );
+
     const dom = new JSDOM(html);
     const { window } = dom;
 
@@ -66,6 +72,7 @@ async function processBlogPostHtml(
       if (link.href.startsWith('http')) {
         // open external links in a new tab
         link.target = '_blank';
+        link.rel = 'noreferrer noopener';
       } else if (link.href.startsWith(hashLinkPrefix)) {
         // attach hash links to this route
         link.href = `${route.route}/${link.href.substring(

@@ -43,10 +43,10 @@ $ npm install -g npx
 
 ## Setup
 
-To get started, create a new Angular project using the Angular CLI:
+To get started, create a new minimal Angular project using the Angular CLI:
 
 ```sh
-$ npx @angular/cli@latest new ng-ai --style=scss --ssr=false
+$ npx @angular/cli@latest new ng-ai --minimal --style=scss --ssr=false --routing=false
 ```
 
 Next, install the following packages needed for the backend:
@@ -54,6 +54,7 @@ Next, install the following packages needed for the backend:
 ```sh
 $ cd ng-ai
 $ npm install express cors dotenv @google/generative-ai
+$ npm install -D @types/express @types/cors @types/node tsx
 ```
 
 Create a new file called `.env` at the root of your project. Generate an API key from the [Google AI Studio](https://aistudio.google.com/app/apikey), and paste it into the `.env` file:
@@ -73,7 +74,7 @@ Create a new file under the `src/` directory called `server.ts`. This file will 
 Add this new script to your `package.json` to allow us to easily run the backend code:
 
 ```json
-// package.json
+// {code-link}[package.json](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/package.json#L9)
 
 {
   "scripts": {
@@ -87,7 +88,7 @@ Add this new script to your `package.json` to allow us to easily run the backend
 First, we need to do some basic setup to configure our Express server and AI chat session:
 
 ```ts
-// src/server.ts
+// {code-link}[src/server.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/server.ts)
 
 import express from 'express';
 import cors from 'cors';
@@ -126,7 +127,7 @@ server.listen(port, () => {
 Next, we will create a `/message` POST endpoint. When the endpoint receives a request, it calls the Gemini API with our prompt. As the AI generates content, we write each chunk of text to our response. Once the AI is done, we close our response.
 
 ```ts
-// src/server.ts
+// {code-link}[src/server.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/server.ts#L28)
 
 server.post('/message', async (req, res) => {
   const prompt: string = req.body;
@@ -145,7 +146,7 @@ server.post('/message', async (req, res) => {
 Now, onto the frontend. The first thing we need to do to enable this real-time streaming from the backend is to provide the Angular `HttpClient` `withFetch` in our app config. This tells Angular to use the newer [JavaScript `fetch` API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) behind the scenes, which opens the door to more advanced features, like these real-time progress updates.
 
 ```ts
-// src/app/app.config.ts
+// {code-link}[src/app/app.config.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/app.config.ts)
 
 import { ApplicationConfig } from '@angular/core';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -162,37 +163,79 @@ export const appConfig: ApplicationConfig = {
 
 ## UI
 
-The actual UI code for our app is pretty simple. We have a `@for` loop showing a list of messages, and a `<form>` for the user to send messages. For the actual messages, we use the `[ngClass]` directive to dynamically add the CSS class `generating` while the message is in progress.
+The actual UI code for our app is pretty simple.
 
-```html
-// src/app/app.component.html
+We have a `@for` loop showing a list of messages, and a `<form>` for the user to send messages. For the actual messages, we use the `[ngClass]` directive to dynamically add the CSS class `generating` while the message is in progress.
 
-<h1>🤖 Angular Generative AI Demo</h1>
+We use an `effect` to automatically scroll down when the messages are updated.
 
-@for (message of messages(); track message.id) {
-  <pre
-    class="message"
-    [ngClass]="{
-      'from-user': message.fromUser,
-      generating: message.generating
-    }"
-    >{{ message.text }}</pre
-  >
+(This code is going to have a lot of errors for now since we haven't created our `MessageService` yet)
+
+```ts
+// {code-link}[src/app/app.component.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/app.component.ts)
+
+import { Component, effect, inject } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { MessageService } from './message.service';
+import { FormsModule, NgForm } from '@angular/forms';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [NgClass, FormsModule],
+  template: `
+    <h1>🤖 Angular Generative AI Demo</h1>
+
+    @for (message of messages(); track message.id) {
+      <pre
+        class="message"
+        [ngClass]="{
+          'from-user': message.fromUser,
+          generating: message.generating
+        }"
+        >{{ message.text }}</pre
+      >
+    }
+
+    <form #form="ngForm" (ngSubmit)="sendMessage(form, form.value.message)">
+      <input
+        name="message"
+        placeholder="Type a message"
+        ngModel
+        required
+        autofocus
+        [disabled]="generatingInProgress()"
+      />
+      <button type="submit" [disabled]="generatingInProgress() || form.invalid">
+        Send
+      </button>
+    </form>
+  `,
+})
+export class AppComponent {
+  private readonly messageService = inject(MessageService);
+
+  readonly messages = this.messageService.messages;
+  readonly generatingInProgress = this.messageService.generatingInProgress;
+
+  private readonly scrollOnMessageChanges = effect(() => {
+    // run this effect on every `messages` change
+    this.messages();
+
+    // scroll after the messages render
+    setTimeout(() =>
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+      }),
+    );
+  });
+
+  sendMessage(form: NgForm, messageText: string): void {
+    this.messageService.sendMessage(messageText);
+    form.resetForm();
+  }
 }
-
-<form #form="ngForm" (ngSubmit)="sendMessage(form, form.value.message)">
-  <input
-    name="message"
-    placeholder="Type a message"
-    ngModel
-    required
-    autofocus
-    [disabled]="generatingInProgress()"
-  />
-  <button type="submit" [disabled]="generatingInProgress() || form.invalid">
-    Send
-  </button>
-</form>
 ```
 
 ## Blinking Cursor
@@ -200,7 +243,7 @@ The actual UI code for our app is pretty simple. We have a `@for` loop showing a
 To achieve the blinking cursor effect, we use the CSS `::after` [pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/::after) to add a block character to the end of the message. We apply a CSS `@keyframes` animation to fade the opacity in and out.
 
 ```scss
-// src/styles.scss
+// {code-link}[src/styles.scss](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/styles.scss#L68)
 
 .message {
   // ...
@@ -242,7 +285,7 @@ $ npx ng generate service message
 Before we jump into the implementation, let's create a `Message` interface that contains all the data we need to represent a message in our app:
 
 ```ts
-// src/app/message.service.ts
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L11)
 
 export interface Message {
   id: string;
@@ -268,7 +311,7 @@ Out of those 3 signals, only 2 of them are exposed to the outside world:
 Notice that these are marked `asReadonly()` signals, as we don’t want random consumers changing their contents.
 
 ```ts
-// src/app/message.service.ts
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L21)
 
 @Injectable({
   providedIn: 'root',
@@ -295,7 +338,7 @@ We can use the [Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API
 Next, we `subscribe` to a stream of the LLM’s response.
 
 ```ts
-// src/app/message.service.ts
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L31)
 
 sendMessage(prompt: string): void {
   this._generatingInProgress.set(true);
@@ -320,7 +363,7 @@ sendMessage(prompt: string): void {
 First, we use the Angular `HttpClient` to send a POST request containing our prompt. Since our backend is streaming small chunks of data over time, we need to tell the `HttpClient` to `observe: events` and `reportProgress`:
 
 ```ts
-// src/app/message.service.ts
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L56)
 
 private getChatResponseStream(prompt: string): Observable<Message> {
   const id = window.crypto.randomUUID();
@@ -340,7 +383,7 @@ private getChatResponseStream(prompt: string): Observable<Message> {
 The HTTP Client will send us all sorts of events, but we can use the RxJS `filter` operator to only get the events we want:
 
 ```ts
-// src/app/message.service.ts
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L66)
 
 .pipe(
   filter(
@@ -355,7 +398,7 @@ The HTTP Client will send us all sorts of events, but we can use the RxJS `filte
 When we receive an event, we transform it into a `Message` object using the RxJS `map` operator:
 
 ```ts
-// src/app/message.service.ts
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L71)
 
 map(
   (event: HttpEvent<string>): Message =>
@@ -382,7 +425,7 @@ If the event type is `Response`, that means the AI is done, so we grab the full 
 The last thing we need to do is add the `startWith` operator to set an empty message as the initial value for our stream. That way, the user sees an empty chat bubble while waiting for the text to roll in:
 
 ```ts
-// src/app/message.service.ts
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L87)
 
 startWith<Message>({
   id,
@@ -403,7 +446,7 @@ Once the stream completes, we add the message to the list of completed messages,
 If our stream errors out, we still set `_generatingInProgress` to `false`.
 
 ```ts
-// src/app/message.service.ts
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L43)
 
 this.getChatResponseStream(prompt).subscribe({
   next: (message) => this._messages.set([...this._completeMessages(), message]),
