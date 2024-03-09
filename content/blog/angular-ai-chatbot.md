@@ -156,20 +156,28 @@ The actual UI code for our app is pretty simple. We have a `@for` loop showing a
 <h1>🤖 Angular Generative AI Demo</h1>
 
 @for (message of messages(); track message.id) {
-<pre
-  class="message"
-  [ngClass]="{
-        'from-user': message.fromUser,
-        generating: message.generating
-      }"
->
-{{ message.text }}</pre
->
+  <pre
+    class="message"
+    [ngClass]="{
+      'from-user': message.fromUser,
+      generating: message.generating
+    }"
+    >{{ message.text }}</pre
+  >
 }
 
 <form #form="ngForm" (ngSubmit)="sendMessage(form, form.value.message)">
-  <input name="message" placeholder="Type a message" ngModel required autofocus [disabled]="generatingInProgress()" />
-  <button type="submit" [disabled]="generatingInProgress() || form.invalid">Send</button>
+  <input
+    name="message"
+    placeholder="Type a message"
+    ngModel
+    required
+    autofocus
+    [disabled]="generatingInProgress()"
+  />
+  <button type="submit" [disabled]="generatingInProgress() || form.invalid">
+    Send
+  </button>
 </form>
 ```
 
@@ -392,6 +400,24 @@ this.getChatResponseStream(prompt).subscribe({
   error: () => this._generatingInProgress.set(false),
 });
 ```
+
+## Run the App
+
+To run both the frontend and backend, you'll need 2 active terminal windows.
+
+In the first terminal, run the following command to start the backend server:
+
+```sh
+npm run server
+```
+
+In another terminal, run the following command to start the Angular dev server:
+
+```sh
+npm start
+```
+
+Once both servers are running, navigate to `http://localhost:4200` in your browser to view the app and chat with the AI.
 
 ## Review
 
