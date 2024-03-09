@@ -1,8 +1,14 @@
 <a
   [routerLink]="post.route"
   [attr.aria-label]="'Go to blog post titled ' + post.title"
+  class="h-full"
 >
-  <colin-card styleClass="bg-white group" [header]="header" [removeGap]="true">
+  <colin-card
+    styleClass="bg-white group"
+    [header]="header"
+    [removeGap]="true"
+    class="h-full"
+  >
     <!-- Thumbnail -->
     <div
       class="h-48 w-full rounded-lg bg-cover bg-center"

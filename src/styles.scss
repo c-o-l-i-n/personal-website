@@ -40,16 +40,41 @@ button {
     @apply text-xl;
   }
 
-  p {
+  p,
+  ol,
+  ul {
     @apply mb-5 leading-relaxed;
+  }
 
+  p,
+  li {
     a {
       @apply text-slate-700 underline;
     }
   }
 
+  ul,
+  ol {
+    @apply ml-8;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
   img {
     @apply mx-auto my-7 w-full max-w-md rounded;
+  }
+
+  // code words
+  :not(pre) {
+    code {
+      @apply rounded-md bg-slate-200 px-1;
+    }
   }
 
   // code blocks
