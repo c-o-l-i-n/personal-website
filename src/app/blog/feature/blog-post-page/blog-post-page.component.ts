@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { BlogPost, expandImageUrl } from '@colin/shared/util';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
@@ -9,6 +9,10 @@ import { Observable, map, tap } from 'rxjs';
   templateUrl: './blog-post-page.component.html',
 })
 export class BlogPostPageComponent {
+  private readonly scully = inject(ScullyRoutesService);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+
   readonly post$: Observable<BlogPost> = this.scully.getCurrent().pipe(
     map((post) => post as BlogPost),
     tap((post) => {
@@ -37,10 +41,4 @@ export class BlogPostPageComponent {
       });
     }),
   );
-
-  constructor(
-    private scully: ScullyRoutesService,
-    private title: Title,
-    private meta: Meta,
-  ) {}
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Observable, map } from 'rxjs';
 import { BlogPost, sortBlogPostsByDate } from '@colin/shared/util';
@@ -11,6 +11,9 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './home-page.component.html',
 })
 export class HomePageComponent implements OnInit {
+  private readonly scully = inject(ScullyRoutesService);
+  private readonly title = inject(Title);
+
   readonly skillPills: PillModel[] = [
     {
       text: 'Angular Architect',
@@ -162,11 +165,6 @@ export class HomePageComponent implements OnInit {
   readonly latestArticle$: Observable<BlogPost> = this.blogPosts$.pipe(
     map((posts) => posts[0]),
   );
-
-  constructor(
-    private scully: ScullyRoutesService,
-    private title: Title,
-  ) {}
 
   ngOnInit(): void {
     this.title.setTitle(

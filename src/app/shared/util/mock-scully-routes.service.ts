@@ -1,22 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ScullyRoute, ScullyRoutesService } from '@scullyio/ng-lib';
 import { Observable, of } from 'rxjs';
 import { mockBlogPosts } from './mock-blog-posts';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MockScullyRoutesService extends ScullyRoutesService {
-  override available$: Observable<ScullyRoute[]> = of(mockBlogPosts);
+  private readonly router2 = inject(Router);
 
-  constructor(
-    private router2: Router,
-    http: HttpClient,
-  ) {
-    super(router2, http);
-  }
+  override available$: Observable<ScullyRoute[]> = of(mockBlogPosts);
 
   override getCurrent(): Observable<ScullyRoute> {
     return of(

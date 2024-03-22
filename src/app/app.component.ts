@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { expandImageUrl } from './shared/util';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -9,11 +9,11 @@ import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
+  private readonly meta = inject(Meta);
+
   protected readonly faGithub = faGithub;
   protected readonly faLinkedin = faLinkedin;
   protected readonly faFilePdf = faFilePdf;
-
-  constructor(private meta: Meta) {}
 
   ngOnInit(): void {
     this.meta.addTags([

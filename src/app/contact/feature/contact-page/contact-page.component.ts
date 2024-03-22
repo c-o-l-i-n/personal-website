@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FieldType, Form } from '@colin/contact/ui';
 
@@ -7,6 +7,8 @@ import { FieldType, Form } from '@colin/contact/ui';
   templateUrl: './contact-page.component.html',
 })
 export class ContactPageComponent implements OnInit {
+  private readonly title = inject(Title);
+
   protected readonly form: Form = {
     submitUrl: 'https://formspree.io/f/xwkwyeky',
     fieldRows: [
@@ -40,8 +42,6 @@ export class ContactPageComponent implements OnInit {
       ],
     ],
   };
-
-  constructor(private title: Title) {}
 
   ngOnInit(): void {
     this.title.setTitle('Contact');
