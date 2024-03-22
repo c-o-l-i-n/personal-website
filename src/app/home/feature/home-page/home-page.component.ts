@@ -118,7 +118,7 @@ export class HomePageComponent implements OnInit {
     {
       jobTitle: 'Conference Speaker',
       company: 'ng-conf "Lightning Talks"',
-      companyUrl: 'https://ng-conf.org/',
+      companyUrl: 'https://youtu.be/tlWlFpEmTeE',
       logoSrc: '/assets/images/logos/ng-conf.webp',
       dateRange: 'Mar 2024',
     },

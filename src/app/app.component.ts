@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
       },
       {
         name: 'og:image',
-        content: expandImageUrl('/assets/images/placeholder.webp'),
+        content: expandImageUrl('/assets/images/colin-banner.webp?v=1'),
       },
     ]);
   }
