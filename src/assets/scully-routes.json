@@ -3,8 +3,7 @@
   { "route": "/blog" },
   {
     "route": "/blog/angular-ai-chatbot",
-    "title": "Elevating Angular Apps with Chat Generative AI",
-    "description": "Create modern AI experiences in Angular",
+    "title": "How to Create Modern AI Chatbot Experiences in Angular",
     "thumbnail": "/assets/images/ng-ai-cover.webp",
     "published": true,
     "featured": false,

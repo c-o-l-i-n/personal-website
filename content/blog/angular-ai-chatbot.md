@@ -1,6 +1,5 @@
 ---
-title: Elevating Angular Apps with Chat Generative AI
-description: Create modern AI experiences in Angular
+title: How to Create Modern AI Chatbot Experiences in Angular
 thumbnail: /assets/images/ng-ai-cover.webp
 published: true
 featured: false
@@ -14,6 +13,10 @@ _**TL;DR:** Using LLM APIs, Signals, and some RxJS magic, we can create modern A
 - How to create a simple generative AI backend using [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), and the [Google Gemini API](https://ai.google.dev/)
 - How to create a modern AI chatbot experience in [Angular](https://angular.dev/)
 - [Repository for this project](https://GitHub.com/c-o-l-i-n/ng-generative-ai-demo)
+
+## Prefer video? Check out this talk from ng-conf!
+
+{youtube-embed}[tlWlFpEmTeE]
 
 ## What do users expect from AI chatbots?
 

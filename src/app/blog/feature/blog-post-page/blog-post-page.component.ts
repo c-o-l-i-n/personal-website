@@ -22,7 +22,10 @@ export class BlogPostPageComponent {
       this.meta.updateTag({ name: 'twitter:title', content: post.title });
       this.meta.updateTag({ name: 'og:type', content: 'article' });
       this.meta.updateTag({ name: 'author', content: 'Colin Williams' });
-      this.meta.updateTag({ name: 'description', content: post.description });
+      this.meta.updateTag({
+        name: 'description',
+        content: post.description ?? post.title,
+      });
       this.meta.updateTag({
         name: 'article:published_time',
         content: post.publishedDate,

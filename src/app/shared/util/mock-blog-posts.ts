@@ -13,7 +13,6 @@ export const mockBlogPost1: BlogPost = {
 export const mockBlogPost2: BlogPost = {
   route: '/blog/mock-blog-post-2',
   title: 'Mock Blog Post 2',
-  description: 'This is another fake blog post',
   thumbnail: '/assets/images/placeholder.webp',
   publishedDate: '2023-09-02',
   featured: false,

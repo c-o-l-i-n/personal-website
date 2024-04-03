@@ -2,7 +2,7 @@ import { ScullyRoute } from '@scullyio/ng-lib';
 
 export interface BlogPost extends ScullyRoute {
   title: string;
-  description: string;
+  description?: string;
   thumbnail: string;
   publishedDate: string;
   featured: boolean;

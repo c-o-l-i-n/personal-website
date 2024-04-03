@@ -54,6 +54,19 @@ async function processBlogPostHtml(
   if (!route.route.startsWith('/blog/')) return html;
 
   try {
+    // add YouTube embed for `{youtube-embed}[VIDEO_ID]`
+    html = html.replace(
+      /\{youtube-embed\}\[([^\]]+)\]/g,
+      `<iframe
+        src="https://www.youtube-nocookie.com/embed/$1"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen=""
+      ></iframe>`,
+    );
+
     // create link tags for code prefixed with `{code-link}`
     html = html.replace(
       /\{code-link\}\[([^\]]+)\]\(([^)]+)\)/g,

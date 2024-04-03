@@ -66,8 +66,13 @@ button {
     @apply list-decimal;
   }
 
-  img {
-    @apply mx-auto my-7 w-full max-w-md rounded;
+  img,
+  iframe {
+    @apply mx-auto my-7 w-full max-w-lg rounded;
+  }
+
+  iframe {
+    @apply aspect-video;
   }
 
   // code words
