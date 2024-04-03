@@ -25,16 +25,16 @@ export class HomePageComponent implements OnInit {
       iconSize: 14,
     },
     {
+      text: 'AI Artisan',
+      iconSrc: '/assets/images/logos/openai.svg',
+    },
+    {
       text: 'Firebase Fan',
       iconSrc: '/assets/images/logos/firebase.svg',
     },
     {
-      text: 'Java Junkie',
-      iconSrc: '/assets/images/logos/java.svg',
-    },
-    {
-      text: 'Spring Sorcerer',
-      iconSrc: '/assets/images/logos/spring.svg',
+      text: 'Supabase Sage',
+      iconSrc: '/assets/images/logos/supabase.svg',
       iconSize: 14,
     },
   ];
