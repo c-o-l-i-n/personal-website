@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
+  computed,
   inject,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 import { BlogPost, sortBlogPostsByDate } from '@colin/shared/util';
 import { PillModel } from '@colin/shared/ui/pill/pill.component';
 import { SideProjectRowModel, WorkExperienceRowModel } from '@colin/home/ui';
@@ -51,17 +53,13 @@ import { Title } from '@angular/platform-browser';
 
     <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
       <!-- Featured Article -->
-      @if (featuredArticle$ | async; as featuredArticle) {
-        <colin-blog-post-card
-          [post]="featuredArticle"
-          header="Featured Article"
-        />
-      }
+      <colin-blog-post-card
+        [post]="featuredArticle()"
+        header="Featured Article"
+      />
 
       <!-- Latest Article -->
-      @if (latestArticle$ | async; as latestArticle) {
-        <colin-blog-post-card [post]="latestArticle" header="Latest Article" />
-      }
+      <colin-blog-post-card [post]="latestArticle()" header="Latest Article" />
     </div>
 
     <!-- Experience -->
@@ -282,7 +280,7 @@ export class HomePageComponent implements OnInit {
     },
   ];
 
-  private readonly blogPosts$: Observable<BlogPost[]> =
+  private readonly blogPosts = toSignal(
     this.scully.available$.pipe(
       map((routes) => routes as BlogPost[]),
       map((routes) =>
@@ -290,15 +288,15 @@ export class HomePageComponent implements OnInit {
           .filter((route) => route.route.startsWith('/blog/'))
           .sort(sortBlogPostsByDate),
       ),
-    );
-
-  readonly featuredArticle$: Observable<BlogPost> = this.blogPosts$.pipe(
-    map((posts) => posts.find((post) => post.featured)!),
+    ),
+    { requireSync: true },
   );
 
-  readonly latestArticle$: Observable<BlogPost> = this.blogPosts$.pipe(
-    map((posts) => posts[0]),
+  readonly featuredArticle = computed(
+    () => this.blogPosts().find((post) => post.featured)!,
   );
+
+  readonly latestArticle = computed(() => this.blogPosts()[0]);
 
   ngOnInit(): void {
     this.title.setTitle(

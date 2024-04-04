@@ -4,10 +4,11 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Title } from '@angular/platform-browser';
 import { BlogPost, sortBlogPostsByDate } from '@colin/shared/util';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
-import { Observable, map } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'colin-blog-page',
@@ -22,7 +23,7 @@ import { Observable, map } from 'rxjs';
     </colin-card>
 
     <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-      @for (post of posts$ | async; track post.route) {
+      @for (post of posts(); track post.route) {
         <colin-blog-post-card [post]="post" />
       }
     </div>
@@ -32,13 +33,16 @@ export class BlogPageComponent implements OnInit {
   private readonly scully = inject(ScullyRoutesService);
   private readonly title = inject(Title);
 
-  readonly posts$: Observable<BlogPost[]> = this.scully.available$.pipe(
-    map((routes) => routes as BlogPost[]),
-    map((routes) =>
-      routes
-        .filter((route) => route.route.startsWith('/blog/'))
-        .sort(sortBlogPostsByDate),
+  readonly posts = toSignal(
+    this.scully.available$.pipe(
+      map((routes) => routes as BlogPost[]),
+      map((routes) =>
+        routes
+          .filter((route) => route.route.startsWith('/blog/'))
+          .sort(sortBlogPostsByDate),
+      ),
     ),
+    { requireSync: true },
   );
 
   ngOnInit(): void {
