@@ -35,8 +35,9 @@ export interface SideProjectRowModel {
           target="_blank"
           class="nobreak -mt-0.5 whitespace-nowrap font-medium hover:underline md:m-0"
           [attr.aria-label]="'Go to ' + model().name + ' website'"
-          >{{ model().name }}</a
         >
+          {{ model().name }}
+        </a>
         <span class="text-sm text-slate-400 md:hidden md:text-base">
           {{ model().notes }}
         </span>

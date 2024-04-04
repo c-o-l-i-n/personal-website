@@ -33,9 +33,9 @@ import { map } from 'rxjs';
         <dl>
           <dt class="sr-only">Date</dt>
           <dd class="text-slate-700">
-            <time [attr.datetime]="post().publishedDate">{{
-              post().publishedDate | date: 'fullDate' : 'UTC'
-            }}</time>
+            <time [attr.datetime]="post().publishedDate">
+              {{ post().publishedDate | date: 'fullDate' : 'UTC' }}
+            </time>
           </dd>
         </dl>
       </div>

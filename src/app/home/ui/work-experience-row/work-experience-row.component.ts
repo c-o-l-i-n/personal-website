@@ -39,8 +39,9 @@ export interface WorkExperienceRowModel {
             target="_blank"
             class="nobreak -mt-0.5 whitespace-nowrap hover:underline md:m-0"
             [attr.aria-label]="'Go to ' + model().company + ' website'"
-            >{{ model().company }}</a
           >
+            {{ model().company }}
+          </a>
         </span>
         <span class="mt-1 inline text-sm text-slate-400 md:hidden md:text-base">
           {{ model().dateRange }}
