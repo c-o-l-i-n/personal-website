@@ -1,10 +1,10 @@
 <div
   class="group flex h-full w-full flex-col rounded border border-slate-400 p-6"
-  [ngClass]="(styleClass ?? '') + (removeGap ? '' : ' gap-4')"
+  [ngClass]="(styleClass() ?? '') + (removeGap() ? '' : ' gap-4')"
 >
-  @if (header) {
+  @if (header()) {
     <h3 class="text-center text-sm text-slate-600 md:text-left">
-      {{ header }}
+      {{ header() }}
     </h3>
   }
   <ng-content />

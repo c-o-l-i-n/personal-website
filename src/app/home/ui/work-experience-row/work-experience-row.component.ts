@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export interface WorkExperienceRowModel {
   logoSrc: string;
@@ -13,5 +13,5 @@ export interface WorkExperienceRowModel {
   templateUrl: './work-experience-row.component.html',
 })
 export class WorkExperienceRowComponent {
-  @Input({ required: true }) model!: WorkExperienceRowModel;
+  model = input.required<WorkExperienceRowModel>();
 }

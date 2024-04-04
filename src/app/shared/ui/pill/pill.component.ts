@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export interface PillModel {
   iconSrc: string;
@@ -11,5 +11,5 @@ export interface PillModel {
   templateUrl: './pill.component.html',
 })
 export class PillComponent {
-  @Input({ required: true }) model!: PillModel;
+  model = input.required<PillModel>();
 }

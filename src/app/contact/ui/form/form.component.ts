@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export enum FieldType {
   Text = 'text',
@@ -37,7 +37,7 @@ export interface Form {
  * It is an experimental implementation that would potentially improve a site with many forms.
  */
 export class FormComponent {
-  @Input({ required: true }) model!: Form;
+  model = input.required<Form>();
 
   protected readonly FieldType = FieldType;
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export interface SideProjectRowModel {
   logoSrc: string;
@@ -12,5 +12,5 @@ export interface SideProjectRowModel {
   templateUrl: './side-project-row.component.html',
 })
 export class SideProjectRowComponent {
-  @Input({ required: true }) model!: SideProjectRowModel;
+  model = input.required<SideProjectRowModel>();
 }

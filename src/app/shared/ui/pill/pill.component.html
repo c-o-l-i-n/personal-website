@@ -3,11 +3,11 @@
 >
   <img
     #img
-    [src]="model.iconSrc"
+    [src]="model().iconSrc"
     alt=""
-    [width]="model.iconSize ?? 16"
-    [height]="model.iconSize ?? 16"
+    [width]="model().iconSize ?? 16"
+    [height]="model().iconSize ?? 16"
     class="h-4"
   />
-  {{ model.text }}
+  {{ model().text }}
 </div>

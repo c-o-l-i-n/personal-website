@@ -1,10 +1,10 @@
 <form
-  [action]="model.submitUrl"
+  [action]="model().submitUrl"
   method="post"
   class="flex flex-col gap-4"
   ngNativeValidate
 >
-  @for (row of model.fieldRows; track row) {
+  @for (row of model().fieldRows; track row) {
     <div
       [ngClass]="
         row.length > 1 ? 'md:grid-cols-' + row.length + ' grid gap-4 ' : ''
