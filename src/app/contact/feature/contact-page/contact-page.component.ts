@@ -1,10 +1,16 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { FieldType, Form } from '@colin/contact/ui';
 
 @Component({
   selector: 'colin-contact-page',
   templateUrl: './contact-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactPageComponent implements OnInit {
   private readonly title = inject(Title);

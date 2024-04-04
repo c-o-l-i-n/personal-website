@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 export enum FieldType {
   Text = 'text',
@@ -31,6 +31,7 @@ export interface Form {
 @Component({
   selector: 'colin-form',
   templateUrl: './form.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 /**
  * For this project with only 1 form, this abstraction is more trouble than it's worth.

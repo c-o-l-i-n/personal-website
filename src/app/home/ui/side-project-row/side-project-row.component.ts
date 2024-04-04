@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 export interface SideProjectRowModel {
   logoSrc: string;
@@ -10,6 +10,7 @@ export interface SideProjectRowModel {
 @Component({
   selector: 'colin-side-project-row',
   templateUrl: './side-project-row.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SideProjectRowComponent {
   model = input.required<SideProjectRowModel>();

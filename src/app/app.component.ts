@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { expandImageUrl } from './shared/util';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
@@ -7,6 +12,7 @@ import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 @Component({
   selector: 'colin-root',
   templateUrl: './app.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   private readonly meta = inject(Meta);

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { BlogPost, expandImageUrl } from '@colin/shared/util';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
@@ -7,6 +7,7 @@ import { Observable, map, tap } from 'rxjs';
 @Component({
   selector: 'colin-blog-post-page',
   templateUrl: './blog-post-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogPostPageComponent {
   private readonly scully = inject(ScullyRoutesService);

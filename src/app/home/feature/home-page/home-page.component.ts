@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { Observable, map } from 'rxjs';
 import { BlogPost, sortBlogPostsByDate } from '@colin/shared/util';
@@ -9,6 +14,7 @@ import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'colin-home-page',
   templateUrl: './home-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
   private readonly scully = inject(ScullyRoutesService);

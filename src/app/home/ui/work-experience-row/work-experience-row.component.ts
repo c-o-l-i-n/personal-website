@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 export interface WorkExperienceRowModel {
   logoSrc: string;
@@ -11,6 +11,7 @@ export interface WorkExperienceRowModel {
 @Component({
   selector: 'colin-work-experience-row',
   templateUrl: './work-experience-row.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WorkExperienceRowComponent {
   model = input.required<WorkExperienceRowModel>();
