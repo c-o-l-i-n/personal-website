@@ -10,12 +10,7 @@ import { BlogPost } from '@colin/shared/util';
       [attr.aria-label]="'Go to blog post() titled ' + post().title"
       class="h-full"
     >
-      <colin-card
-        styleClass="bg-white group"
-        [header]="header()"
-        [removeGap]="true"
-        class="h-full"
-      >
+      <colin-card removeGap class="h-full bg-white" [header]="header()">
         <!-- Thumbnail -->
         <div
           class="h-48 w-full rounded-lg bg-cover bg-center"

@@ -10,9 +10,11 @@ import { expandImageUrl } from './shared/util';
 @Component({
   selector: 'colin-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `<div
-    class="mx-auto max-w-3xl bg-[url('/assets/images/bg.png')] bg-top bg-no-repeat px-4 py-5"
-  >
+  host: {
+    class:
+      "block mx-auto max-w-3xl bg-[url('/assets/images/bg.png')] bg-top bg-no-repeat px-4 py-5",
+  },
+  template: `
     <!-- Header -->
     <colin-header />
 
@@ -21,7 +23,7 @@ import { expandImageUrl } from './shared/util';
 
     <!-- Footer -->
     <colin-footer />
-  </div> `,
+  `,
 })
 export class AppComponent implements OnInit {
   private readonly meta = inject(Meta);

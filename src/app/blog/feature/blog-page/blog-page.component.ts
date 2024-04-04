@@ -13,7 +13,7 @@ import { Observable, map } from 'rxjs';
   selector: 'colin-blog-page',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <colin-card styleClass="mb-5">
+    <colin-card class="mb-5">
       <h1
         class="text-center font-mono text-2xl font-medium md:text-left md:text-3xl"
       >
