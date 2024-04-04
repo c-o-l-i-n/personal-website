@@ -13,8 +13,138 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'colin-home-page',
-  templateUrl: './home-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <div class="flex flex-col gap-5">
+      <colin-card header="About Me">
+        <h3
+          class="flex flex-col justify-center text-center font-mono text-xl font-medium sm:flex-row md:justify-start md:text-left md:text-2xl"
+        >
+          <span class="sm:mr-3 md:mr-4">
+            <span class="text-slate-400">&lcub;&lcub;</span>Software
+            Engineer<span class="text-slate-400">&rcub;&rcub;</span>
+          </span>
+          <span class="whitespace-nowrap">&amp; Frontend Architect</span>
+        </h3>
+
+        <!-- Skill Pills -->
+        <div class="flex flex-wrap gap-1">
+          @for (pill of skillPills; track pill.text) {
+            <a href="#experience">
+              <colin-pill [model]="pill" />
+            </a>
+          }
+        </div>
+
+        <p>
+          As a software engineer, I'm passionate about crafting exceptional user
+          experiences. Architecting robust Angular applications is where I truly
+          shine.
+        </p>
+
+        <p>
+          As a person, I'm passionate about music, cats, skiing, and cashews.
+        </p>
+      </colin-card>
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <!-- Featured Article -->
+        @if (featuredArticle$ | async; as featuredArticle) {
+          <colin-blog-post-card
+            [post]="featuredArticle"
+            header="Featured Article"
+          />
+        }
+
+        <!-- Latest Article -->
+        @if (latestArticle$ | async; as latestArticle) {
+          <colin-blog-post-card
+            [post]="latestArticle"
+            header="Latest Article"
+          />
+        }
+      </div>
+
+      <!-- Experience -->
+      <colin-card styleClass="bg-white" id="experience">
+        <h2
+          class="mb-4 text-center font-mono text-xl font-medium md:text-left md:text-2xl"
+        >
+          Experience ({{ yearsOfExperience | number: '1.0-1' }} yrs)
+        </h2>
+
+        <div>
+          @for (
+            row of workExperienceRows;
+            track row.jobTitle;
+            let first = $first;
+            let last = $last
+          ) {
+            <div
+              class="border-slate-200 py-4 md:border-b"
+              [class.border-none]="last"
+              [class.pt-0]="first"
+            >
+              <colin-work-experience-row [model]="row" />
+            </div>
+          }
+        </div>
+      </colin-card>
+
+      <!-- Leadership & Mentoring -->
+      <colin-card styleClass="bg-white" id="leadership">
+        <h2
+          class="mb-4 text-center font-mono text-xl font-medium md:text-left md:text-2xl"
+        >
+          Leadership & Mentoring
+        </h2>
+
+        <div>
+          @for (
+            row of leadershipRows;
+            track row.jobTitle;
+            let first = $first;
+            let last = $last
+          ) {
+            <div
+              class="border-slate-200 py-4 md:border-b"
+              [class.border-none]="last"
+              [class.pt-0]="first"
+            >
+              <colin-work-experience-row [model]="row" />
+            </div>
+          }
+        </div>
+      </colin-card>
+
+      <!-- Side Projects -->
+      <colin-card styleClass="bg-white" id="projects">
+        <h2
+          class="mb-4 text-center font-mono text-xl font-medium md:text-left md:text-2xl"
+        >
+          Side Projects
+        </h2>
+
+        <div>
+          @for (
+            row of sideProjectRows;
+            track row.name;
+            let first = $first;
+            let last = $last
+          ) {
+            <div
+              class="border-slate-200 py-4 md:border-b"
+              style="text-wrap: balance"
+              [class.border-none]="last"
+              [class.pt-0]="first"
+            >
+              <colin-side-project-row [model]="row" />
+            </div>
+          }
+        </div>
+      </colin-card>
+    </div>
+  `,
 })
 export class HomePageComponent implements OnInit {
   private readonly scully = inject(ScullyRoutesService);

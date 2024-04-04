@@ -9,7 +9,8 @@
         "@schematics/angular:component": {
           "style": "none",
           "standalone": false,
-          "changeDetection": "OnPush"
+          "changeDetection": "OnPush",
+          "inlineTemplate": true
         },
         "@schematics/angular:directive": {
           "standalone": false

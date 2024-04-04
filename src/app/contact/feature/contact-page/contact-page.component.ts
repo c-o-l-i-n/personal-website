@@ -9,8 +9,20 @@ import { FieldType, Form } from '@colin/contact/ui';
 
 @Component({
   selector: 'colin-contact-page',
-  templateUrl: './contact-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <colin-card styleClass="mb-5">
+      <h1
+        class="text-center font-mono text-2xl font-medium md:text-left md:text-3xl"
+      >
+        Contact
+      </h1>
+    </colin-card>
+
+    <colin-card styleClass="bg-white">
+      <colin-form [model]="form" />
+    </colin-card>
+  `,
 })
 export class ContactPageComponent implements OnInit {
   private readonly title = inject(Title);

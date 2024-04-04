@@ -6,20 +6,25 @@ import {
 } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { expandImageUrl } from './shared/util';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'colin-root',
-  templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `<div
+    class="mx-auto max-w-3xl bg-[url('/assets/images/bg.png')] bg-top bg-no-repeat px-4 py-5"
+  >
+    <!-- Header -->
+    <colin-header />
+
+    <!-- Page Content -->
+    <router-outlet />
+
+    <!-- Footer -->
+    <colin-footer />
+  </div> `,
 })
 export class AppComponent implements OnInit {
   private readonly meta = inject(Meta);
-
-  protected readonly faGithub = faGithub;
-  protected readonly faLinkedin = faLinkedin;
-  protected readonly faFilePdf = faFilePdf;
 
   ngOnInit(): void {
     this.meta.addTags([

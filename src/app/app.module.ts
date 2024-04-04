@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MockScullyRoutesService } from '@colin/shared/util';
 import { environment } from '@environment';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ShellUiModule } from './shell/ui/shell-ui.module';
 
 const routes: Routes = [
   {
@@ -32,14 +32,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    CommonModule,
-    BrowserModule,
-    RouterModule.forRoot(routes),
-    ScullyLibModule,
-    RouterModule,
-    FontAwesomeModule,
-  ],
   bootstrap: [AppComponent],
   providers: [
     {
@@ -48,6 +40,13 @@ const routes: Routes = [
         ? ScullyRoutesService
         : MockScullyRoutesService,
     },
+  ],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    RouterModule.forRoot(routes),
+    ScullyLibModule,
+    ShellUiModule,
   ],
 })
 export class AppModule {}

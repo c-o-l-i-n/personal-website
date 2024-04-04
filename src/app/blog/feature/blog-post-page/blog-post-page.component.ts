@@ -6,8 +6,57 @@ import { Observable, map, tap } from 'rxjs';
 
 @Component({
   selector: 'colin-blog-post-page',
-  templateUrl: './blog-post-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <article class="mb-24">
+      @if (post$ | async; as post) {
+        <!-- Thumbnail -->
+        <div
+          class="my-10 aspect-video w-full rounded bg-cover bg-center"
+          [ngStyle]="{ 'background-image': 'url(' + post.thumbnail + ')' }"
+        ></div>
+
+        <!-- Title -->
+        <h1
+          class="font-mono text-2xl font-extrabold tracking-tight text-slate-900 md:text-3xl"
+        >
+          {{ post.title }}
+        </h1>
+
+        <!-- Date -->
+        <div class="text-sm leading-6">
+          <dl>
+            <dt class="sr-only">Date</dt>
+            <dd class="text-slate-700">
+              <time [attr.datetime]="post.publishedDate">{{
+                post.publishedDate | date: 'fullDate' : 'UTC'
+              }}</time>
+            </dd>
+          </dl>
+        </div>
+      }
+
+      <!-- Content -->
+      <div class="content mt-8">
+        <scully-content />
+      </div>
+
+      @if (post$ | async; as post) {
+        <div class="mt-16 flex flex-wrap gap-2">
+          <!-- Tag Pills -->
+          @for (tag of post.tags; track tag) {
+            <colin-pill
+              [model]="{
+                text: tag,
+                iconSrc:
+                  'https://icon.icepanel.io/Technology/svg/' + tag + '.svg'
+              }"
+            />
+          }
+        </div>
+      }
+    </article>
+  `,
 })
 export class BlogPostPageComponent {
   private readonly scully = inject(ScullyRoutesService);

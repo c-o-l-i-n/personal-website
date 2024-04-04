@@ -11,8 +11,22 @@ import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'colin-blog-page',
-  templateUrl: './blog-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <colin-card styleClass="mb-5">
+      <h1
+        class="text-center font-mono text-2xl font-medium md:text-left md:text-3xl"
+      >
+        Blog
+      </h1>
+    </colin-card>
+
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+      @for (post of posts$ | async; track post.route) {
+        <colin-blog-post-card [post]="post" />
+      }
+    </div>
+  `,
 })
 export class BlogPageComponent implements OnInit {
   private readonly scully = inject(ScullyRoutesService);
