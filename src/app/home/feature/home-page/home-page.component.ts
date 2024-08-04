@@ -157,17 +157,17 @@ export class HomePageComponent implements OnInit {
       iconSize: 14,
     },
     {
-      text: 'AI Artisan',
-      iconSrc: '/assets/images/logos/openai.svg',
+      text: 'Supabase Sage',
+      iconSrc: '/assets/images/logos/supabase.svg',
+      iconSize: 14,
     },
     {
       text: 'Firebase Fan',
       iconSrc: '/assets/images/logos/firebase.svg',
     },
     {
-      text: 'Supabase Sage',
-      iconSrc: '/assets/images/logos/supabase.svg',
-      iconSize: 14,
+      text: 'AI Artisan',
+      iconSrc: '/assets/images/logos/openai.svg',
     },
   ];
 
@@ -223,8 +223,8 @@ export class HomePageComponent implements OnInit {
 
   readonly sideProjectRows: SideProjectRowModel[] = [
     {
-      name: 'EventMaster Pro (WIP)',
-      url: 'https://github.com/c-o-l-i-n/joshies#readme',
+      name: 'EventMaster Pro',
+      url: 'https://github.com/joshies-foundation/event-master-pro#readme',
       logoSrc: '/assets/images/logos/emp.svg',
       notes:
         'Supercharge dynamic, multi-day competitions with realtime brackets, betting, analytics, and more',
