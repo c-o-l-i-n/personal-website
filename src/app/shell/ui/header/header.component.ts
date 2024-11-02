@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       >
         <!-- Avatar -->
         <img
-          src="/assets/images/colin.webp?v=1"
+          src="/assets/images/colin.webp?v=2"
           alt=""
           height="72"
           width="72"
