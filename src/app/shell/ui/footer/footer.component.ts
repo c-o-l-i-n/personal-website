@@ -1,5 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import {
+  faBluesky,
+  faGithub,
+  faLinkedin,
+} from '@fortawesome/free-brands-svg-icons';
 import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
@@ -15,6 +19,14 @@ import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
           aria-label="Colin's GitHub"
         >
           <fa-icon [icon]="faGithub" />
+        </a>
+        <a
+          class="p-2"
+          routerLink="/bluesky"
+          target="_blank"
+          aria-label="Colin's Bluesky"
+        >
+          <fa-icon [icon]="faBluesky" />
         </a>
         <a
           class="p-2"
@@ -39,6 +51,7 @@ import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
 })
 export class FooterComponent {
   protected readonly faGithub = faGithub;
+  protected readonly faBluesky = faBluesky;
   protected readonly faLinkedin = faLinkedin;
   protected readonly faFilePdf = faFilePdf;
 }
