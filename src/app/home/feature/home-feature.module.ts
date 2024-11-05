@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomePageComponent } from './home-page/home-page.component';
-import { Routes, RouterModule } from '@angular/router';
+import { HomePageComponent } from './home-page.component';
+import { RouterModule, Routes } from '@angular/router';
 import { SharedUiModule } from '@colin/shared/ui';
 import { HomeUiModule } from '../ui';
 

@@ -1,15 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   computed,
   inject,
+  OnInit,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ScullyRoutesService } from '@scullyio/ng-lib';
 import { map } from 'rxjs';
 import { BlogPost, sortBlogPostsByDate } from '@colin/shared/util';
-import { PillModel } from '@colin/shared/ui/pill/pill.component';
+import { PillModel } from '@colin/shared/ui/pill.component';
 import { SideProjectRowModel, WorkExperienceRowModel } from '@colin/home/ui';
 import { Title } from '@angular/platform-browser';
 

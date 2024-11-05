@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ContactPageComponent } from './contact-page/contact-page.component';
+import { ContactPageComponent } from './contact-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedUiModule } from '@colin/shared/ui';
 import { ContactUiModule } from '@colin/contact/ui';

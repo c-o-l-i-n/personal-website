@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { MockScullyRoutesService } from '@colin/shared/util';
 import { environment } from '@environment';
-import { ShellUiModule } from './shell/ui/shell-ui.module';
+import { ShellUiModule } from '@colin/shell/ui';
 
 const routes: Routes = [
   {

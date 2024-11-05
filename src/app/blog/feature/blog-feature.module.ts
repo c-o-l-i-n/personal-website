@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { BlogPostPageComponent } from './blog-post-page/blog-post-page.component';
-import { BlogPageComponent } from './blog-page/blog-page.component';
+import { BlogPostPageComponent } from './blog-post-page.component';
+import { BlogPageComponent } from './blog-page.component';
 import { SharedUiModule } from '@colin/shared/ui';
 import { BlogUiModule } from '@colin/blog/ui';
 import { environment } from '@environment';
