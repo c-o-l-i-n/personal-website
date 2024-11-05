@@ -3,8 +3,15 @@ import {
   faBluesky,
   faGithub,
   faLinkedin,
+  IconDefinition,
 } from '@fortawesome/free-brands-svg-icons';
 import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
+
+interface FooterLink {
+  routerLink: string;
+  ariaLabel: string;
+  icon: IconDefinition;
+}
 
 @Component({
   selector: 'colin-footer',
@@ -12,46 +19,43 @@ import { faFilePdf } from '@fortawesome/free-regular-svg-icons';
     <footer class="mb-6 mt-10 text-center text-slate-500">
       <p class="text-sm">&copy; 2024 Colin A. Williams</p>
       <div class="flex justify-center gap-2">
-        <a
-          class="p-2"
-          routerLink="/github"
-          target="_blank"
-          aria-label="Colin's GitHub"
-        >
-          <fa-icon [icon]="faGithub" />
-        </a>
-        <a
-          class="p-2"
-          routerLink="/bluesky"
-          target="_blank"
-          aria-label="Colin's Bluesky"
-        >
-          <fa-icon [icon]="faBluesky" />
-        </a>
-        <a
-          class="p-2"
-          routerLink="/linkedin"
-          target="_blank"
-          aria-label="Colin's LinkedIn"
-        >
-          <fa-icon [icon]="faLinkedin" />
-        </a>
-        <a
-          class="p-2"
-          routerLink="/resume"
-          target="_blank"
-          aria-label="Colin's Resume"
-        >
-          <fa-icon [icon]="faFilePdf" />
-        </a>
+        <!-- Footer Links -->
+        @for (footerLink of footerLinks; track $index) {
+          <a
+            class="p-2"
+            [routerLink]="footerLink.routerLink"
+            target="_blank"
+            [attr.aria-label]="footerLink.ariaLabel"
+          >
+            <fa-icon [icon]="footerLink.icon" />
+          </a>
+        }
       </div>
     </footer>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterComponent {
-  protected readonly faGithub = faGithub;
-  protected readonly faBluesky = faBluesky;
-  protected readonly faLinkedin = faLinkedin;
-  protected readonly faFilePdf = faFilePdf;
+  readonly footerLinks: FooterLink[] = [
+    {
+      routerLink: '/github',
+      ariaLabel: "Colin's GitHub",
+      icon: faGithub,
+    },
+    {
+      routerLink: '/bluesky',
+      ariaLabel: "Colin's Bluesky",
+      icon: faBluesky,
+    },
+    {
+      routerLink: '/linkedin',
+      ariaLabel: "Colin's LinkedIn",
+      icon: faLinkedin,
+    },
+    {
+      routerLink: '/resume',
+      ariaLabel: "Colin's Resume",
+      icon: faFilePdf,
+    },
+  ];
 }
