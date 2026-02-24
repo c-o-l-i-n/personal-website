@@ -41,7 +41,7 @@ export interface Form {
       @for (row of model().fieldRows; track row) {
         <div
           [ngClass]="
-            row.length > 1 ? 'md:grid-cols-' + row.length + ' grid gap-4 ' : ''
+            row.length > 1 ? 'md:grid-cols-' + row.length + ' grid gap-4' : ''
           "
         >
           @for (field of row; track field) {
@@ -53,7 +53,7 @@ export interface Form {
                   [attr.name]="field.name"
                   [attr.placeholder]="field.placeholder"
                   [attr.required]="field.required"
-                  class="block w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="block w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 focus:outline-none"
                   [ngClass]="field.styleClass"
                 />
               }
@@ -64,7 +64,7 @@ export interface Form {
                   [attr.name]="field.name"
                   [attr.placeholder]="field.placeholder"
                   [attr.required]="field.required"
-                  class="block w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="block w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 focus:outline-none"
                   [ngClass]="field.styleClass"
                 />
               }
@@ -74,7 +74,7 @@ export interface Form {
                   [attr.name]="field.name"
                   [attr.placeholder]="field.placeholder"
                   [attr.required]="field.required"
-                  class="block max-h-96 min-h-[12rem] w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-300"
+                  class="block max-h-96 min-h-48 w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 focus:outline-none"
                   [ngClass]="field.styleClass"
                 ></textarea>
               }

@@ -19,13 +19,13 @@ import { BlogPost } from '@colin/shared/util';
         ></div>
 
         <!-- Published Date -->
-        <p class="mb-1 mt-3 text-sm">
+        <p class="mt-3 mb-1 text-sm">
           {{ post().publishedDate | date: 'mediumDate' : 'UTC' }}
         </p>
 
         <!-- Title -->
         <h3
-          class="mb-1 font-mono text-xl font-medium leading-tight group-hover:underline"
+          class="mb-1 font-mono text-xl leading-tight font-medium group-hover:underline"
         >
           {{ post().title }}
         </h3>

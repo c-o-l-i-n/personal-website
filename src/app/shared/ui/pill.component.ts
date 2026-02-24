@@ -11,7 +11,7 @@ export interface PillModel {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class:
-      'flex flex-shrink-0 items-center gap-1 rounded border bg-white px-2 py-1 text-sm',
+      'flex shrink-0 items-center gap-1 rounded border bg-white px-2 py-1 text-sm',
   },
   template: `
     <img

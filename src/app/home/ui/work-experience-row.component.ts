@@ -20,7 +20,7 @@ export interface WorkExperienceRowModel {
         [href]="model().companyUrl"
         target="_blank"
         [attr.aria-label]="'Go to ' + model().company + ' website'"
-        class="flex-shrink-0"
+        class="shrink-0"
       >
         <img
           [src]="model().logoSrc"
@@ -48,7 +48,7 @@ export interface WorkExperienceRowModel {
         </span>
       </p>
     </div>
-    <p class="hidden flex-shrink text-sm text-slate-500 md:inline md:text-base">
+    <p class="hidden shrink text-sm text-slate-500 md:inline md:text-base">
       {{ model().dateRange }}
     </p>
   `,

@@ -16,7 +16,7 @@ interface FooterLink {
 @Component({
   selector: 'colin-footer',
   template: `
-    <footer class="mb-6 mt-10 text-center text-slate-500">
+    <footer class="mt-10 mb-6 text-center text-slate-500">
       <p class="text-sm">&copy; 2024 Colin A. Williams</p>
       <div class="flex justify-center gap-2">
         <!-- Footer Links -->
