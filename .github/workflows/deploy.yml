@@ -1,0 +1,41 @@
+name: Deploy
+
+on:
+  schedule:
+    - cron: '27 3 15 * *' # trigger once a month to keep "Years of Experience" up to date
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      deployments: write
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js 💿
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'lts/*'
+
+      - name: Setup Bun 🍞
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies 📦
+        run: bun install --frozen-lockfile
+
+      - name: Build 🛠️
+        run: bun run build
+
+      - name: Deploy to Cloudflare Workers 🚀
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

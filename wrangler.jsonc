@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+
+  "name": "personal-website",
+  "compatibility_date": "2026-04-18",
+  "compatibility_flags": [],
+  "workers_dev": false,
+
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application",
+  },
+
+  "routes": [{ "pattern": "colinaw.com", "custom_domain": true }],
+}
