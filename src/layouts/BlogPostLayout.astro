@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Giscus from '../components/Giscus.astro';
 
 interface Props {
   title: string;
@@ -68,5 +69,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
         </div>
       )
     }
+    <!-- Comments -->
+    <Giscus />
   </article>
 </BaseLayout>
