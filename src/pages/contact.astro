@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+---
+
+<BaseLayout title="Contact">
+  <Card class="mb-5">
+    <h1
+      class="text-center font-mono text-2xl font-medium md:text-left md:text-3xl"
+    >
+      Contact
+    </h1>
+  </Card>
+
+  <Card class="bg-white">
+    <form
+      action="https://formspree.io/f/xwkwyeky"
+      method="post"
+      class="flex flex-col gap-4"
+    >
+      <div class="grid gap-4 md:grid-cols-2">
+        <input
+          type="text"
+          name="name"
+          aria-label="Name"
+          placeholder="Name"
+          required
+          class="block w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 focus:outline-none"
+        />
+        <input
+          type="email"
+          name="email"
+          aria-label="Email"
+          placeholder="Email"
+          required
+          class="block w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 focus:outline-none"
+        />
+      </div>
+
+      <div>
+        <textarea
+          name="message"
+          aria-label="Message"
+          placeholder="Message"
+          required
+          class="block max-h-96 min-h-48 w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 focus:outline-none"
+        ></textarea>
+      </div>
+
+      <div>
+        <input
+          type="submit"
+          value="Send"
+          class="w-full cursor-pointer rounded bg-slate-800 px-6 py-3 font-mono font-medium text-white"
+        />
+      </div>
+    </form>
+  </Card>
+</BaseLayout>

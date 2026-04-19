@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=JetBrains+Mono:wght@400;500;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --radius: 1rem;
+  --radius-sm: 0.125rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+}
+
+/* Prose / blog post content styles */
+.prose {
+  a:has(h1, h2, h3, h4, h5, h6) {
+    @apply w-max;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mt-8 mb-4 flex items-center gap-2 font-mono leading-snug font-extrabold;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  p,
+  ol,
+  ul {
+    @apply mb-5 leading-relaxed;
+  }
+
+  p,
+  li {
+    a {
+      @apply text-slate-700 underline;
+    }
+  }
+
+  ul,
+  ol {
+    @apply ml-8;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  blockquote {
+    @apply mb-4 border-l-4 border-slate-300 pl-4 text-slate-600 italic;
+  }
+
+  hr {
+    @apply my-8 border-slate-200;
+  }
+
+  strong {
+    @apply font-semibold;
+  }
+
+  em {
+    @apply italic;
+  }
+
+  table {
+    @apply my-6 w-full border-collapse text-sm;
+  }
+
+  th {
+    @apply border border-slate-300 bg-slate-100 px-4 py-2 text-left font-semibold;
+  }
+
+  td {
+    @apply border border-slate-300 px-4 py-2;
+  }
+
+  img,
+  iframe {
+    @apply mx-auto my-7 w-full max-w-lg rounded;
+  }
+
+  iframe {
+    @apply aspect-video;
+  }
+
+  /* inline code */
+  :not(pre) {
+    code {
+      @apply rounded-md bg-slate-200 px-1;
+    }
+  }
+
+  /* code blocks */
+  pre.astro-code {
+    @apply mb-5 rounded px-5 py-4;
+
+    code {
+      @apply font-mono text-sm;
+
+      a {
+        @apply underline;
+      }
+    }
+  }
+}

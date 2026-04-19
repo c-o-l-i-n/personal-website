@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Card from './Card.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  header?: string;
+}
+
+const { post, header } = Astro.props;
+const { title, description, publishedDate, thumbnail } = post.data;
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+}).format(publishedDate);
+---
+
+<a
+  href={`/blog/${post.id}`}
+  aria-label={`Go to blog post titled ${title}`}
+  class="h-full"
+>
+  <Card removeGap class="h-full bg-white" header={header}>
+    <div
+      class={`h-48 w-full rounded-lg bg-cover bg-center ${header ? 'mt-3' : ''}`}
+      style={`background-image: url(${thumbnail})`}
+    >
+    </div>
+    <p class="mt-3 mb-1 text-sm">{formattedDate}</p>
+    <h3
+      class="mb-1 font-mono text-xl leading-tight font-medium group-hover:underline"
+    >
+      {title}
+    </h3>
+    <p class="text-sm text-slate-600">{description}</p>
+  </Card>
+</a>

@@ -1,29 +1,43 @@
-# Personal Website
-
-## Development server (no blog content)
-
-Start Angular development server on http://localhost:4200
+# Astro Starter Kit: Minimal
 
 ```sh
-npm start
+bun create astro@latest -- --template minimal
 ```
 
-## Build (with blog content)
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-Build Angular app
+## 🚀 Project Structure
 
-```sh
-npm run build
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
 ```
 
-Build static site with blog content
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-```sh
-npm run scully
-```
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Serve static site on http://localhost:1668
+Any static assets, like images, can be placed in the `public/` directory.
 
-```sh
-npm run scully:serve
-```
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command               | Action                                           |
+| :-------------------- | :----------------------------------------------- |
+| `bun install`         | Installs dependencies                            |
+| `bun dev`             | Starts local dev server at `localhost:4321`      |
+| `bun build`           | Build your production site to `./dist/`          |
+| `bun preview`         | Preview your build locally, before deploying     |
+| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `bun astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
