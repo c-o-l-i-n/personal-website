@@ -29,11 +29,18 @@ const skillPills = [
 
 const workExperienceRows = [
   {
+    jobTitle: 'Lead Frontend Engineer & Architect',
+    company: 'Ecosystems.io',
+    companyUrl: 'https://ecosystems.io',
+    logoSrc: '/images/logos/eco.svg',
+    dateRange: 'Jan 2026 - Present',
+  },
+  {
     jobTitle: 'Senior Frontend Engineer & Architect',
     company: 'Ecosystems.io',
     companyUrl: 'https://ecosystems.io',
     logoSrc: '/images/logos/eco.svg',
-    dateRange: 'Feb 2024 - Present',
+    dateRange: 'Feb 2024 - Jan 2026',
   },
   {
     jobTitle: 'Software Engineer II',
@@ -105,6 +112,20 @@ const leadershipRows = [
 
 const sideProjectRows = [
   {
+    name: 'Mell',
+    url: 'https://github.com/VoxelPenguin/mell#readme',
+    logoSrc: '/images/logos/mell.webp',
+    notes:
+      "Empower your community to report and solve local issues! Winner of Harper Hack '25",
+  },
+  {
+    name: 'Whisker Jam',
+    url: 'https://github.com/c-o-l-i-n/whisker-jam#readme',
+    logoSrc: '/images/logos/whisker-jam.webp',
+    notes:
+      'Create a realtime virtual rock band made up of cats! Winner of the Supabase Launch Week 12 Hackathon',
+  },
+  {
     name: 'EventMaster Pro',
     url: 'https://github.com/joshies-foundation/event-master-pro#readme',
     logoSrc: '/images/logos/emp.svg',
@@ -140,8 +161,9 @@ const sideProjectRows = [
         class="flex flex-col justify-center text-center font-mono text-xl font-medium sm:flex-row md:justify-start md:text-left md:text-2xl"
       >
         <span class="sm:mr-3 md:mr-4">
-          <span class="text-slate-400 dark:text-slate-500">&lcub;&lcub;</span>Software Engineer<span
-            class="text-slate-400 dark:text-slate-500">&rcub;&rcub;</span
+          <span class="text-slate-400 dark:text-slate-500">&lcub;&lcub;</span
+          >Software Engineer<span class="text-slate-400 dark:text-slate-500"
+            >&rcub;&rcub;</span
           >
         </span>
         <span class="whitespace-nowrap">&amp; Frontend Architect</span>
@@ -196,7 +218,7 @@ const sideProjectRows = [
           workExperienceRows.map(
             ({ jobTitle, company, companyUrl, logoSrc, dateRange }, i) => (
               <div
-                class={`border-slate-200 dark:border-slate-700 py-4 md:border-b ${i === workExperienceRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
+                class={`border-slate-200 py-4 md:border-b dark:border-slate-700 ${i === workExperienceRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
               >
                 <div class="flex flex-col items-center justify-between gap-1 md:flex-row">
                   <div class="flex w-full flex-row items-center gap-3 md:w-auto md:gap-2">
@@ -255,7 +277,7 @@ const sideProjectRows = [
           leadershipRows.map(
             ({ jobTitle, company, companyUrl, logoSrc, dateRange }, i) => (
               <div
-                class={`border-slate-200 dark:border-slate-700 py-4 md:border-b ${i === leadershipRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
+                class={`border-slate-200 py-4 md:border-b dark:border-slate-700 ${i === leadershipRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
               >
                 <div class="flex flex-col items-center justify-between gap-1 md:flex-row">
                   <div class="flex w-full flex-row items-center gap-3 md:w-auto md:gap-2">
@@ -313,7 +335,7 @@ const sideProjectRows = [
         {
           sideProjectRows.map(({ name, url, logoSrc, notes }, i) => (
             <div
-              class={`border-slate-200 dark:border-slate-700 py-4 md:border-b ${i === sideProjectRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
+              class={`border-slate-200 py-4 md:border-b dark:border-slate-700 ${i === sideProjectRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
               style="text-wrap: balance"
             >
               <div class="flex flex-col items-center justify-end gap-1 md:flex-row">
