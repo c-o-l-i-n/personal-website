@@ -23,7 +23,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
   aria-label={`Go to blog post titled ${title}`}
   class="h-full"
 >
-  <Card removeGap class="h-full bg-white" header={header}>
+  <Card removeGap class="h-full bg-white dark:bg-slate-900" header={header}>
     <div
       class={`h-48 w-full rounded-lg bg-cover bg-center ${header ? 'mt-3' : ''}`}
       style={`background-image: url(${thumbnail})`}
@@ -35,6 +35,6 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
     >
       {title}
     </h3>
-    <p class="text-sm text-slate-600">{description}</p>
+    <p class="text-sm text-slate-600 dark:text-slate-400">{description}</p>
   </Card>
 </a>

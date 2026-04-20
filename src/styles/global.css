@@ -120,3 +120,36 @@
     }
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .prose {
+    p,
+    li {
+      a {
+        @apply text-slate-300;
+      }
+    }
+
+    blockquote {
+      @apply border-slate-600 text-slate-400;
+    }
+
+    hr {
+      @apply border-slate-700;
+    }
+
+    th {
+      @apply border-slate-600 bg-slate-800;
+    }
+
+    td {
+      @apply border-slate-600;
+    }
+
+    :not(pre) {
+      code {
+        @apply bg-slate-700 text-slate-200;
+      }
+    }
+  }
+}

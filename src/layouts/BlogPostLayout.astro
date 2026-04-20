@@ -37,7 +37,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 
     <!-- Title -->
     <h1
-      class="font-mono text-2xl font-extrabold tracking-tight text-slate-900 md:text-3xl"
+      class="font-mono text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 md:text-3xl"
     >
       {title}
     </h1>
@@ -46,7 +46,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
     <div class="text-sm leading-6">
       <dl>
         <dt class="sr-only">Date</dt>
-        <dd class="text-slate-700">
+        <dd class="text-slate-700 dark:text-slate-400">
           <time datetime={publishedDate.toISOString()}>{formattedDate}</time>
         </dd>
       </dl>
@@ -62,7 +62,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
       tags && tags.length > 0 && (
         <div class="mt-16 flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <span class="flex shrink-0 items-center gap-1 rounded border bg-white px-2 py-1 text-sm">
+            <span class="flex shrink-0 items-center gap-1 rounded border border-slate-300 bg-white px-2 py-1 text-sm dark:border-slate-700 dark:bg-slate-900">
               {tag}
             </span>
           ))}
