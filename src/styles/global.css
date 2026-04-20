@@ -97,7 +97,7 @@
   }
 
   iframe {
-    @apply aspect-video;
+    @apply aspect-video border-0;
   }
 
   /* inline code */
