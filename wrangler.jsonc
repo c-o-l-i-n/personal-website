@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
 
-  "name": "personal-website",
+  "name": "personal-website-xp",
   "compatibility_date": "2026-04-18",
   "compatibility_flags": [],
   "workers_dev": false,
@@ -12,5 +12,5 @@
     "html_handling": "drop-trailing-slash",
   },
 
-  "routes": [{ "pattern": "colinaw.com", "custom_domain": true }],
+  "routes": [{ "pattern": "xp.colinaw.com", "custom_domain": true }],
 }
