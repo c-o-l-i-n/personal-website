@@ -9,14 +9,16 @@ interface Props {
 const { header, removeGap = false, class: className = '', id } = Astro.props;
 ---
 
-<div
-  id={id}
-  class={`group flex h-full w-full flex-col rounded border border-slate-400 dark:border-slate-600 p-6 ${removeGap ? '' : 'gap-4'} ${className}`}
->
-  {
-    header && (
-      <h3 class="text-center text-sm text-slate-600 dark:text-slate-400 md:text-left">{header}</h3>
-    )
-  }
-  <slot />
+<div id={id} class={`group window flex h-full w-full flex-col ${className}`}>
+  <div class="title-bar">
+    <div class="title-bar-text">{header ?? 'Colin Williams'}</div>
+    <div class="title-bar-controls" aria-hidden="true">
+      <button aria-label="Minimize" tabindex="-1"></button>
+      <button aria-label="Maximize" tabindex="-1"></button>
+      <button aria-label="Close" tabindex="-1"></button>
+    </div>
+  </div>
+  <div class={`window-body flex flex-1 flex-col ${removeGap ? '' : 'gap-4'}`}>
+    <slot />
+  </div>
 </div>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import Card from '../components/Card.astro';
 import Giscus from '../components/Giscus.astro';
 
 interface Props {
@@ -27,49 +28,48 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
   ogImage={thumbnail}
   ogType="article"
 >
-  <article class="mb-24">
-    <!-- Thumbnail -->
-    <div
-      class="my-10 aspect-video w-full rounded bg-cover bg-center"
-      style={`background-image: url(${thumbnail})`}
-    >
-    </div>
+  <Card header={title} class="mb-24">
+    <article>
+      <h1 class="sr-only">{title}</h1>
 
-    <!-- Title -->
-    <h1
-      class="font-mono text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 md:text-3xl"
-    >
-      {title}
-    </h1>
+      <!-- Thumbnail -->
+      <div
+        class="mb-6 aspect-video w-full bg-cover bg-center"
+        style={`background-image: url(${thumbnail})`}
+      >
+      </div>
 
-    <!-- Date -->
-    <div class="text-sm leading-6">
-      <dl>
-        <dt class="sr-only">Date</dt>
-        <dd class="text-slate-700 dark:text-slate-400">
-          <time datetime={publishedDate.toISOString()}>{formattedDate}</time>
-        </dd>
-      </dl>
-    </div>
+      <!-- Date -->
+      <div class="text-sm leading-6">
+        <dl>
+          <dt class="sr-only">Date</dt>
+          <dd class="text-slate-700">
+            <time datetime={publishedDate.toISOString()}>{formattedDate}</time
+            >
+          </dd>
+        </dl>
+      </div>
 
-    <!-- Content -->
-    <div class="content prose mt-8 max-w-none">
-      <slot />
-    </div>
+      <!-- Content -->
+      <div class="content prose mt-4 max-w-none">
+        <slot />
+      </div>
 
-    <!-- Tag Pills -->
-    {
-      tags && tags.length > 0 && (
-        <div class="mt-16 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <span class="flex shrink-0 items-center gap-1 rounded border border-slate-300 bg-white px-2 py-1 text-sm dark:border-slate-700 dark:bg-slate-900">
-              {tag}
-            </span>
-          ))}
-        </div>
-      )
-    }
-    <!-- Comments -->
-    <Giscus />
-  </article>
+      <!-- Tag Pills -->
+      {
+        tags && tags.length > 0 && (
+          <div class="mt-8 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span class="flex shrink-0 items-center gap-1 border border-slate-300 bg-white px-2 py-1 text-sm">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )
+      }
+
+      <!-- Comments -->
+      <Giscus />
+    </article>
+  </Card>
 </BaseLayout>

@@ -23,18 +23,18 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
   aria-label={`Go to blog post titled ${title}`}
   class="h-full"
 >
-  <Card removeGap class="h-full bg-white dark:bg-slate-900" header={header}>
-    <div
-      class={`h-48 w-full rounded-lg bg-cover bg-center ${header ? 'mt-3' : ''}`}
-      style={`background-image: url(${thumbnail})`}
-    >
+  <Card removeGap class="h-full" header={header ?? title}>
+    <div class="flex flex-1 flex-col gap-1 p-2">
+      <div
+        class="h-48 w-full bg-cover bg-center"
+        style={`background-image: url(${thumbnail})`}
+      >
+      </div>
+      <p class="mt-2 text-sm">{formattedDate}</p>
+      <h3 class="mb-1 text-xl leading-tight font-bold group-hover:underline">
+        {title}
+      </h3>
+      <p class="text-sm text-slate-600">{description}</p>
     </div>
-    <p class="mt-3 mb-1 text-sm">{formattedDate}</p>
-    <h3
-      class="mb-1 font-mono text-xl leading-tight font-medium group-hover:underline"
-    >
-      {title}
-    </h3>
-    <p class="text-sm text-slate-600 dark:text-slate-400">{description}</p>
   </Card>
 </a>

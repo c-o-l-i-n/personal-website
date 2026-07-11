@@ -4,55 +4,32 @@ import Card from '../components/Card.astro';
 ---
 
 <BaseLayout title="Contact">
-  <Card class="mb-5">
-    <h1
-      class="text-center font-mono text-2xl font-medium md:text-left md:text-3xl"
-    >
-      Contact
-    </h1>
-  </Card>
-
-  <Card class="bg-white dark:bg-slate-900">
+  <Card header="Contact">
+    <h1 class="sr-only">Contact</h1>
     <form
       action="https://formspree.io/f/xwkwyeky"
       method="post"
       class="flex flex-col gap-4"
     >
       <div class="grid gap-4 md:grid-cols-2">
-        <input
-          type="text"
-          name="name"
-          aria-label="Name"
-          placeholder="Name"
-          required
-          class="block w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 focus:outline-none dark:bg-slate-800 dark:placeholder:text-slate-500 dark:focus:ring-slate-600"
-        />
-        <input
-          type="email"
-          name="email"
-          aria-label="Email"
-          placeholder="Email"
-          required
-          class="block w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 focus:outline-none dark:bg-slate-800 dark:placeholder:text-slate-500 dark:focus:ring-slate-600"
-        />
+        <div class="field-row-stacked">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="field-row-stacked">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
       </div>
 
-      <div>
-        <textarea
-          name="message"
-          aria-label="Message"
-          placeholder="Message"
-          required
-          class="block max-h-96 min-h-48 w-full rounded bg-slate-100 px-5 py-3 outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-slate-300 focus:outline-none dark:bg-slate-800 dark:placeholder:text-slate-500 dark:focus:ring-slate-600"
+      <div class="field-row-stacked">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required class="min-h-48"
         ></textarea>
       </div>
 
       <div>
-        <input
-          type="submit"
-          value="Send"
-          class="w-full cursor-pointer rounded bg-slate-800 px-6 py-3 font-mono font-medium text-white"
-        />
+        <button type="submit">Send</button>
       </div>
     </form>
   </Card>

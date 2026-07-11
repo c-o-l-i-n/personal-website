@@ -164,13 +164,11 @@ const sideProjectRows = [
     <!-- About Me -->
     <Card header="About Me">
       <h3
-        class="flex flex-col justify-center text-center font-mono text-xl font-medium sm:flex-row md:justify-start md:text-left md:text-2xl"
+        class="flex flex-col justify-center text-center text-xl font-bold sm:flex-row md:justify-start md:text-left md:text-2xl"
       >
         <span class="sm:mr-3 md:mr-4">
-          <span class="text-slate-400 dark:text-slate-500">&lcub;&lcub;</span
-          >Software Engineer<span class="text-slate-400 dark:text-slate-500"
-            >&rcub;&rcub;</span
-          >
+          <span class="text-slate-500">&lcub;&lcub;</span
+          >Software Engineer<span class="text-slate-500">&rcub;&rcub;</span>
         </span>
         <span class="whitespace-nowrap">&amp; Frontend Architect</span>
       </h3>
@@ -179,7 +177,7 @@ const sideProjectRows = [
         {
           skillPills.map(({ iconSrc, iconSize, text }) => (
             <a href="#experience">
-              <span class="flex shrink-0 items-center gap-1 rounded border border-slate-200 bg-white px-2 py-1 text-sm dark:border-slate-700 dark:bg-slate-900">
+              <span class="flex shrink-0 items-center gap-1 border border-slate-300 bg-white px-2 py-1 text-sm">
                 <img
                   src={iconSrc}
                   alt=""
@@ -213,18 +211,14 @@ const sideProjectRows = [
     </div>
 
     <!-- Experience -->
-    <Card id="experience" class="bg-white dark:bg-slate-900">
-      <h2
-        class="mb-4 text-center font-mono text-xl font-medium md:text-left md:text-2xl"
-      >
-        Experience ({yearsOfExperience} yrs)
-      </h2>
+    <Card id="experience" header={`Experience (${yearsOfExperience} yrs)`}>
+      <h2 class="sr-only">Experience ({yearsOfExperience} yrs)</h2>
       <div>
         {
           workExperienceRows.map(
             ({ jobTitle, company, companyUrl, logoSrc, dateRange }, i) => (
               <div
-                class={`border-slate-200 py-4 md:border-b dark:border-slate-700 ${i === workExperienceRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
+                class={`border-slate-300 py-4 md:border-b ${i === workExperienceRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
               >
                 <div class="flex flex-col items-center justify-between gap-1 md:flex-row">
                   <div class="flex w-full flex-row items-center gap-3 md:w-auto md:gap-2">
@@ -272,18 +266,14 @@ const sideProjectRows = [
     </Card>
 
     <!-- Leadership & Mentoring -->
-    <Card id="leadership" class="bg-white dark:bg-slate-900">
-      <h2
-        class="mb-4 text-center font-mono text-xl font-medium md:text-left md:text-2xl"
-      >
-        Leadership & Mentoring
-      </h2>
+    <Card id="leadership" header="Leadership & Mentoring">
+      <h2 class="sr-only">Leadership & Mentoring</h2>
       <div>
         {
           leadershipRows.map(
             ({ jobTitle, company, companyUrl, logoSrc, dateRange }, i) => (
               <div
-                class={`border-slate-200 py-4 md:border-b dark:border-slate-700 ${i === leadershipRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
+                class={`border-slate-300 py-4 md:border-b ${i === leadershipRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
               >
                 <div class="flex flex-col items-center justify-between gap-1 md:flex-row">
                   <div class="flex w-full flex-row items-center gap-3 md:w-auto md:gap-2">
@@ -331,17 +321,13 @@ const sideProjectRows = [
     </Card>
 
     <!-- Side Projects -->
-    <Card id="projects" class="bg-white dark:bg-slate-900">
-      <h2
-        class="mb-4 text-center font-mono text-xl font-medium md:text-left md:text-2xl"
-      >
-        Side Projects
-      </h2>
+    <Card id="projects" header="Side Projects">
+      <h2 class="sr-only">Side Projects</h2>
       <div>
         {
           sideProjectRows.map(({ name, url, logoSrc, notes }, i) => (
             <div
-              class={`border-slate-200 py-4 md:border-b dark:border-slate-700 ${i === sideProjectRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
+              class={`border-slate-300 py-4 md:border-b ${i === sideProjectRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
               style="text-wrap: balance"
             >
               <div class="flex flex-col items-center justify-end gap-1 md:flex-row">
