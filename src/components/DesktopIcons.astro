@@ -1,0 +1,73 @@
+---
+import { socialIcons } from '../lib/social-icons';
+
+const glyphClass = 'h-8 w-8 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]';
+
+const computerIcon = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="${glyphClass}">
+  <rect x="3" y="4" width="26" height="17" rx="1" fill="#d4d0c8" stroke="#6b6b6b"/>
+  <rect x="5.5" y="6.5" width="21" height="12" fill="#0b3d91"/>
+  <rect x="5.5" y="6.5" width="21" height="12" fill="url(#screenGrad)"/>
+  <rect x="13" y="21.5" width="6" height="3" fill="#9a9a9a"/>
+  <rect x="9" y="24.5" width="14" height="2.2" rx="1" fill="#7a7a7a"/>
+</svg>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5b9bf7"/>
+      <stop offset="100%" stop-color="#0f2e82"/>
+    </linearGradient>
+  </defs>
+</svg>`;
+
+const notepadIcon = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="${glyphClass}">
+  <path d="M7 3 H20 L25 8 V29 H7 Z" fill="#fefefe" stroke="#8a8a8a"/>
+  <path d="M20 3 L25 8 H20 Z" fill="#d8d8d8" stroke="#8a8a8a" stroke-linejoin="round"/>
+  <rect x="10.5" y="13" width="11" height="1.6" fill="#2955c7"/>
+  <rect x="10.5" y="17" width="11" height="1.6" fill="#9a9a9a"/>
+  <rect x="10.5" y="21" width="8" height="1.6" fill="#9a9a9a"/>
+</svg>`;
+
+const envelopeIcon = `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="${glyphClass}">
+  <rect x="3" y="8" width="26" height="18" rx="1.5" fill="#eef3fb" stroke="#3f6fc4"/>
+  <path d="M3.5 9 L16 19 L28.5 9" fill="none" stroke="#3f6fc4" stroke-width="1.6"/>
+</svg>`;
+
+const socialGlyphClass = 'h-7 w-7 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]';
+
+const items = [
+  { href: '/', label: 'Colin.exe', icon: computerIcon, external: false },
+  { href: '/blog', label: 'Blog.txt', icon: notepadIcon, external: false },
+  {
+    href: '/contact',
+    label: 'Contact.msg',
+    icon: envelopeIcon,
+    external: false,
+  },
+  ...socialIcons.map(({ href, label, icon }) => ({
+    href,
+    label: `${label.replace("Colin's ", '')}.lnk`,
+    icon: icon(socialGlyphClass),
+    external: true,
+  })),
+];
+---
+
+<div
+  class="fixed top-6 left-6 z-10 hidden flex-col gap-1 xl:flex"
+  aria-label="Desktop shortcuts"
+>
+  {
+    items.map(({ href, label, icon, external }) => (
+      <a
+        href={href}
+        class="desktop-icon"
+        aria-label={label}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
+      >
+        <span set:html={icon} />
+        <span class="desktop-icon-label">{label}</span>
+      </a>
+    ))
+  }
+</div>

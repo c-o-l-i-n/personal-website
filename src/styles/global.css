@@ -5,6 +5,11 @@
 @theme {
   --font-sans:
     'Pixelated MS Sans Serif', Tahoma, 'MS Sans Serif', Arial, sans-serif;
+  /* Pixelated MS Sans Serif is a bitmap-style font: it only reads correctly at
+     the ~11-13px sizes real XP chrome (buttons, labels, title bars) used it at.
+     Blown up to heading sizes it looks jagged/broken, so headings and other
+     large bold text use this smooth period-correct font instead. */
+  --font-heading: 'Trebuchet MS', Tahoma, Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --radius: 0px;
   --radius-sm: 0px;
@@ -23,6 +28,30 @@ body {
   color: #000;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/*
+  xp.css's `.title-bar` sets a fixed `height: 21px` assuming the browser's
+  default content-box sizing (its own docs page has no CSS reset). Tailwind's
+  Preflight puts every element in border-box, which squeezes that 21px box to
+  include padding+border and clips/compresses the title text. Restore
+  content-box just for this element so it renders at its intended height.
+*/
+.title-bar {
+  box-sizing: content-box;
+}
+
 ::selection {
   background: #316ac5;
   color: #fff;
@@ -30,6 +59,39 @@ body {
 
 html {
   scrollbar-color: #dfdfdf #d4d0c8;
+}
+
+/* Desktop icon shortcuts, styled after classic Windows icon selection */
+.desktop-icon {
+  display: flex;
+  width: 84px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border: 1px dotted transparent;
+  padding: 6px 4px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+.desktop-icon-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 1.3;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.desktop-icon:hover,
+.desktop-icon:focus-visible {
+  border-color: #fff;
+  background: rgba(49, 106, 197, 0.45);
+  outline: none;
+}
+
+.desktop-icon:hover .desktop-icon-label,
+.desktop-icon:focus-visible .desktop-icon-label {
+  text-shadow: none;
 }
 
 /* Anchor-as-button helper — xp.css only styles bare <button>/<input> elements,
