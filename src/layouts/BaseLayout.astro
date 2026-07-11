@@ -94,57 +94,14 @@ const taskbarApps = [
     >
       <div class="flex h-full items-center gap-1.5" aria-hidden="true">
         <button type="button" class="start-button" tabindex="-1">
-          <svg
-            width="17"
-            height="17"
-            viewBox="0 0 22 22"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <linearGradient id="flagRed" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#fdbb59"></stop>
-                <stop offset="100%" stop-color="#e2431b"></stop>
-              </linearGradient>
-              <linearGradient id="flagGreen" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#a4e05a"></stop>
-                <stop offset="100%" stop-color="#3f8f1c"></stop>
-              </linearGradient>
-              <linearGradient id="flagBlue" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#8fb4fd"></stop>
-                <stop offset="100%" stop-color="#2b52e0"></stop>
-              </linearGradient>
-              <linearGradient id="flagGold" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#f5d54c"></stop>
-                <stop offset="100%" stop-color="#c99a12"></stop>
-              </linearGradient>
-            </defs>
-            <g transform="rotate(-8 11 11)">
-              <rect x="1" y="1" width="9" height="9" rx="1.5" fill="url(#flagRed)"
-              ></rect>
-              <rect
-                x="12"
-                y="1"
-                width="9"
-                height="9"
-                rx="1.5"
-                fill="url(#flagGreen)"></rect>
-              <rect
-                x="1"
-                y="12"
-                width="9"
-                height="9"
-                rx="1.5"
-                fill="url(#flagBlue)"></rect>
-              <rect
-                x="12"
-                y="12"
-                width="9"
-                height="9"
-                rx="1.5"
-                fill="url(#flagGold)"></rect>
-            </g>
-          </svg>
-          <span>start</span>
+          {/* Start button sprite from ShizukuIchi/winXP (MIT License), used as-is per license terms. */}
+          <img
+            src="/images/xp-start.png"
+            alt=""
+            width="106"
+            height="34"
+            draggable="false"
+          />
         </button>
         <div class="taskbar-divider hidden sm:block"></div>
         {
@@ -188,6 +145,105 @@ const taskbarApps = [
       }
       tick();
       setInterval(tick, 15_000);
+    </script>
+
+    <script>
+      // Drag any .window by its title bar, and dismiss it via the Close control.
+      const DRAG_THRESHOLD = 4;
+
+      let dragState: {
+        el: HTMLElement;
+        offsetX: number;
+        offsetY: number;
+        startX: number;
+        startY: number;
+      } | null = null;
+      let topZ = 100;
+      // True for one tick after a real drag (past the threshold) ends, so the
+      // trailing `click` — e.g. on a card that's really an <a> — gets swallowed
+      // instead of navigating away out from under the user.
+      let suppressNextClick = false;
+
+      function getPoint(e: MouseEvent | TouchEvent) {
+        return 'touches' in e ? e.touches[0] : e;
+      }
+
+      function startDrag(e: MouseEvent | TouchEvent) {
+        const target = e.target as HTMLElement;
+        if (target.closest('.title-bar-controls')) return;
+        const titleBar = target.closest('.title-bar');
+        const winEl = titleBar?.closest<HTMLElement>('.window');
+        if (!titleBar || !winEl) return;
+
+        const rect = winEl.getBoundingClientRect();
+        const point = getPoint(e);
+        dragState = {
+          el: winEl,
+          offsetX: point.clientX - rect.left,
+          offsetY: point.clientY - rect.top,
+          startX: point.clientX,
+          startY: point.clientY,
+        };
+
+        winEl.style.position = 'fixed';
+        winEl.style.left = `${rect.left}px`;
+        winEl.style.top = `${rect.top}px`;
+        winEl.style.width = `${rect.width}px`;
+        winEl.style.margin = '0';
+        winEl.style.zIndex = String(++topZ);
+
+        document.body.classList.add('is-dragging-window');
+      }
+
+      function onMove(e: MouseEvent | TouchEvent) {
+        if (!dragState) return;
+        if (e.cancelable) e.preventDefault();
+        const point = getPoint(e);
+        if (
+          !suppressNextClick &&
+          (Math.abs(point.clientX - dragState.startX) > DRAG_THRESHOLD ||
+            Math.abs(point.clientY - dragState.startY) > DRAG_THRESHOLD)
+        ) {
+          suppressNextClick = true;
+        }
+        dragState.el.style.left = `${point.clientX - dragState.offsetX}px`;
+        dragState.el.style.top = `${point.clientY - dragState.offsetY}px`;
+      }
+
+      function endDrag() {
+        dragState = null;
+        document.body.classList.remove('is-dragging-window');
+      }
+
+      document.addEventListener('mousedown', startDrag);
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', endDrag);
+      document.addEventListener('touchstart', startDrag, { passive: true });
+      document.addEventListener('touchmove', onMove, { passive: false });
+      document.addEventListener('touchend', endDrag);
+
+      document.addEventListener(
+        'click',
+        (e) => {
+          if (suppressNextClick) {
+            e.preventDefault();
+            e.stopPropagation();
+            // Wait a tick before clearing so this same gesture's click (which
+            // fires right after mouseup) is the one actually suppressed.
+            setTimeout(() => {
+              suppressNextClick = false;
+            }, 0);
+            return;
+          }
+
+          const closeBtn = (e.target as HTMLElement).closest(
+            '[data-window-close]',
+          );
+          if (!closeBtn) return;
+          closeBtn.closest('.window')?.remove();
+        },
+        true,
+      );
     </script>
   </body>
 </html>
