@@ -126,19 +126,27 @@ html {
     inset 2px 2px grey;
 }
 
-/* Taskbar */
+/* Taskbar — gradients modeled on real XP taskbar/tray glass tones */
 .taskbar {
   background: linear-gradient(
     180deg,
-    #2681e7 0%,
-    #1b5fd7 3%,
-    #1247d1 6%,
-    #1349d6 50%,
-    #0d3ec4 96%,
-    #082ba8 100%
+    #1f2f86 0%,
+    #3165c4 3%,
+    #3682e5 6%,
+    #4490e6 10%,
+    #3883e5 12%,
+    #2b71e0 15%,
+    #2663da 18%,
+    #235bd6 20%,
+    #2258d5 23%,
+    #2157d6 38%,
+    #245ddb 54%,
+    #2562df 86%,
+    #245fdc 89%,
+    #2158d4 92%,
+    #1d4ec0 95%,
+    #1941a5 100%
   );
-  border-top: 1px solid #6fa8ff;
-  box-shadow: inset 0 1px #83b8ff;
   font-family: var(--font-sans);
   font-size: 11px;
   color: #fff;
@@ -148,58 +156,101 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  height: 28px;
-  padding: 0 10px 0 6px;
-  border: none;
-  border-radius: 4px 8px 8px 4px;
-  background: linear-gradient(180deg, #3ea847 0%, #2d8a37 50%, #1f6b28 100%);
-  box-shadow:
-    inset 0 0 0 1px #0b3d0f,
-    inset 1px 1px #7bd882;
+  height: 27px;
+  padding: 0 12px 0 6px;
+  border: 1px solid #16400f;
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(
+    180deg,
+    #2a6a2e 0%,
+    #347e31 6%,
+    #5ca75d 14%,
+    #3c9b3c 40%,
+    #338b33 60%,
+    #307d30 85%,
+    #2a6a3e 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
   font-family: var(--font-sans);
   font-weight: 700;
   font-style: italic;
   font-size: 13px;
+  letter-spacing: 0.2px;
   color: #fff;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.start-button:hover {
+  filter: brightness(1.08);
 }
 
 .start-button:active {
-  background: linear-gradient(180deg, #1f6b28 0%, #2d8a37 50%, #3ea847 100%);
+  filter: brightness(0.85);
 }
 
 .taskbar-app-button {
-  height: 26px;
+  height: 24px;
   padding: 0 10px;
   border: none;
   border-radius: 2px;
-  background: linear-gradient(180deg, #3f7fe0 0%, #2f65cc 100%);
+  background: #3c81f3;
   box-shadow:
-    inset 1px 1px #6fa3f2,
-    inset -1px -1px #14318f;
+    inset -1px 0 rgba(0, 0, 0, 0.3),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.3);
   font-family: var(--font-sans);
   font-size: 11px;
   color: #fff;
 }
 
+.taskbar-app-button:hover {
+  background: #53a3ff;
+}
+
+.taskbar-app-button.is-focused {
+  background: #1e52b7;
+  box-shadow:
+    inset 0 0 1px 1px rgba(0, 0, 0, 0.2),
+    inset 1px 0 1px rgba(0, 0, 0, 0.7);
+}
+
 .taskbar-divider {
   width: 1px;
-  height: 24px;
-  background: #14318f;
-  box-shadow: 1px 0 #4a7fe0;
+  height: 22px;
+  background: #1042af;
+  box-shadow: 1px 0 #18bbff;
 }
 
 .taskbar-tray {
-  background: #1c3fa5;
-  box-shadow: inset 1px 1px #14318f;
+  background: linear-gradient(
+    180deg,
+    #0c59b9 1%,
+    #139ee9 6%,
+    #18b5f2 10%,
+    #139beb 14%,
+    #1290e8 19%,
+    #0d8dea 63%,
+    #0d9ff1 81%,
+    #0f9eed 88%,
+    #119be9 91%,
+    #1392e2 94%,
+    #137ed7 97%,
+    #095bc9 100%
+  );
+  border-left: 1px solid #1042af;
+  box-shadow: inset 1px 0 1px #18bbff;
 }
 
 .taskbar-tray a {
   color: #fff;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .taskbar-tray a:hover {
   opacity: 1;
+}
+
+#taskbar-clock {
+  font-weight: 300;
 }
 
 /* Prose / blog post content styles — a WordPad-style document sitting inside a
