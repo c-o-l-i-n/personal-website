@@ -137,10 +137,11 @@ html {
   display: inline-block;
   flex-shrink: 0;
   border: none;
+  border-radius: 3px;
   background-color: #ece9d8;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 65%;
+  background-size: contain;
   box-shadow:
     inset -1px -1px #0a0a0a,
     inset 1px 1px #fff,
@@ -275,6 +276,215 @@ html {
 
 #taskbar-clock {
   font-weight: 300;
+}
+
+/* Start Menu — modeled on ShizukuIchi/winXP's FooterMenu component */
+.start-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  z-index: 1;
+  width: 460px;
+  max-width: calc(100vw - 8px);
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background-color: #4282d6;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+  font-family: var(--font-sans);
+}
+
+.start-menu-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 54px;
+  padding: 0 12px;
+  background: linear-gradient(
+    180deg,
+    #1868ce 0%,
+    #0e60cb 12%,
+    #0e60cb 20%,
+    #1164cf 32%,
+    #1667cf 33%,
+    #1b6cd3 47%,
+    #1e70d9 54%,
+    #2476dc 60%,
+    #297ae0 65%,
+    #3482e3 77%,
+    #3786e5 79%,
+    #428ee9 90%,
+    #4791eb 100%
+  );
+}
+
+.start-menu-avatar {
+  height: 42px;
+  width: 42px;
+  border-radius: 3px;
+  border: 2px solid rgba(222, 222, 222, 0.8);
+}
+
+.start-menu-username {
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.start-menu-hr {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    #da884a 50%,
+    transparent 100%
+  );
+}
+
+.start-menu-body {
+  display: flex;
+  max-height: 70vh;
+  border-top: 1px solid #385de7;
+}
+
+.start-menu-col {
+  overflow-y: auto;
+  padding: 6px 0;
+}
+
+.start-menu-col-left {
+  width: 280px;
+  background: #fff;
+  color: #000;
+}
+
+.start-menu-col-right {
+  width: 170px;
+  background: #cbe3ff;
+  color: #00136b;
+  border-left: 1px solid rgba(58, 58, 255, 0.37);
+}
+
+.start-menu-col-label {
+  margin: 2px 12px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #4c6effb0;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.start-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.start-menu-item:hover,
+.start-menu-item:focus-visible {
+  background-color: #2f71cd;
+  color: #fff;
+  outline: none;
+}
+
+.start-menu-item-icon {
+  height: 28px;
+  width: 28px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.start-menu-item-text {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.start-menu-item-title {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.start-menu-item-subtitle {
+  font-size: 10.5px;
+  line-height: 1.3;
+  white-space: normal;
+  opacity: 0.8;
+}
+
+.start-menu-separator {
+  height: 1px;
+  margin: 6px 12px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.start-menu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 36px;
+  padding: 0 8px;
+  background: linear-gradient(
+    180deg,
+    #4282d6 0%,
+    #3b85e0 3%,
+    #418ae3 5%,
+    #418ae3 17%,
+    #3c87e2 21%,
+    #3786e4 26%,
+    #3482e3 29%,
+    #2e7ee1 39%,
+    #2374df 49%,
+    #2072db 57%,
+    #196edb 62%,
+    #176bd8 72%,
+    #1468d5 75%,
+    #1165d2 83%,
+    #0f61cb 88%
+  );
+}
+
+.start-menu-footer-item {
+  border: none;
+  border-radius: 3px;
+  background: none;
+  padding: 5px 10px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+
+.start-menu-footer-item:hover {
+  background-color: rgba(60, 80, 210, 0.5);
+}
+
+@media (max-width: 640px) {
+  .start-menu {
+    left: 0;
+    width: calc(100vw - 8px);
+  }
+
+  .start-menu-body {
+    flex-direction: column;
+  }
+
+  .start-menu-col-left,
+  .start-menu-col-right {
+    width: 100%;
+  }
+
+  .start-menu-col-right {
+    border-top: 1px solid rgba(58, 58, 255, 0.37);
+    border-left: none;
+  }
 }
 
 /* Prose / blog post content styles — a WordPad-style document sitting inside a

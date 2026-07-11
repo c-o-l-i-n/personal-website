@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DesktopIcons from '../components/DesktopIcons.astro';
+import StartMenu from '../components/StartMenu.astro';
 import { socialIcons } from '../lib/social-icons';
 
 interface Props {
@@ -90,19 +91,29 @@ const taskbarApps = [
     </div>
 
     <footer
-      class="taskbar fixed inset-x-0 bottom-0 z-50 flex h-8 items-center justify-between px-1"
+      class="taskbar fixed inset-x-0 bottom-0 z-[1000] flex h-8 items-center justify-between"
     >
-      <div class="flex h-full items-center gap-1.5" aria-hidden="true">
-        <button type="button" class="start-button" tabindex="-1">
-          {/* Start button sprite from ShizukuIchi/winXP (MIT License), used as-is per license terms. */}
-          <img
-            src="/images/xp-start.png"
-            alt=""
-            width="106"
-            height="34"
-            draggable="false"
-          />
-        </button>
+      <div class="flex h-full items-center gap-1.5">
+        <div class="relative h-full">
+          <button
+            type="button"
+            id="start-button"
+            class="start-button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label="Start menu"
+          >
+            {/* Start button sprite from ShizukuIchi/winXP (MIT License), used as-is per license terms. */}
+            <img
+              src="/images/xp-start.png"
+              alt=""
+              width="106"
+              height="34"
+              draggable="false"
+            />
+          </button>
+          <StartMenu />
+        </div>
         <div class="taskbar-divider hidden sm:block"></div>
         {
           taskbarApps.map(({ label, focused }) => (
@@ -110,6 +121,7 @@ const taskbarApps = [
               type="button"
               class={`taskbar-app-button hidden sm:inline-flex ${focused ? 'is-focused' : ''}`}
               tabindex="-1"
+              aria-hidden="true"
             >
               {label}
             </button>
@@ -117,7 +129,9 @@ const taskbarApps = [
         }
       </div>
 
-      <div class="taskbar-tray flex h-full items-center gap-2 px-2 sm:gap-3 sm:px-3">
+      <div
+        class="taskbar-tray flex h-full items-center gap-2 px-2 sm:gap-3 sm:px-3"
+      >
         {
           trayLinks.map(({ href, label, icon }) => (
             <a
@@ -149,7 +163,12 @@ const taskbarApps = [
 
     <script>
       // Drag any .window by its title bar, and dismiss it via the Close control.
+      // Windows are detached to `position: absolute` (page coordinates, so they
+      // scroll with the page like real content) on first drag, leaving a same-
+      // sized invisible spacer behind so the rest of the layout never reflows.
       const DRAG_THRESHOLD = 4;
+      // Kept well under the taskbar's z-index (1000) so it's always on top.
+      let topZ = 10;
 
       let dragState: {
         el: HTMLElement;
@@ -158,14 +177,43 @@ const taskbarApps = [
         startX: number;
         startY: number;
       } | null = null;
-      let topZ = 100;
       // True for one tick after a real drag (past the threshold) ends, so the
-      // trailing `click` — e.g. on a card that's really an <a> — gets swallowed
-      // instead of navigating away out from under the user.
+      // trailing `click` gets swallowed instead of activating a link/button
+      // under the pointer.
       let suppressNextClick = false;
 
       function getPoint(e: MouseEvent | TouchEvent) {
         return 'touches' in e ? e.touches[0] : e;
+      }
+
+      // Reserve a window's current flow position with an equally-sized
+      // invisible spacer, then pin the window itself to that same spot via
+      // absolute (page-relative) positioning. Idempotent: a window already
+      // detached is left alone.
+      function detachWindow(winEl: HTMLElement) {
+        if (winEl.dataset.detached === 'true') return;
+
+        const rect = winEl.getBoundingClientRect();
+        const cs = getComputedStyle(winEl);
+
+        const spacer = document.createElement('div');
+        spacer.setAttribute('aria-hidden', 'true');
+        spacer.style.width = `${rect.width}px`;
+        spacer.style.height = `${rect.height}px`;
+        spacer.style.marginTop = cs.marginTop;
+        spacer.style.marginRight = cs.marginRight;
+        spacer.style.marginBottom = cs.marginBottom;
+        spacer.style.marginLeft = cs.marginLeft;
+        spacer.style.flexShrink = '0';
+        winEl.parentElement?.insertBefore(spacer, winEl);
+
+        winEl.style.position = 'absolute';
+        winEl.style.left = `${rect.left + window.scrollX}px`;
+        winEl.style.top = `${rect.top + window.scrollY}px`;
+        winEl.style.width = `${rect.width}px`;
+        winEl.style.height = `${rect.height}px`;
+        winEl.style.margin = '0';
+        winEl.dataset.detached = 'true';
       }
 
       function startDrag(e: MouseEvent | TouchEvent) {
@@ -175,23 +223,20 @@ const taskbarApps = [
         const winEl = titleBar?.closest<HTMLElement>('.window');
         if (!titleBar || !winEl) return;
 
-        const rect = winEl.getBoundingClientRect();
+        detachWindow(winEl);
+
         const point = getPoint(e);
+        const left = parseFloat(winEl.style.left);
+        const top = parseFloat(winEl.style.top);
         dragState = {
           el: winEl,
-          offsetX: point.clientX - rect.left,
-          offsetY: point.clientY - rect.top,
+          offsetX: point.clientX + window.scrollX - left,
+          offsetY: point.clientY + window.scrollY - top,
           startX: point.clientX,
           startY: point.clientY,
         };
 
-        winEl.style.position = 'fixed';
-        winEl.style.left = `${rect.left}px`;
-        winEl.style.top = `${rect.top}px`;
-        winEl.style.width = `${rect.width}px`;
-        winEl.style.margin = '0';
         winEl.style.zIndex = String(++topZ);
-
         document.body.classList.add('is-dragging-window');
       }
 
@@ -206,8 +251,8 @@ const taskbarApps = [
         ) {
           suppressNextClick = true;
         }
-        dragState.el.style.left = `${point.clientX - dragState.offsetX}px`;
-        dragState.el.style.top = `${point.clientY - dragState.offsetY}px`;
+        dragState.el.style.left = `${point.clientX + window.scrollX - dragState.offsetX}px`;
+        dragState.el.style.top = `${point.clientY + window.scrollY - dragState.offsetY}px`;
       }
 
       function endDrag() {
@@ -240,10 +285,70 @@ const taskbarApps = [
             '[data-window-close]',
           );
           if (!closeBtn) return;
-          closeBtn.closest('.window')?.remove();
+          const winEl = closeBtn.closest<HTMLElement>('.window');
+          if (!winEl) return;
+          // If it's still docked in the flow, reserve its space first so
+          // closing it doesn't shift any other window.
+          if (winEl.dataset.detached !== 'true') {
+            const rect = winEl.getBoundingClientRect();
+            const cs = getComputedStyle(winEl);
+            const spacer = document.createElement('div');
+            spacer.setAttribute('aria-hidden', 'true');
+            spacer.style.width = `${rect.width}px`;
+            spacer.style.height = `${rect.height}px`;
+            spacer.style.marginTop = cs.marginTop;
+            spacer.style.marginRight = cs.marginRight;
+            spacer.style.marginBottom = cs.marginBottom;
+            spacer.style.marginLeft = cs.marginLeft;
+            spacer.style.flexShrink = '0';
+            winEl.parentElement?.insertBefore(spacer, winEl);
+          }
+          winEl.remove();
         },
         true,
       );
+    </script>
+
+    <script>
+      // Start Menu: toggled from the Start button, closes on outside click,
+      // Escape, its own Close button, or picking a menu item.
+      const startBtn = document.getElementById('start-button');
+      const startMenu = document.getElementById('start-menu');
+
+      function closeStartMenu() {
+        if (!startMenu || !startBtn) return;
+        startMenu.hidden = true;
+        startBtn.setAttribute('aria-expanded', 'false');
+      }
+
+      function toggleStartMenu(e: Event) {
+        if (!startMenu || !startBtn) return;
+        e.stopPropagation();
+        const willOpen = startMenu.hidden;
+        startMenu.hidden = !willOpen;
+        startBtn.setAttribute('aria-expanded', String(willOpen));
+      }
+
+      startBtn?.addEventListener('click', toggleStartMenu);
+      startMenu
+        ?.querySelector('[data-start-menu-close]')
+        ?.addEventListener('click', closeStartMenu);
+
+      document.addEventListener('click', (e) => {
+        if (!startMenu || startMenu.hidden) return;
+        const target = e.target as HTMLElement;
+        if (startMenu.contains(target) && target.tagName === 'A') {
+          closeStartMenu();
+          return;
+        }
+        if (!startMenu.contains(target) && target !== startBtn) {
+          closeStartMenu();
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeStartMenu();
+      });
     </script>
   </body>
 </html>

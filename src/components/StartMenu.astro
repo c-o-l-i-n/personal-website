@@ -1,0 +1,74 @@
+---
+import { sideProjects } from '../lib/side-projects';
+import { socialIcons } from '../lib/social-icons';
+
+const quickLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const socialIconClass = 'h-4 w-4';
+const socialLinks = socialIcons.map(({ href, label, icon }) => ({
+  href,
+  label: label.replace("Colin's ", ''),
+  icon: icon(socialIconClass),
+}));
+---
+
+<div id="start-menu" class="start-menu" hidden>
+  <div class="start-menu-header">
+    <img src="/images/colin.webp?cb=1" alt="" class="start-menu-avatar" />
+    <span class="start-menu-username">Colin Williams</span>
+  </div>
+  <div class="start-menu-hr"></div>
+  <div class="start-menu-body">
+    <div class="start-menu-col start-menu-col-left">
+      <p class="start-menu-col-label">Side Projects</p>
+      {
+        sideProjects.map((project) => (
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="start-menu-item"
+          >
+            <img src={project.logoSrc} alt="" class="start-menu-item-icon" />
+            <span class="start-menu-item-text">
+              <span class="start-menu-item-title">{project.name}</span>
+              <span class="start-menu-item-subtitle">{project.notes}</span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+    <div class="start-menu-col start-menu-col-right">
+      {
+        quickLinks.map((link) => (
+          <a href={link.href} class="start-menu-item">
+            <span class="start-menu-item-title">{link.label}</span>
+          </a>
+        ))
+      }
+      <div class="start-menu-separator"></div>
+      {
+        socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="start-menu-item"
+          >
+            <span set:html={link.icon} />
+            <span class="start-menu-item-title">{link.label}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+  <div class="start-menu-footer">
+    <button type="button" class="start-menu-footer-item" data-start-menu-close>
+      Close
+    </button>
+  </div>
+</div>

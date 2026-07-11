@@ -110,53 +110,6 @@ const leadershipRows = [
   },
 ];
 
-const sideProjectRows = [
-  {
-    name: 'Newsletter Studio',
-    url: 'https://newsletterstudio.colinaw.com',
-    logoSrc: '/images/logos/newsletter-studio.webp',
-    notes: 'Write and print a vintage-newspaper-style newsletter',
-  },
-  {
-    name: 'Mell',
-    url: 'https://github.com/VoxelPenguin/mell#readme',
-    logoSrc: '/images/logos/mell.webp',
-    notes:
-      "Empower your community to report and solve local issues! Winner of Harper Hack '25",
-  },
-  {
-    name: 'Whisker Jam',
-    url: 'https://github.com/c-o-l-i-n/whisker-jam#readme',
-    logoSrc: '/images/logos/whisker-jam.webp',
-    notes:
-      'Create a realtime virtual rock band made up of cats! Winner of the Supabase Launch Week 12 Hackathon',
-  },
-  {
-    name: 'EventMaster Pro',
-    url: 'https://github.com/joshies-foundation/event-master-pro#readme',
-    logoSrc: '/images/logos/emp.svg',
-    notes:
-      'Supercharge dynamic, multi-day competitions with realtime brackets, betting, analytics, and more',
-  },
-  {
-    name: 'Potluk',
-    url: 'https://potl.uk',
-    logoSrc: '/images/logos/potluk.svg',
-    notes: 'Coordinate who brings what to your potluck',
-  },
-  {
-    name: 'Presto Parts',
-    url: 'https://prestoparts.org',
-    logoSrc: '/images/logos/pp.svg',
-    notes: 'Organize sheet music PDFs in a few minutes, not many hours',
-  },
-  {
-    name: 'Drill Generator',
-    url: 'https://drillgenerator.com',
-    logoSrc: '/images/logos/drill-generator.svg',
-    notes: 'Generate drills in the style of OSUMB tryouts',
-  },
-];
 ---
 
 <BaseLayout title="Colin Williams - Software Engineer & Frontend Architect">
@@ -302,50 +255,6 @@ const sideProjectRows = [
               </div>
             ),
           )
-        }
-      </div>
-    </Card>
-
-    <!-- Side Projects -->
-    <Card id="projects" header="Side Projects">
-      <h2 class="sr-only">Side Projects</h2>
-      <div>
-        {
-          sideProjectRows.map(({ name, url, logoSrc, notes }, i) => (
-            <div
-              class={`border-slate-300 py-4 md:border-b ${i === sideProjectRows.length - 1 ? 'border-none' : ''} ${i === 0 ? 'pt-0' : ''}`}
-              style="text-wrap: balance"
-            >
-              <div class="flex flex-col items-center justify-end gap-1 md:flex-row">
-                <div class="flex w-full flex-row items-center gap-3 md:w-auto md:gap-2">
-                  <a
-                    href={url}
-                    target="_blank"
-                    aria-label={`Go to ${name} website`}
-                    class="logo-button size-12 shrink-0 md:size-8"
-                    style={`background-image: url(${logoSrc})`}
-                  />
-
-                  <p class="flex flex-col md:mt-0 md:flex-row md:gap-1.5">
-                    <a
-                      href={url}
-                      target="_blank"
-                      class="-mt-0.5 font-medium whitespace-nowrap hover:underline md:m-0"
-                      aria-label={`Go to ${name} website`}
-                    >
-                      {name}
-                    </a>
-                    <span class="text-sm text-slate-400 md:hidden md:text-base">
-                      {notes}
-                    </span>
-                  </p>
-                </div>
-                <p class="hidden grow text-sm text-slate-500 md:block md:text-right md:text-base">
-                  {notes}
-                </p>
-              </div>
-            </div>
-          ))
         }
       </div>
     </Card>

@@ -18,23 +18,21 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 }).format(publishedDate);
 ---
 
-<a
-  href={`/blog/${post.id}`}
-  aria-label={`Go to blog post titled ${title}`}
-  class="h-full"
->
-  <Card removeGap class="h-full" header={header ?? title}>
-    <div class="flex flex-1 flex-col gap-1 p-2">
-      <div
-        class="h-48 w-full bg-cover bg-center"
-        style={`background-image: url(${thumbnail})`}
-      >
-      </div>
-      <p class="mt-2 text-sm">{formattedDate}</p>
-      <h3 class="mb-1 text-xl leading-tight font-bold group-hover:underline">
-        {title}
-      </h3>
-      <p class="text-sm text-slate-600">{description}</p>
+<Card removeGap class="h-full" header={header ?? title}>
+  <a
+    href={`/blog/${post.id}`}
+    aria-label={`Go to blog post titled ${title}`}
+    class="group flex flex-1 flex-col gap-1 p-2"
+  >
+    <div
+      class="h-48 w-full bg-cover bg-center"
+      style={`background-image: url(${thumbnail})`}
+    >
     </div>
-  </Card>
-</a>
+    <p class="mt-2 text-sm">{formattedDate}</p>
+    <h3 class="mb-1 text-xl leading-tight font-bold group-hover:underline">
+      {title}
+    </h3>
+    <p class="text-sm text-slate-600">{description}</p>
+  </a>
+</Card>
