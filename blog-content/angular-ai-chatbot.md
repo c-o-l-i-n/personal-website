@@ -541,15 +541,14 @@ Here are the key takeaways:
 
 - Stream the AI's response from the backend with Hono's `stream()` helper
 - In Angular 22, `HttpClient` needs no providers and uses `fetch` by default
-- Have the `HttpClient` use `responseType: 'text'`, `observe: 'events'`, and `reportProgress: true`
-- The repo uses `reportProgress`, which Angular 22 deprecates, so use `reportDownloadProgress: true` in new code
+- Have the `HttpClient` use `responseType: 'text'`, `observe: 'events'`, and `reportDownloadProgress: true`. The repo still uses the deprecated `reportProgress`.
 - Show a pulsing dot until the first chunk arrives, then render the response as Markdown
 - Manage state with 2 writable signals, and derive everything else with `computed`
 - React to real-time updates from the LLM with RxJS
 
 ## GitHub repo
 
-If you want to continue your learning journey, you can find all of the code from this article and more on my [GitHub](https://github.com/c-o-l-i-n/ng-generative-ai-demo).
+All of the code from this article is on my [GitHub](https://github.com/c-o-l-i-n/ng-generative-ai-demo).
 
 If you have any questions about this article or any other Angular topics, feel free to [contact me](/contact)!
 
