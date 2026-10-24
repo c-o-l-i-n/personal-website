@@ -11,8 +11,9 @@ const sortedPosts = allPosts.sort(
 const featuredPost = sortedPosts.find((p) => p.data.featured);
 const latestPost = sortedPosts[0];
 
+const experienceStart = '2020-08-01';
 const yearsOfExperience = Math.round(
-  (Date.now() - new Date('2020-08-01').getTime()) / 31557600000,
+  (Date.now() - new Date(experienceStart).getTime()) / 31557600000,
 );
 
 const skillPills = [
@@ -217,8 +218,18 @@ const sideProjectRows = [
       <h2
         class="mb-4 text-center font-mono text-xl font-medium md:text-left md:text-2xl"
       >
-        Experience ({yearsOfExperience} yrs)
+        Experience (<span id="years-of-experience" data-start={experienceStart}
+          >{yearsOfExperience}</span
+        > yrs)
       </h2>
+      <script is:inline>
+        {
+          const el = document.getElementById('years-of-experience');
+          el.textContent = Math.round(
+            (Date.now() - new Date(el.dataset.start).getTime()) / 31557600000,
+          );
+        }
+      </script>
       <div>
         {
           workExperienceRows.map(
