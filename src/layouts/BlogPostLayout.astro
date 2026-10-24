@@ -6,19 +6,23 @@ interface Props {
   title: string;
   description?: string;
   publishedDate: Date;
+  updatedDate?: Date;
   thumbnail?: string;
   tags?: string[];
 }
 
-const { title, description, publishedDate, thumbnail, tags } = Astro.props;
+const { title, description, publishedDate, updatedDate, thumbnail, tags } =
+  Astro.props;
 
-const formattedDate = new Intl.DateTimeFormat('en-US', {
+const dateFormat = new Intl.DateTimeFormat('en-US', {
   weekday: 'long',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
   timeZone: 'UTC',
-}).format(publishedDate);
+});
+const publishedText = dateFormat.format(publishedDate);
+const updatedText = updatedDate && dateFormat.format(updatedDate);
 ---
 
 <BaseLayout
@@ -44,11 +48,22 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
 
     <!-- Date -->
     <div class="text-sm leading-6">
-      <dl>
+      <dl class="flex flex-wrap gap-x-1 text-slate-700 dark:text-slate-400">
         <dt class="sr-only">Date</dt>
-        <dd class="text-slate-700 dark:text-slate-400">
-          <time datetime={publishedDate.toISOString()}>{formattedDate}</time>
+        <dd>
+          <time datetime={publishedDate.toISOString()}>{publishedText}</time>
         </dd>
+        {
+          updatedDate && (
+            <>
+              <dt class="sr-only">Updated</dt>
+              <dd>
+                <span aria-hidden="true">· Updated </span>
+                <time datetime={updatedDate.toISOString()}>{updatedText}</time>
+              </dd>
+            </>
+          )
+        }
       </dl>
     </div>
 
