@@ -6,8 +6,6 @@ thumbnail: /images/ng-ai-cover.webp
 published: true
 ---
 
-> **TL;DR:** Stream an LLM's response from a Hono backend, then render it as it arrives in Angular with `HttpClient`, RxJS, and Signals.
-
 ## Demo
 
 The user sends a message. A pulsing dot shows while the AI thinks, and then the response streams in as Markdown.
@@ -23,9 +21,9 @@ Prefer video? I gave this as a talk at ng-conf:
 Clone the [demo repo](https://github.com/c-o-l-i-n/ng-generative-ai-demo) and install its dependencies:
 
 ```sh
-$ git clone https://github.com/c-o-l-i-n/ng-generative-ai-demo.git
-$ cd ng-generative-ai-demo
-$ npm install
+git clone https://github.com/c-o-l-i-n/ng-generative-ai-demo.git
+cd ng-generative-ai-demo
+npm install
 ```
 
 Get an API key from [Google AI Studio](https://aistudio.google.com/app/apikey) and put it in a `.env` file at the project root:
@@ -99,11 +97,11 @@ serve({ fetch: app.fetch, port }, () => {
 
 The `/message` endpoint sends the prompt to Gemini and writes each chunk to the response as it arrives. Hono's `stream()` helper closes the response when the callback finishes. `cors()` lets the Angular dev server on port 4200 call the backend on port 3000.
 
-`ai.chats.create()` opens one chat session that remembers the conversation. It lives in server memory, so every user shares it. That's fine for a demo but not for production.
+`ai.chats.create()` opens one chat session that remembers the conversation in memory, which is fine for a demo.
 
 ## App config
 
-The app's only provider is ngx-markdown, which renders the AI's Markdown:
+The app's only provider is `ngx-markdown`, which renders the AI's Markdown:
 
 ```ts
 // {code-link}[src/app/app.config.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/app.config.ts#L1-L9)
@@ -264,7 +262,7 @@ sendMessage(prompt: string): void {
 }
 ```
 
-User messages get a blue bubble. An AI message with no text yet shows a pulsing dot. Once text arrives, ngx-markdown renders it and Tailwind's `prose` classes style it. The rest of the component reads the two computed signals and passes form submissions to `MessageService`.
+User messages get a blue bubble. An AI message with no text yet shows a pulsing dot. Once text arrives, `ngx-markdown` renders it and Tailwind's `prose` classes style it. The rest of the component reads the two computed signals and passes form submissions to `MessageService`.
 
 ## Run it
 
@@ -272,10 +270,10 @@ Start the backend and the Angular dev server in two terminals:
 
 ```sh
 # terminal 1
-$ npm run server
+npm run server
 
 # terminal 2
-$ npm start
+npm start
 ```
 
 Then open `http://localhost:4200`.
