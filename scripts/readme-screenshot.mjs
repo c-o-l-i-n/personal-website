@@ -77,12 +77,14 @@ const capture = async (win, theme) => {
 const windowHtml = (win, image) => {
   const { left, top, width, depth } = win.placement;
   return `
-    <div class="window" style="left: ${left}px; top: ${top}px; width: ${width}px; transform: translateZ(${depth}px);">
-      <div class="titlebar">
-        <div class="lights"><span></span><span></span><span></span></div>
-        <div class="url">colinaw.com${win.path === '/' ? '' : win.path}</div>
+    <div class="placement" style="left: ${left}px; top: ${top}px; transform: translateZ(${depth}px);">
+      <div class="window" style="width: ${width}px;">
+        <div class="titlebar">
+          <div class="lights"><span></span><span></span><span></span></div>
+          <div class="url">colinaw.com${win.path === '/' ? '' : win.path}</div>
+        </div>
+        <img src="data:image/png;base64,${image}" />
       </div>
-      <img src="data:image/png;base64,${image}" />
     </div>`;
 };
 
@@ -107,8 +109,17 @@ const sceneHtml = (theme, images) => {
         transform-style: preserve-3d;
         transform: rotateX(3deg) rotateY(-3deg) scale(0.92);
       }
-      .window {
+      .placement {
         position: absolute;
+        transform-style: preserve-3d;
+      }
+      /* Chromium rasterizes 3D-transformed layers below the device pixel
+         ratio, which blurs text. Laying the window out at 2x and scaling it
+         back down makes Chromium rasterize it at full resolution. */
+      .window {
+        zoom: 2;
+        transform: scale(0.5);
+        transform-origin: 0 0;
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 0 0 1px rgb(0 0 0 / 0.15), 0 40px 80px rgb(0 0 0 / 0.35);
