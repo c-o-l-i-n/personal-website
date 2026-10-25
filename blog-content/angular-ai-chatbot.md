@@ -14,20 +14,17 @@ The user sends a message. A pulsing dot shows while the AI thinks, and then the 
 
 ![Angular Generative AI Demo](/images/gifs/ng-ai.gif)
 
-_This GIF shows the original 2024 version. The UI has changed since then, but the streaming works the same way._
-
-Prefer video? This ng-conf talk covers the 2024 version:
+Prefer video? I gave this as a talk at ng-conf:
 
 {youtube-embed}[tlWlFpEmTeE]
 
 ## Setup
 
-You need Git and a [Node.js version that Angular 22 supports](https://angular.dev/reference/versions). Clone the [demo repo](https://github.com/c-o-l-i-n/ng-generative-ai-demo) at the commit this article uses:
+Clone the [demo repo](https://github.com/c-o-l-i-n/ng-generative-ai-demo) and install its dependencies:
 
 ```sh
 $ git clone https://github.com/c-o-l-i-n/ng-generative-ai-demo.git
 $ cd ng-generative-ai-demo
-$ git checkout a38d62f
 $ npm install
 ```
 
@@ -43,7 +40,7 @@ GOOGLE_AI_STUDIO_API_KEY=paste-api-key-here
 We'll use Google's Gemini API because it has a free tier, as long as you're willing to sell your soul and your data to Google. The whole backend is one Hono app:
 
 ```ts
-// {code-link}[src/server.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/a38d62f9f455074c3f2277e4ea7690a60b1acf81/src/server.ts#L1-L53)
+// {code-link}[src/server.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/server.ts#L1-L53)
 
 import { GoogleGenAI } from '@google/genai';
 import { serve } from '@hono/node-server';
@@ -106,10 +103,10 @@ The `/message` endpoint sends the prompt to Gemini and writes each chunk to the 
 
 ## App config
 
-Angular 22 provides `HttpClient` in root and uses the `fetch` backend by default, so the app needs no `provideHttpClient()`. The only provider is ngx-markdown, which renders the AI's Markdown:
+The app's only provider is ngx-markdown, which renders the AI's Markdown:
 
 ```ts
-// {code-link}[src/app/app.config.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/a38d62f9f455074c3f2277e4ea7690a60b1acf81/src/app/app.config.ts#L1-L9)
+// {code-link}[src/app/app.config.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/app.config.ts#L1-L9)
 
 import { ApplicationConfig } from '@angular/core';
 import { provideMarkdown } from 'ngx-markdown';
@@ -124,10 +121,10 @@ export const appConfig: ApplicationConfig = {
 
 ## State
 
-`MessageService` holds the chat state and streams the responses. It uses Angular 22's `@Service()` decorator, which provides the class in root like `@Injectable({ providedIn: 'root' })` does. A `@Service()` class must use `inject()`, not constructor injection.
+`MessageService` holds the chat state and streams the responses.
 
 ```ts
-// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/a38d62f9f455074c3f2277e4ea7690a60b1acf81/src/app/message.service.ts#L11-L34)
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L11-L34)
 
 export interface Message {
   id: string;
@@ -160,7 +157,7 @@ Two private signals hold the state, `completeMessages` and `incomingMessage`. `m
 ## Streaming the response
 
 ```ts
-// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/a38d62f9f455074c3f2277e4ea7690a60b1acf81/src/app/message.service.ts#L60-L97)
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L60-L97)
 
 private getChatResponseStream(prompt: string): Observable<Message> {
   const id = window.crypto.randomUUID();
@@ -202,7 +199,7 @@ private getChatResponseStream(prompt: string): Observable<Message> {
 }
 ```
 
-- `responseType: 'text'`, `observe: 'events'`, and `reportProgress: true` make `HttpClient` emit a `DownloadProgress` event for each chunk. Angular 22 deprecates `reportProgress`, so use `reportDownloadProgress: true` in new code.
+- `responseType: 'text'`, `observe: 'events'`, and `reportProgress: true` make `HttpClient` emit a `DownloadProgress` event for each chunk.
 - `filter` keeps the progress events and the final `Response`.
 - `map` turns each event into a `Message`. `partialText` holds all the text received so far, so each message replaces the last one.
 - `startWith` emits an empty message right away, which shows the pulsing dot.
@@ -210,7 +207,7 @@ private getChatResponseStream(prompt: string): Observable<Message> {
 ## Sending a message
 
 ```ts
-// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/a38d62f9f455074c3f2277e4ea7690a60b1acf81/src/app/message.service.ts#L36-L58)
+// {code-link}[src/app/message.service.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/message.service.ts#L36-L58)
 
 sendMessage(prompt: string): void {
   this.completeMessages.update((msgs) => [
@@ -239,12 +236,10 @@ sendMessage(prompt: string): void {
 
 `sendMessage` adds the user's message, then sets `incomingMessage` on every stream update. When the stream completes, the AI message moves into `completeMessages`. On error, `incomingMessage` resets so the send button doesn't stay disabled.
 
-If the Gemini call fails, the server logs the error and returns an empty `200`. So with a bad API key, you'll see an empty AI message, and the real error shows up in the backend terminal.
-
 ## UI
 
 ```html
-<!-- {code-link}[src/app/app.component.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/a38d62f9f455074c3f2277e4ea7690a60b1acf81/src/app/app.component.ts#L32-L52) -->
+<!-- {code-link}[src/app/app.component.ts](https://github.com/c-o-l-i-n/ng-generative-ai-demo/blob/main/src/app/app.component.ts#L32-L52) -->
 
 <!-- Message List -->
 @for (message of messages(); track message.id) {
@@ -283,7 +278,7 @@ $ npm run server
 $ npm start
 ```
 
-In VS Code, **Terminal > Run Build Task** starts both. Then open `http://localhost:4200`.
+Then open `http://localhost:4200`.
 
 ## Takeaways
 
@@ -291,4 +286,4 @@ In VS Code, **Terminal > Run Build Task** starts both. Then open `http://localho
 - Read it in Angular with `HttpClient` progress events
 - Keep state in signals and derive the rest with `computed`
 
-Questions? [Contact me](/contact). Happy coding!
+Happy coding!
